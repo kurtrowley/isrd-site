@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSimStore } from '../store/useSimStore';
 import { LAB_REGISTRY } from '../labs/registry';
+import siteContent from '../content/site.json';
 
 export function GlobalNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -23,8 +24,8 @@ export function GlobalNav() {
       <div className="max-w-7xl mx-auto px-4 flex items-center h-14 gap-6">
         {/* Brand */}
         <Link to="/" className="flex flex-col leading-tight shrink-0" style={{ textDecoration: 'none' }}>
-          <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'var(--gold)' }}>ISRD</span>
-          <span className="text-[10px] tracking-wider" style={{ color: 'var(--muted)' }}>Foundry</span>
+          <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'var(--gold)' }}>{siteContent.nav.brand}</span>
+          <span className="text-[10px] tracking-wider" style={{ color: 'var(--muted)' }}>{siteContent.nav.brand_sub}</span>
         </Link>
 
         {/* Desktop links */}

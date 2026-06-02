@@ -39,9 +39,13 @@ export function SimRunner({ sim }: Props) {
       canvas.height = canvas.offsetHeight;
       simRef.current.resize(canvas.width, canvas.height);
     };
-    resize();
-    simRef.current.init(canvas, ctx);
     window.addEventListener('resize', resize);
+
+    // Defer init by one frame so the canvas has layout dimensions
+    const initRaf = requestAnimationFrame(() => {
+      resize();
+      simRef.current.init(canvas, ctx);
+    });
 
     const loop = () => {
       if (runningRef.current) {
@@ -54,6 +58,7 @@ export function SimRunner({ sim }: Props) {
     rafRef.current = requestAnimationFrame(loop);
 
     return () => {
+      cancelAnimationFrame(initRaf);
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', resize);
     };

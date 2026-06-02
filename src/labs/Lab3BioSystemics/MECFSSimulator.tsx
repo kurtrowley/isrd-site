@@ -58,6 +58,17 @@ function drawBrainstemDiagram(canvas: HTMLCanvasElement, symptoms: NonNullable<P
   ctx.textAlign='start';
 }
 
+// Grid layout helper — reserves 50px at top for the Day/Phase/Outbreak labels.
+// Used in draw, spread, and mouse hit-testing so all are consistent.
+const TOP_PAD = 50;
+function gridLayout(W: number, H: number) {
+  const gridH = H - TOP_PAD;
+  const cs = Math.min(W, gridH) / Math.max(COLS, ROWS);
+  const ox = (W - COLS * cs) / 2;
+  const oy = TOP_PAD + (gridH - ROWS * cs) / 2;
+  return { cs, ox, oy };
+}
+
 // ── Main component ─────────────────────────────────────────────────────────────
 interface MECFSSimProps {
   outbreak?: OutbreakPreset;
@@ -123,8 +134,7 @@ export function MECFSSimulator({
     ctx.clearRect(0,0,W,H);
     ctx.fillStyle = '#060f16'; ctx.fillRect(0,0,W,H);
 
-    const cs = Math.min(W, H) / Math.max(COLS, ROWS);
-    const ox = (W - COLS * cs) / 2, oy = (H - ROWS * cs) / 2;
+    const { cs, ox, oy } = gridLayout(W, H);
     const personPos = (p: Person) => ({
       x: ox + p.col * cs + cs / 2,
       y: oy + p.row * cs + cs / 2,
@@ -135,7 +145,7 @@ export function MECFSSimulator({
     for (const f of s.flashes) {
       const a = f.t / 18;
       ctx.beginPath(); ctx.moveTo(f.x1,f.y1); ctx.lineTo(f.x2,f.y2);
-      ctx.strokeStyle = `rgba(220,100,30,${a*0.7})`; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.strokeStyle = `rgba(220,100,30,${a*0.95})`; ctx.lineWidth = 2.2; ctx.stroke();
     }
 
     const t = performance.now() / 1000;
@@ -225,8 +235,7 @@ export function MECFSSimulator({
             if (nb.status !== STATUS.HEALTHY) continue;
             const pT = pPerContact * (1.5 - nb.immuneFunction*0.6) * (1+s.env.pollution*0.1) * socialF * sanitF;
             if (Math.random() < pT && nb.expose(s.day)) {
-              const cs = Math.min(canvasRef.current!.width, canvasRef.current!.height) / Math.max(COLS,ROWS);
-              const ox = (canvasRef.current!.width - COLS*cs)/2, oy = (canvasRef.current!.height - ROWS*cs)/2;
+              const { cs, ox, oy } = gridLayout(canvasRef.current!.width, canvasRef.current!.height);
               const ax = ox+inf.col*cs+cs/2, ay = oy+inf.row*cs+cs/2;
               const bx = ox+nb.col*cs+cs/2,  by = oy+nb.row*cs+cs/2;
               s.flashes.push({x1:ax,y1:ay,x2:bx,y2:by,t:18});
@@ -327,8 +336,7 @@ export function MECFSSimulator({
     const rect = canvas.getBoundingClientRect();
     const mx = (e.clientX - rect.left) * (canvas.width / rect.width);
     const my = (e.clientY - rect.top)  * (canvas.height / rect.height);
-    const cs = Math.min(canvas.width, canvas.height) / Math.max(COLS,ROWS);
-    const ox = (canvas.width-COLS*cs)/2, oy = (canvas.height-ROWS*cs)/2;
+    const { cs, ox, oy } = gridLayout(canvas.width, canvas.height);
     for (const p of s.population) {
       const x = ox+p.col*cs+cs/2, y = oy+p.row*cs+cs/2, r = cs*0.36;
       p.hovered = Math.hypot(mx-x, my-y) < r;
@@ -341,8 +349,7 @@ export function MECFSSimulator({
     const rect = canvas.getBoundingClientRect();
     const mx = (e.clientX - rect.left) * (canvas.width / rect.width);
     const my = (e.clientY - rect.top)  * (canvas.height / rect.height);
-    const cs = Math.min(canvas.width, canvas.height) / Math.max(COLS,ROWS);
-    const ox = (canvas.width-COLS*cs)/2, oy = (canvas.height-ROWS*cs)/2;
+    const { cs, ox, oy } = gridLayout(canvas.width, canvas.height);
     let hit: Person | null = null;
     for (const p of s.population) {
       const x = ox+p.col*cs+cs/2, y = oy+p.row*cs+cs/2, r = cs*0.36;

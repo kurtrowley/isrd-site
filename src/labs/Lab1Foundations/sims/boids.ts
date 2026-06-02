@@ -18,6 +18,8 @@ class BoidsSimClass implements Sim {
   private boids: Boid[] = [];
   private t = 0;
   private p: Record<string, number> = {};
+  private _dispAvg = '0.00';
+  private _dispSteps = 0;
 
   init(canvas: HTMLCanvasElement): void {
     this.w = canvas.width; this.h = canvas.height;
@@ -54,6 +56,11 @@ class BoidsSimClass implements Sim {
       b.y = (b.y + b.vy + this.h) % this.h;
     }
     this.t++;
+    if (this.t % 100 === 0) {
+      const speeds = this.boids.map(b => Math.hypot(b.vx, b.vy));
+      this._dispAvg   = (speeds.reduce((a, b) => a + b, 0) / speeds.length).toFixed(2);
+      this._dispSteps = this.t;
+    }
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
@@ -81,9 +88,7 @@ class BoidsSimClass implements Sim {
 
   stats(): Record<string, string | number> {
     if (!this.boids.length) return {};
-    const speeds = this.boids.map(b => Math.hypot(b.vx, b.vy));
-    const avg = (speeds.reduce((a,b)=>a+b,0)/speeds.length).toFixed(2);
-    return { Agents: this.boids.length, 'Avg speed': avg, Steps: this.t };
+    return { Agents: this.boids.length, 'Avg speed': this._dispAvg, Steps: this._dispSteps };
   }
 }
 

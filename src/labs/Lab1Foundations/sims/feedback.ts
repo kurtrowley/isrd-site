@@ -16,6 +16,9 @@ class FeedbackSimClass implements Sim {
   private history: number[] = [20];
   private t = 0;
   private p: Record<string, number> = {};
+  private _dispStock = 20;
+  private _dispGap   = 0;
+  private _dispSteps = 0;
 
   init(canvas: HTMLCanvasElement): void {
     this.w = canvas.width; this.h = canvas.height;
@@ -31,6 +34,11 @@ class FeedbackSimClass implements Sim {
     this.history.push(this.stock);
     if (this.history.length > Math.floor(this.w * 1.2)) this.history.shift();
     this.t++;
+    if (this.t % 100 === 0) {
+      this._dispStock = Math.round(this.stock);
+      this._dispGap   = Math.round(this.stock - this.p.target);
+      this._dispSteps = this.t;
+    }
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
@@ -67,9 +75,8 @@ class FeedbackSimClass implements Sim {
 
   stats(): Record<string, string | number> {
     if (!this.history.length) return {};
-    const val = this.history[this.history.length-1];
-    const gap = val - this.p.target;
-    return { Stock: Math.round(val), Target: Math.round(this.p.target), Gap: (gap >= 0 ? '+' : '') + Math.round(gap), Steps: this.t };
+    const gap = this._dispGap;
+    return { Stock: this._dispStock, Target: Math.round(this.p.target), Gap: (gap >= 0 ? '+' : '') + gap, Steps: this._dispSteps };
   }
 }
 

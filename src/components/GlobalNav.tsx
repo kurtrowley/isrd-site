@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSimStore } from '../store/useSimStore';
 import { LAB_REGISTRY } from '../labs/registry';
@@ -6,10 +6,14 @@ import { LAB_REGISTRY } from '../labs/registry';
 export function GlobalNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [labsOpen,   setLabsOpen]   = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { theme, toggleTheme } = useSimStore();
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname.startsWith(path);
+
+  const openMenu  = () => { if (closeTimer.current) clearTimeout(closeTimer.current); setLabsOpen(true); };
+  const closeMenu = () => { closeTimer.current = setTimeout(() => setLabsOpen(false), 120); };
 
   return (
     <nav
@@ -27,24 +31,23 @@ export function GlobalNav() {
         <div className="hidden md:flex items-center gap-5 text-sm flex-1">
           <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link>
 
-          {/* Labs dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setLabsOpen(true)}
-            onMouseLeave={() => setLabsOpen(false)}
-          >
+          {/* Labs dropdown — 120ms close delay prevents gap flicker */}
+          <div className="relative" onMouseEnter={openMenu} onMouseLeave={closeMenu}>
             <button className={`nav-link flex items-center gap-1 ${isActive('/lab') ? 'active' : ''}`}>
               Labs <span className="text-[10px]">▾</span>
             </button>
             {labsOpen && (
               <div
-                className="absolute top-full left-0 mt-1 w-64 rounded-xl border py-2 shadow-2xl"
-                style={{ background: 'var(--panel)', borderColor: 'var(--line)' }}
+                onMouseEnter={openMenu}
+                onMouseLeave={closeMenu}
+                className="absolute top-full left-0 w-64 rounded-xl border py-2 shadow-2xl"
+                style={{ background: 'var(--panel)', borderColor: 'var(--line)', marginTop: 2 }}
               >
                 {LAB_REGISTRY.map(lab => (
                   <Link
                     key={lab.id}
                     to={lab.path}
+                    onClick={() => setLabsOpen(false)}
                     className="block px-4 py-2 text-sm transition-colors hover:bg-white/5"
                     style={{ color: isActive(lab.path) ? 'var(--accent2)' : 'var(--text)', textDecoration: 'none' }}
                   >
@@ -96,23 +99,12 @@ export function GlobalNav() {
       )}
 
       <style>{`
-        .nav-link {
-          color: var(--muted);
-          text-decoration: none;
-          font-weight: 500;
-          transition: color .15s;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          font-size: .875rem;
-        }
-        .nav-link:hover, .nav-link.active { color: var(--text); }
-        .mobile-nav-link {
-          color: var(--muted); text-decoration: none; font-size: .9rem;
-          padding: 6px 0; border-bottom: 1px solid var(--line);
-        }
-        .mobile-nav-link:last-child { border-bottom: none; }
+        .nav-link { color:var(--muted); text-decoration:none; font-weight:500; transition:color .15s;
+          background:none; border:none; cursor:pointer; padding:0; font-size:.875rem; }
+        .nav-link:hover, .nav-link.active { color:var(--text); }
+        .mobile-nav-link { color:var(--muted); text-decoration:none; font-size:.9rem;
+          padding:6px 0; border-bottom:1px solid var(--line); }
+        .mobile-nav-link:last-child { border-bottom:none; }
       `}</style>
     </nav>
   );

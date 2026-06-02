@@ -1,7 +1,7 @@
 {
   "nav": {
     "brand": "ISRD",
-    "brand_sub": "Foundry",
+    "brand_sub": "Labs",
     "links": [
       { "label": "Home",  "path": "/" },
       { "label": "Labs",  "path": "/lab" },
@@ -10,7 +10,7 @@
   },
 
   "hero": {
-    "eyebrow": "Institute for Systemic Research & Design",
+    "eyebrow": "Institute for Systemic Research & Development",
     "headline_prefix": "Your Laboratory for",
     "headline_accent": "Systemic Engineering",
     "body": "Model feedback loops, attractor basins, and bifurcations across diverse domains. From bio-systemics to global futurism — one shared toolkit for complex system simulators.",
@@ -41,7 +41,7 @@
 
   "about": {
     "eyebrow": "About ISRD",
-    "heading": "Institute for Systemic Research & Design",
+    "heading": "Institute for Systemic Research & Development",
     "intro": "ISRD is the parent lab and publishing portal for <strong>Systemic Synthesis</strong> — a non-linear, holistic approach to understanding and designing complex systems.",
     "body": "Our Sim-Toolkit allows users to model feedback loops, attractor basins, and bifurcations across diverse domains. We believe that every complex phenomenon — from ME/CFS to civilizational dynamics — can be better understood through the lens of systemic engineering.",
     "principles_heading": "Core Principles",

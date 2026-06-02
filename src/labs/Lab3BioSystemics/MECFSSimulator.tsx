@@ -59,6 +59,12 @@ function drawBrainstemDiagram(canvas: HTMLCanvasElement, symptoms: NonNullable<P
 }
 
 // ── Main component ─────────────────────────────────────────────────────────────
+interface MECFSSimProps {
+  outbreak?: OutbreakPreset;
+  onStatsUpdate?: (stats: Record<string, number>) => void;
+  onSelectionChange?: (p: Person | null) => void;
+}
+
 export function MECFSSimulator({
   outbreak: outbreakProp,
   onStatsUpdate,

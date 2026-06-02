@@ -51,13 +51,13 @@ export function NodeGraph({ className = '' }: { className?: string }) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const d  = Math.sqrt(dx * dx + dy * dy);
-          if (d > 130) continue;
-          const a = (1 - d / 130) * 0.18;
+          if (d > 140) continue;
+          const a = (1 - d / 140) * 0.55;
           ctx.beginPath();
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(nodes[j].x, nodes[j].y);
           ctx.strokeStyle = `rgba(58,143,168,${a})`;
-          ctx.lineWidth = 0.8;
+          ctx.lineWidth = 1.4;
           ctx.stroke();
         }
       }

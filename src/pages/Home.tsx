@@ -14,9 +14,9 @@ export function Home() {
       {/* ── Hero ── */}
       <section style={{ position:'relative', overflow:'hidden', background:'#060f16' }}>
         <NodeGraph />
-        {/* Same max-width + padding as the nav bar so content aligns */}
-        <div className="hero-inner" style={{ position:'relative', zIndex:1, maxWidth:1280, margin:'0 auto', padding:'80px 24px 64px' }}>
-          <div style={{ maxWidth:680 }}>
+        {/* Container matches nav width so section aligns with page — text is centered within */}
+        <div style={{ position:'relative', zIndex:1, maxWidth:1280, margin:'0 auto', padding:'80px 24px 64px', textAlign:'center' }}>
+          <div style={{ maxWidth:680, margin:'0 auto' }}>
             <div style={{ fontSize:'.72rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--gold)', marginBottom:16, fontWeight:600 }}>
               {hero.eyebrow}
             </div>
@@ -24,10 +24,10 @@ export function Home() {
               {hero.headline_prefix}<br />
               <span style={{ color:'var(--accent2)' }}>{hero.headline_accent}</span>
             </h1>
-            <p style={{ fontSize:'1.05rem', color:'var(--muted)', lineHeight:1.7, maxWidth:520, margin:'0 0 32px' }}>
+            <p style={{ fontSize:'1.05rem', color:'var(--muted)', lineHeight:1.7, margin:'0 0 32px' }}>
               {hero.body}
             </p>
-            <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
+            <div style={{ display:'flex', gap:12, flexWrap:'wrap', justifyContent:'center' }}>
               <Link to={hero.cta_primary.href}
                 style={{ padding:'10px 24px', borderRadius:10, background:'var(--accent)', color:'#fff', textDecoration:'none', fontWeight:600, fontSize:'.9rem' }}>
                 {hero.cta_primary.label}

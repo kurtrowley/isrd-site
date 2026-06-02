@@ -24,6 +24,7 @@ class FeedbackSimClass implements Sim {
     this.w = canvas.width; this.h = canvas.height;
     this.p = Object.fromEntries(Object.entries(this.params).map(([k, v]) => [k, v.default]));
     this.stock = 20; this.history = [20]; this.t = 0;
+    this._dispStock = 20; this._dispGap = 0; this._dispSteps = 0;
   }
 
   step(): void {

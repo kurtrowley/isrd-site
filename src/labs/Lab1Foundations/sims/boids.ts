@@ -33,7 +33,7 @@ class BoidsSimClass implements Sim {
       x: Math.random() * this.w, y: Math.random() * this.h,
       vx: (Math.random() - 0.5) * 2, vy: (Math.random() - 0.5) * 2,
     }));
-    this.t = 0;
+    this.t = 0; this._dispAvg = '0.00'; this._dispSteps = 0;
   }
 
   step(): void {

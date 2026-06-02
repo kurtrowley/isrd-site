@@ -34,7 +34,7 @@ class LorenzSimClass implements Sim {
     this.x=0.1; this.y=0; this.z=0;
     this.x2=0.1001; this.y2=0; this.z2=0;
     this.trail=[]; this.trail2=[]; this.t=0; this.angle=0;
-    this._dispDiv = '0.0px'; this._dispSteps = 0;
+    this._dispDiv = '—'; this._dispSteps = 0;
   }
 
   step(): void {

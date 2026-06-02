@@ -12,28 +12,31 @@ export function Home() {
   return (
     <div>
       {/* ── Hero ── */}
-      <section style={{ position:'relative', minHeight:'60vh', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', overflow:'hidden', background:'#060f16', padding:'80px 24px 60px' }}>
+      <section style={{ position:'relative', overflow:'hidden', background:'#060f16' }}>
         <NodeGraph />
-        <div style={{ position:'relative', zIndex:1, textAlign:'center', maxWidth:700 }}>
-          <div style={{ fontSize:'.72rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--gold)', marginBottom:16, fontWeight:600 }}>
-            {hero.eyebrow}
-          </div>
-          <h1 style={{ fontFamily:'Lora,Georgia,serif', fontSize:'clamp(2rem,5vw,3.5rem)', fontWeight:600, color:'var(--text)', lineHeight:1.15, margin:'0 0 20px' }}>
-            {hero.headline_prefix}<br />
-            <span style={{ color:'var(--accent2)' }}>{hero.headline_accent}</span>
-          </h1>
-          <p style={{ fontSize:'1.05rem', color:'var(--muted)', lineHeight:1.7, maxWidth:560, margin:'0 auto 32px' }}>
-            {hero.body}
-          </p>
-          <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
-            <Link to={hero.cta_primary.href}
-              style={{ padding:'10px 24px', borderRadius:10, background:'var(--accent)', color:'#fff', textDecoration:'none', fontWeight:600, fontSize:'.9rem' }}>
-              {hero.cta_primary.label}
-            </Link>
-            <Link to={hero.cta_secondary.href}
-              style={{ padding:'10px 24px', borderRadius:10, border:'1px solid var(--line)', color:'var(--text)', textDecoration:'none', fontWeight:500, fontSize:'.9rem', background:'var(--panel)' }}>
-              {hero.cta_secondary.label}
-            </Link>
+        {/* Same max-width + padding as the nav bar so content aligns */}
+        <div className="hero-inner" style={{ position:'relative', zIndex:1, maxWidth:1280, margin:'0 auto', padding:'80px 24px 64px' }}>
+          <div style={{ maxWidth:680 }}>
+            <div style={{ fontSize:'.72rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--gold)', marginBottom:16, fontWeight:600 }}>
+              {hero.eyebrow}
+            </div>
+            <h1 style={{ fontFamily:'Lora,Georgia,serif', fontSize:'clamp(2rem,5vw,3.5rem)', fontWeight:600, color:'var(--text)', lineHeight:1.15, margin:'0 0 20px' }}>
+              {hero.headline_prefix}<br />
+              <span style={{ color:'var(--accent2)' }}>{hero.headline_accent}</span>
+            </h1>
+            <p style={{ fontSize:'1.05rem', color:'var(--muted)', lineHeight:1.7, maxWidth:520, margin:'0 0 32px' }}>
+              {hero.body}
+            </p>
+            <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
+              <Link to={hero.cta_primary.href}
+                style={{ padding:'10px 24px', borderRadius:10, background:'var(--accent)', color:'#fff', textDecoration:'none', fontWeight:600, fontSize:'.9rem' }}>
+                {hero.cta_primary.label}
+              </Link>
+              <Link to={hero.cta_secondary.href}
+                style={{ padding:'10px 24px', borderRadius:10, border:'1px solid var(--line)', color:'var(--text)', textDecoration:'none', fontWeight:500, fontSize:'.9rem', background:'var(--panel)' }}>
+                {hero.cta_secondary.label}
+              </Link>
+            </div>
           </div>
         </div>
       </section>

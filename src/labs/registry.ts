@@ -1,62 +1,22 @@
-import type { LabConfig } from '../toolkit/types';
+import labsData from '../content/labs.json';
 
-export const LAB_REGISTRY: LabConfig[] = [
-  {
-    id: 'foundations',
-    title: 'Lab 1 — Foundations',
-    shortTitle: 'Foundations',
-    description: 'Philosophical and scientific mission. Systemic synthesis whitepapers and dissertation-derived AI integration theories.',
-    components: ['theory-docs', 'whitepaper-viewer'],
-    theme: 'gold',
-    ai_enabled: false,
-    author: 'ISRD Core',
-    path: '/lab/foundations',
-  },
-  {
-    id: 'foundry',
-    title: 'Lab 2 — Foundry & Training',
-    shortTitle: 'Foundry',
-    description: 'The Engine Room. Toolkit API docs, Academy learning paths, and the Sim-Registry catalog.',
-    components: ['api-docs', 'academy', 'sim-registry'],
-    theme: 'cyan',
-    ai_enabled: true,
-    author: 'ISRD Core',
-    path: '/lab/foundry',
-  },
-  {
-    id: 'bio-systemics',
-    title: 'Lab 3 — Bio-Systemics',
-    shortTitle: 'Bio-Systemics',
-    description: 'Interactive medical simulator. ME/CFS outbreak model, brainstem pacemaker dynamics, and post-viral syndrome research.',
-    components: ['mecfs-simulator', 'brainstem-pacemaker', 'metabolic-gauge'],
-    theme: 'blue-pulse',
-    ai_enabled: true,
-    author: 'ISRD Core',
-    path: '/lab/bio-systemics',
-  },
-  {
-    id: 'literary-systemics',
-    title: 'Lab 4 — Literary Systemics',
-    shortTitle: 'Literary',
-    description: 'AI-integrative writing impact simulator. Author strategy and process analysis through a systemic lens.',
-    components: ['writing-impact', 'author-strategy', 'loop-indicator'],
-    theme: 'amber',
-    ai_enabled: true,
-    author: 'ISRD Core',
-    path: '/lab/literary-systemics',
-  },
-  {
-    id: 'global-futurism',
-    title: 'Lab 5 — Global Futurism',
-    shortTitle: 'Futurism',
-    description: 'Macro-systemic trend simulator. Socio-economic tipping points and civilizational attractor dynamics.',
-    components: ['tipping-point-sim', 'trend-forecast', 'basin-visualizer'],
-    theme: 'violet',
-    ai_enabled: true,
-    author: 'ISRD Core',
-    path: '/lab/global-futurism',
-  },
-];
+export interface LabConfig {
+  id: string;
+  type: 'core' | 'lab';
+  title: string;
+  shortTitle: string;
+  description: string;
+  components: string[];
+  theme: string;
+  ai_enabled: boolean;
+  author: string;
+  path: string;
+  whitepapers?: Array<{ title: string; desc: string; tag: string }>;
+  api_docs?: Array<{ name: string; sig: string; desc: string }>;
+  learning_paths?: Array<{ title: string; modules: number; tag: string }>;
+}
+
+export const LAB_REGISTRY: LabConfig[] = labsData.labs as LabConfig[];
 
 export const THEME_ACCENTS: Record<string, string> = {
   gold:        '#d4a847',
@@ -64,4 +24,15 @@ export const THEME_ACCENTS: Record<string, string> = {
   'blue-pulse':'#3a6fa8',
   amber:       '#c87832',
   violet:      '#7a5ac8',
+};
+
+// Background shades for card types
+export const TYPE_BG: Record<string, string> = {
+  core: '#0e1f2e',  // slightly lighter/different from standard panel
+  lab:  'var(--panel)',
+};
+
+export const TYPE_BORDER: Record<string, string> = {
+  core: '#1e3a50',
+  lab:  'var(--line)',
 };

@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "brand": "ISRD",
+    "brand_sub": "Foundry",
+    "links": [
+      { "label": "Home",  "path": "/" },
+      { "label": "Labs",  "path": "/lab" },
+      { "label": "About", "path": "/about" }
+    ]
+  },
+
+  "hero": {
+    "eyebrow": "Institute for Systemic Research & Design",
+    "headline_prefix": "Your Laboratory for",
+    "headline_accent": "Systemic Engineering",
+    "body": "Model feedback loops, attractor basins, and bifurcations across diverse domains. From bio-systemics to global futurism — one shared toolkit for complex system simulators.",
+    "cta_primary":   { "label": "Launch ME/CFS Simulator", "href": "/lab/bio-systemics" },
+    "cta_secondary": { "label": "Explore the Toolkit",     "href": "/lab/academy" }
+  },
+
+  "labs_section": {
+    "title": "The Lab Ecosystem",
+    "core_label": "ISRD Core",
+    "core_description": "Core capabilities powering every lab — philosophy, toolkit, and training."
+  },
+
+  "showcase": {
+    "title": "Client Labs",
+    "subtitle": "External labs built on ISRD methods, tools, and foundations",
+    "placeholder": {
+      "heading": "Your lab could be linked here",
+      "body": "We partner with researchers, writers, and organisations to build custom systemic simulators. Client labs inherit the full Sim-Toolkit and are listed here once published.",
+      "cta": { "label": "Get in touch", "href": "/about" }
+    }
+  },
+
+  "mission": {
+    "heading": "Beyond Reductionism",
+    "body": "ISRD moves from traditional reductionist systems analysis to <strong>Systemic Engineering</strong> — where users (writers, scientists, policy makers) use a shared toolkit to build and publish their own complex system simulators. Every gauge is a node in a directed feedback graph. Every intervention propagates."
+  },
+
+  "about": {
+    "eyebrow": "About ISRD",
+    "heading": "Institute for Systemic Research & Design",
+    "intro": "ISRD is the parent lab and publishing portal for <strong>Systemic Synthesis</strong> — a non-linear, holistic approach to understanding and designing complex systems.",
+    "body": "Our Sim-Toolkit allows users to model feedback loops, attractor basins, and bifurcations across diverse domains. We believe that every complex phenomenon — from ME/CFS to civilizational dynamics — can be better understood through the lens of systemic engineering.",
+    "principles_heading": "Core Principles",
+    "principles": [
+      {
+        "title": "Systemic Synthesis Priority",
+        "desc": "Gauges are not independent variables — they are nodes in a directed graph with edges representing feedback weights."
+      },
+      {
+        "title": "Modular Architecture",
+        "desc": "Every lab is pluggable. New simulations are created by dropping in a new configuration file for the toolkit."
+      },
+      {
+        "title": "AI Integration Hooks",
+        "desc": "Components expose hooks that allow AI services to ingest simulation state and suggest Systemic Adjustments."
+      }
+    ]
+  }
+}

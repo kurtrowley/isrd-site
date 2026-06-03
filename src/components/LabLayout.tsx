@@ -12,11 +12,21 @@ interface Props {
   simArea: ReactNode;
   sidebarContent?: ReactNode;
   children?: ReactNode;
+  // Optional controlled mobile panel (lets parent drive switching via canvas events)
+  mobilePanel?: 'sim' | 'controls';
+  onMobilePanelChange?: (v: 'sim' | 'controls') => void;
 }
 
-export function LabLayout({ lab, simArea, sidebarContent, children }: Props) {
+export function LabLayout({ lab, simArea, sidebarContent, children, mobilePanel: mobilePanelProp, onMobilePanelChange }: Props) {
   const accent = THEME_ACCENTS[lab.theme] ?? 'var(--accent)';
-  const [mobilePanel, setMobilePanel] = useState<'sim' | 'controls'>('sim');
+  const [mobilePanelLocal, setMobilePanelLocal] = useState<'sim' | 'controls'>('sim');
+
+  // Use controlled value if provided, otherwise use local state
+  const mobilePanel = mobilePanelProp ?? mobilePanelLocal;
+  const setMobilePanel = (v: 'sim' | 'controls') => {
+    setMobilePanelLocal(v);
+    onMobilePanelChange?.(v);
+  };
 
   return (
     <div style={{ display:'flex', flexDirection:'column', height:'calc(100vh - 3.5rem)' }}>

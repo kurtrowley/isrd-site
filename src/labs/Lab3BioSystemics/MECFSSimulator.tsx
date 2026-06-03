@@ -358,7 +358,7 @@ export function MECFSSimulator({
     s.selected = hit?.id ?? null;
     setSelected(hit);
     onSelectRef.current?.(hit);
-    setActiveGroup('status'); setActiveTab('profile');
+    setActiveGroup('status'); setActiveTab('person');
   }, []);
 
   // Draw brainstem diagram when selected person changes
@@ -409,7 +409,7 @@ export function MECFSSimulator({
   ];
 
   const tabsByGroup: Record<string, Array<{id:string;label:string}>> = {
-    status:   [{ id:'stats', label:'Population' }, { id:'profile', label:'Profile' }],
+    status:   [{ id:'stats', label:'Population' }, { id:'person', label:'Person' }],
     settings: [{ id:'env',      label:'Environment' }, { id:'outbreak', label:'Outbreak' }],
     about:    [{ id:'about-sim', label:'The Sim' }, { id:'about-mecfs', label:'ME/CFS' }],
   };
@@ -477,19 +477,34 @@ export function MECFSSimulator({
 // ── Sidebar panel for the ME/CFS lab ────────────────────────────────────────────
 export function MECFSSidebar({
   stats, selected, outbreak, onOutbreakChange, onEnvChange,
+  activeGroup, activeTab, onGroupChange, onTabChange,
 }: {
   stats: Record<string, number>;
   selected: Person | null;
   outbreak: OutbreakPreset;
   onOutbreakChange: (ob: OutbreakPreset) => void;
   onEnvChange: (key: string, val: number) => void;
+  // Controlled tab state (driven by canvas click in parent)
+  activeGroup?: 'status'|'settings'|'about';
+  activeTab?: string;
+  onGroupChange?: (g: 'status'|'settings'|'about', defaultTab: string) => void;
+  onTabChange?: (tab: string) => void;
 }) {
-  const [group,  setGroup]  = useState<'status'|'settings'|'about'>('status');
-  const [tab,    setTab]    = useState('stats');
+  const [groupLocal, setGroupLocal] = useState<'status'|'settings'|'about'>('status');
+  const [tabLocal,   setTabLocal]   = useState('stats');
+  const group = activeGroup ?? groupLocal;
+  const tab   = activeTab   ?? tabLocal;
   const bsRef = useRef<HTMLCanvasElement>(null);
 
+  const setGroup = (g: 'status'|'settings'|'about', dt: string) => {
+    setGroupLocal(g); onGroupChange?.(g, dt);
+  };
+  const setTab = (t: string) => {
+    setTabLocal(t); onTabChange?.(t);
+  };
+
   const tabsByGroup: Record<string, Array<{id:string;label:string}>> = {
-    status:   [{ id:'stats', label:'Population' }, { id:'profile', label:'Profile' }],
+    status:   [{ id:'stats', label:'Population' }, { id:'person', label:'Person' }],
     settings: [{ id:'outbreak', label:'Outbreak' }, { id:'env', label:'Environment' }],
     about:    [{ id:'about-sim', label:'The Sim' }, { id:'about-mecfs', label:'ME/CFS' }],
   };
@@ -536,7 +551,7 @@ export function MECFSSidebar({
       {/* Group tabs */}
       <div style={{ display:'flex', borderBottom:'1px solid var(--line)', flexShrink:0, background:'var(--panel)' }}>
         {(['status','settings','about'] as const).map(g => (
-          <button key={g} onClick={() => { setGroup(g); setTab(defaultTab[g]); }}
+          <button key={g} onClick={() => { setGroup(g, defaultTab[g]); setTab(defaultTab[g]); }}
             style={{ flex:1, padding:'8px 4px', fontSize:'.72rem', fontWeight:700, letterSpacing:'.05em',
               textTransform:'uppercase', cursor:'pointer', border:'none',
               borderBottom:`2px solid ${group===g?'var(--accent)':'transparent'}`,
@@ -599,7 +614,7 @@ export function MECFSSidebar({
         )}
 
         {/* ── Profile ── */}
-        {tab === 'profile' && (
+        {tab === 'person' && (
           <div>
             {!selected ? (
               <p style={{ color:'var(--muted)', fontSize:'.86rem', lineHeight:1.5, margin:0 }}>

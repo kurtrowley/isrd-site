@@ -1,15 +1,18 @@
+import { Link } from 'react-router-dom';
 import { NodeGraph } from '../components/NodeGraph';
 import mediaData from '../content/media.json';
 
 const TAG_COLORS: Record<string, string> = {
-  'Visual Arts':  '#c87832',
-  'Emergence':    '#3a8fa8',
-  'Fractal':      '#7a5ac8',
-  'Generative':   '#50c090',
-  'Music':        '#d4a847',
-  'Film':         '#3a6fa8',
-  'Literature':   '#c87832',
-  'Architecture': '#6a9aaa',
+  'Visual Arts':           '#c87832',
+  'General Systems Theory':'#d4a847',
+  'Isomorphism':           '#7a5ac8',
+  'Emergence':             '#3a8fa8',
+  'Fractal':               '#50c090',
+  'Generative':            '#3a6fa8',
+  'Music':                 '#d4a847',
+  'Film':                  '#3a6fa8',
+  'Literature':            '#c87832',
+  'Architecture':          '#6a9aaa',
 };
 
 export function Media() {
@@ -39,7 +42,6 @@ export function Media() {
         {/* Active sections */}
         {sections.map(section => (
           <div key={section.id} style={{ marginBottom: 56 }}>
-            {/* Section header */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
               <h2 style={{ fontFamily: 'Lora, Georgia, serif', fontSize: '1.4rem', fontWeight: 600, color: 'var(--text)', margin: 0 }}>
                 {section.title}
@@ -50,39 +52,9 @@ export function Media() {
               {section.description}
             </p>
 
-            {/* Items */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 20 }}>
-              {section.items.map(item => (
-                <div key={item.id} className="media-card"
-                  style={{ borderRadius: 14, border: '1px solid var(--line)', background: 'var(--panel)', overflow: 'hidden', transition: 'all .2s', cursor: 'default' }}>
-
-                  {/* Image */}
-                  {item.image && (
-                    <div style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', background: 'var(--panel-b)' }}>
-                      <img src={item.image} alt={item.title}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                    </div>
-                  )}
-
-                  {/* Content */}
-                  <div style={{ padding: '18px 20px' }}>
-                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text)', margin: '0 0 5px' }}>{item.title}</h3>
-                    {item.subtitle && (
-                      <p style={{ fontSize: '.8rem', color: 'var(--muted)', fontStyle: 'italic', margin: '0 0 10px' }}>{item.subtitle}</p>
-                    )}
-                    <p style={{ fontSize: '.83rem', color: 'var(--muted)', lineHeight: 1.6, margin: '0 0 14px' }}>{item.description}</p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                      {item.tags.map(tag => {
-                        const color = TAG_COLORS[tag] ?? 'var(--accent)';
-                        return (
-                          <span key={tag} style={{ fontSize: '.62rem', padding: '2px 8px', borderRadius: 999, background: `${color}18`, border: `1px solid ${color}35`, color }}>
-                            {tag}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
+              {(section.items as any[]).map(item => (
+                <MediaCard key={item.id} item={item} />
               ))}
             </div>
           </div>
@@ -110,4 +82,43 @@ export function Media() {
       <style>{`.media-card:hover { border-color: var(--accent) !important; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.4); }`}</style>
     </div>
   );
+}
+
+function MediaCard({ item }: { item: any }) {
+  const card = (
+    <div className="media-card"
+      style={{ borderRadius: 14, border: '1px solid var(--line)', background: 'var(--panel)', overflow: 'hidden', transition: 'all .2s', cursor: item.slug ? 'pointer' : 'default', height: '100%' }}>
+
+      {item.image && (
+        <div style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', background: 'var(--panel-b)' }}>
+          <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        </div>
+      )}
+
+      <div style={{ padding: '18px 20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 5, gap: 10 }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text)', margin: 0, lineHeight: 1.3 }}>{item.title}</h3>
+          {item.slug && <span style={{ fontSize: '.75rem', color: 'var(--accent)', flexShrink: 0, fontWeight: 600 }}>View →</span>}
+        </div>
+        {item.subtitle && (
+          <p style={{ fontSize: '.8rem', color: 'var(--muted)', fontStyle: 'italic', margin: '0 0 10px', lineHeight: 1.4 }}>{item.subtitle}</p>
+        )}
+        <p style={{ fontSize: '.83rem', color: 'var(--muted)', lineHeight: 1.6, margin: '0 0 14px' }}>{item.description}</p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+          {item.tags?.map((tag: string) => {
+            const color = TAG_COLORS[tag] ?? 'var(--accent)';
+            return (
+              <span key={tag} style={{ fontSize: '.62rem', padding: '2px 8px', borderRadius: 999, background: `${color}18`, border: `1px solid ${color}35`, color }}>
+                {tag}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+
+  return item.slug
+    ? <Link to={`/media/${item.slug}`} style={{ textDecoration: 'none', display: 'block' }}>{card}</Link>
+    : card;
 }

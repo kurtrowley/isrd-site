@@ -12,11 +12,34 @@
       "items": [
         {
           "id": "art-overview",
+          "slug": "systems-science-visual-art",
           "title": "Systems Science in Visual Art",
-          "subtitle": "From fractal geometry to generative process",
-          "description": "An overview of how visual artists — from the Impressionists noticing the systemic nature of light, to generative artists writing rules that produce infinite variation — have worked with and demonstrated principles of complexity, feedback, and emergence.",
+          "subtitle": "Systems Science: A Scientific Approach to Understanding Systems of Reality",
+          "description": "An integrated epistemological map illustrating reality as an interconnected system of systems. Grounded in Ludwig von Bertalanffy's General Systems Theory, the artwork visually links diverse quadrants of natural and built realities through shared structural isomorphisms, proving that organizational principles transcend material boundaries.",
           "image": "/media/art_system_science_overview.png",
-          "tags": ["Visual Arts", "Emergence", "Fractal", "Generative"]
+          "tags": ["Visual Arts", "General Systems Theory", "Isomorphism", "Emergence"],
+          "caption": "🎨 Image 1: Systems Science & General Systems Theory",
+          "analysis": {
+            "overview": "An integrated epistemological map illustrating reality as an interconnected 'system of systems.' Grounded in Ludwig von Bertalanffy's General Systems Theory, the artwork visually links diverse quadrants of natural and built realities through shared structural isomorphisms, proving that organizational principles transcend material boundaries.",
+            "elements": [
+              {
+                "title": "The Quad-Core Topology",
+                "body": "The canvas is divided into four distinct realms of reality — Eco-Systems, Social Systems, Physical Systems, and Cognitive Systems. This spatial choice physically represents how the core tenets of Systems Science serve as a cross-disciplinary bridge."
+              },
+              {
+                "title": "Dynamic Inputs & Outputs Vectors",
+                "body": "On the far left, incoming energy, matter, and information act as standard Inputs. On the far right, they transform into behavioral Outputs (Behavior, Change, Resilience, and Adaptation). This establishes an overarching thermodynamic and information-theoretic pathway across the entire infographic."
+              },
+              {
+                "title": "The Laws of the Universe & Entanglement",
+                "body": "Anchoring the center of the diagram is a complex, clockwork-like sacred geometry cluster bounded by the text 'LAWS OF THE UNIVERSE' above and 'MECHANISMS OF ENTANGLED SYSTEMS' below. This serves as the visual metaphor for General Systems Theory itself — the universal ruleset governing how separate modules coordinate."
+              },
+              {
+                "title": "Isomorphic Feedback & Symbiosis",
+                "body": "Rather than separating the domains, glowing mathematical trajectories (marked as Feedback Loops, Interconnection, and Emergence) weave through the nodes. The transition between the harsh laws of physical engineering and soft cognitive synapses is mediated by a vertical, fluid stream reading 'SYMBIOSIS', turning a stark conceptual boundary into an interactive feedback gateway."
+              }
+            ]
+          }
         }
       ]
     }
@@ -25,6 +48,6 @@
     { "title": "Music", "desc": "Harmony, rhythm, and the feedback structures of musical form." },
     { "title": "Film", "desc": "Narrative systems, nonlinear storytelling, and emergent meaning." },
     { "title": "Literature", "desc": "Language as a complex adaptive system — and the novels that know it." },
-    { "title": "Architecture", "desc": "Built environments as systemic interventions in human behaviour." }
+    { "title": "Architecture", "desc": "Built environments as systemic interventions in human behavior." }
   ]
 }

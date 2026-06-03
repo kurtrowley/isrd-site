@@ -11,6 +11,7 @@ import { Publications } from './pages/Publications';
 import { AcademyLab } from './labs/Lab2Academy';
 import { Tools } from './pages/Tools';
 import { Media } from './pages/Media';
+import { MediaViewer } from './pages/MediaViewer';
 import { BioSystemicsLab } from './labs/Lab3BioSystemics';
 import { LiterarySysLab } from './labs/Lab4Literary';
 import { GlobalFuturismLab } from './labs/Lab5GlobalFuturism';
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/about"                    element={<About />} />
         <Route path="/articles"                 element={<Articles />} />
         <Route path="/media"                    element={<Media />} />
+        <Route path="/media/:slug"              element={<MediaViewer />} />
         <Route path="/articles/:slug"           element={<ArticleViewer />} />
         <Route path="/publications"             element={<Publications />} />
 

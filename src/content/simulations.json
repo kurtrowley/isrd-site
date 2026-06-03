@@ -1,6 +1,15 @@
 {
   "simulations": [
     {
+      "id": "mecfs",
+      "title": "ME/CFS Outbreak Simulator",
+      "description": "Agent-based population simulation tracking viral outbreak and post-viral ME/CFS conversion across 100 individuals, with 25+ calibrated risk factors and brainstem ANS dynamics.",
+      "concept": "Bio-Systemics",
+      "path": "/lab/bio-systemics",
+      "type": "research",
+      "status": "Research in Progress"
+    },
+    {
       "id": "boids",
       "title": "Emergence / Flocking",
       "description": "Each agent follows three simple local rules: avoid neighbours, align with nearby headings, and move toward nearby centres. No agent sees the global pattern — the flock emerges from purely local interactions.",

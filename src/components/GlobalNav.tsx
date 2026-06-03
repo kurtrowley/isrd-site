@@ -66,11 +66,18 @@ export function GlobalNav() {
                   View all simulations
                 </Link>
                 <div style={{ height: 1, background: 'var(--line)', margin: '4px 12px' }} />
-                {simContent.simulations.map(sim => (
+                {simContent.simulations.map((sim: any) => (
                   <Link key={sim.id} to={sim.path} onClick={() => setSimsOpen(false)}
                     className="block px-4 py-2 text-sm hover:bg-white/5"
                     style={{ color: isActive(sim.path) ? 'var(--accent2)' : 'var(--text)', textDecoration: 'none' }}>
-                    <span className="font-semibold">{sim.title}</span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
+                      <span className="font-semibold">{sim.title}</span>
+                      {sim.status && (
+                        <span style={{ fontSize: '.6rem', color: '#c87832', fontStyle: 'italic', flexShrink: 0, marginTop: 2 }}>
+                          {sim.status}
+                        </span>
+                      )}
+                    </div>
                     <span className="block text-xs mt-0.5" style={{ color: 'var(--muted)' }}>{sim.concept}</span>
                   </Link>
                 ))}

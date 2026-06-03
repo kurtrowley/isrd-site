@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { MobileShelf } from '../components/MobileShelf';
 import { SimRunner } from '../labs/Lab1Foundations/SimRunner';
 import { BoidsSim } from '../labs/Lab1Foundations/sims/boids';
 import { FeedbackSim } from '../labs/Lab1Foundations/sims/feedback';
@@ -16,77 +17,107 @@ const CONCEPT_COLORS: Record<string, string> = {
   'Emergence':       '#3a8fa8',
   'Systems Dynamics':'#c87832',
   'Chaos Theory':    '#7a5ac8',
+  'Bio-Systemics':   '#3a6fa8',
 };
 
 export function Simulations() {
   const { simId } = useParams<{ simId?: string }>();
   const navigate  = useNavigate();
+
+  // Separate foundry sims (have a SimRunner) from research sims (link out)
+  const foundrySims  = simContent.simulations.filter((s: any) => !s.type || s.type === 'foundry');
+  const researchSims = simContent.simulations.filter((s: any) => s.type === 'research');
+
   const activeSim = simId ? SIM_MAP[simId] : null;
 
-  return (
-    <div style={{ display: 'flex', height: 'calc(100vh - 3.5rem)', overflow: 'hidden' }}>
+  const shelfPanel = (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      {/* Header */}
+      <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--line)', flexShrink: 0 }}>
+        <div style={{ fontSize: '.68rem', textTransform: 'uppercase', letterSpacing: '.12em', color: 'var(--muted)', fontWeight: 700 }}>
+          Foundry Simulations
+        </div>
+        <p style={{ fontSize: '.78rem', color: 'var(--muted)', margin: '5px 0 0', lineHeight: 1.4 }}>
+          Interactive demonstrations of core systemic concepts.
+        </p>
+      </div>
 
-      {/* ── Left: canvas area ── */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', borderRight: '1px solid var(--line)' }}>
-        {activeSim ? (
-          <SimRunner key={simId} sim={activeSim} />
-        ) : (
-          <BlankCanvas />
+      <div style={{ flex: 1, overflowY: 'auto', padding: 12 }}>
+
+        {/* Foundry sims */}
+        {foundrySims.map((sim: any) => {
+          const isActive = sim.id === simId;
+          const accent   = CONCEPT_COLORS[sim.concept] ?? 'var(--accent)';
+          return (
+            <SimCard key={sim.id} sim={sim} isActive={isActive} accent={accent}
+              onClick={() => navigate(`/simulations/${sim.id}`)} />
+          );
+        })}
+
+        {/* Research sims divider */}
+        {researchSims.length > 0 && (
+          <>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: '14px 0 10px' }}>
+              <span style={{ fontSize: '.62rem', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', whiteSpace: 'nowrap' }}>
+                Research Simulations
+              </span>
+              <div style={{ flex: 1, height: 1, background: 'var(--line)' }} />
+            </div>
+            {researchSims.map((sim: any) => {
+              const accent = CONCEPT_COLORS[sim.concept] ?? 'var(--accent)';
+              return (
+                <SimCard key={sim.id} sim={sim} isActive={false} accent={accent}
+                  onClick={() => navigate(sim.path)} isExternal />
+              );
+            })}
+          </>
         )}
       </div>
+    </div>
+  );
 
-      {/* ── Right: simulation list ── */}
-      <div style={{ width: 320, flexShrink: 0, display: 'flex', flexDirection: 'column', background: 'var(--panel)', overflow: 'hidden' }}>
-        {/* Header */}
-        <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--line)', flexShrink: 0 }}>
-          <div style={{ fontSize: '.68rem', textTransform: 'uppercase', letterSpacing: '.12em', color: 'var(--muted)', fontWeight: 700 }}>
-            Foundry Simulations
-          </div>
-          <p style={{ fontSize: '.78rem', color: 'var(--muted)', margin: '5px 0 0', lineHeight: 1.4 }}>
-            Interactive demonstrations of core systemic concepts.
-          </p>
-        </div>
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 3.5rem)' }}>
+      <MobileShelf
+        main={activeSim ? <SimRunner key={simId} sim={activeSim} /> : <BlankCanvas />}
+        shelf={shelfPanel}
+        shelfTitle="Simulations"
+        sidebarWidth={320}
+      />
 
-        {/* Sim cards */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: 12 }}>
-          {simContent.simulations.map(sim => {
-            const isActive = sim.id === simId;
-            const accent   = CONCEPT_COLORS[sim.concept] ?? 'var(--accent)';
-            return (
-              <div
-                key={sim.id}
-                onClick={() => navigate(`/simulations/${sim.id}`)}
-                style={{
-                  marginBottom: 10,
-                  padding: '14px 16px',
-                  borderRadius: 12,
-                  border: `1px solid ${isActive ? accent : 'var(--line)'}`,
-                  background: isActive ? `${accent}12` : 'var(--panel-b)',
-                  cursor: 'pointer',
-                  transition: 'all .15s',
-                }}
-                className="sim-card"
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
-                  <span style={{ fontSize: '.9rem', fontWeight: 700, color: isActive ? accent : 'var(--text)' }}>
-                    {sim.title}
-                  </span>
-                  <span style={{ fontSize: '.62rem', padding: '2px 8px', borderRadius: 999, background: `${accent}18`, border: `1px solid ${accent}40`, color: accent, flexShrink: 0, marginLeft: 8 }}>
-                    {sim.concept}
-                  </span>
-                </div>
-                <p style={{ fontSize: '.78rem', color: 'var(--muted)', margin: 0, lineHeight: 1.45 }}>
-                  {sim.description}
-                </p>
-              </div>
-            );
-          })}
+      <style>{`.sim-card:hover { border-color: var(--accent) !important; }`}</style>
+    </div>
+  );
+}
+
+function SimCard({ sim, isActive, accent, onClick, isExternal = false }: {
+  sim: any; isActive: boolean; accent: string; onClick: () => void; isExternal?: boolean;
+}) {
+  return (
+    <div onClick={onClick} className="sim-card"
+      style={{
+        marginBottom: 10, padding: '12px 14px', borderRadius: 12, cursor: 'pointer', transition: 'all .15s',
+        border: `1px solid ${isActive ? accent : 'var(--line)'}`,
+        background: isActive ? `${accent}12` : 'var(--panel-b)',
+      }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 5 }}>
+        <span style={{ fontSize: '.88rem', fontWeight: 700, color: isActive ? accent : 'var(--text)' }}>
+          {sim.title}
+        </span>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4, flexShrink: 0, marginLeft: 8 }}>
+          <span style={{ fontSize: '.6rem', padding: '1px 7px', borderRadius: 999, background: `${accent}18`, border: `1px solid ${accent}40`, color: accent, whiteSpace: 'nowrap' }}>
+            {sim.concept}
+          </span>
+          {sim.status && (
+            <span style={{ fontSize: '.6rem', color: 'var(--muted)', fontStyle: 'italic', whiteSpace: 'nowrap' }}>
+              {isExternal ? '↗ ' : ''}{sim.status}
+            </span>
+          )}
         </div>
       </div>
-
-      <style>{`
-        .sim-card:hover { border-color: var(--accent) !important; }
-      `}</style>
+      <p style={{ fontSize: '.76rem', color: 'var(--muted)', margin: 0, lineHeight: 1.45 }}>
+        {sim.description}
+      </p>
     </div>
   );
 }
@@ -94,7 +125,6 @@ export function Simulations() {
 function BlankCanvas() {
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#060f16', padding: 32, textAlign: 'center' }}>
-      {/* Subtle node-link background hint */}
       <div style={{ marginBottom: 28, opacity: .25 }}>
         <svg width={80} height={80} viewBox="0 0 80 80">
           <circle cx={20} cy={20} r={5} fill="#3a8fa8" />

@@ -33,15 +33,14 @@ Learner-First means starting with the learner's current mental model, not with t
 This shift has profound implications for how courses are designed, how assessments are constructed, and how AI and simulation are deployed in the learning process.
 
 ```mermaid
-graph LR
-  CM[Learner Current Model] --> S{Surface}
-  S -->|pre-task reveals| A[Attractor Identified]
-  A --> P[Perturbation]
+graph TD
+  CM[Current Mental Model] --> S{Surface Attractor}
+  S --> P[Perturbation]
   P --> NM[New Structural Model]
-  NM --> EX[Experiential Exploration]
-  EX --> R[Reflection + Dialogue]
-  R --> TR[Transfer Challenge]
-  TR -->|self-sustaining?| NM
+  NM --> EX[Simulation Exploration]
+  EX --> R[AI-Facilitated Reflection]
+  R --> TR{Transfer Achieved?}
+  TR -->|not yet| NM
   TR -->|yes| EM[Expert Attractor]
 ```
 
@@ -71,8 +70,8 @@ The concept is introduced as a structural explanation for the perturbation in Ph
 
 ```mermaid
 graph TD
-  P2[Perturbation - What the old model cannot explain] --> SE[Structural Exposition]
-  SE -->|explains| P2
+  P2[Perturbation] --> SE[Structural Exposition]
+  SE -->|accounts for| P2
   SE --> NL[New leverage point visible]
   NL --> INT[Intervention becomes thinkable]
 ```
@@ -155,13 +154,12 @@ That era is over. Information is no longer scarce. Access to expertise, via AI, 
 
 ```mermaid
 graph TD
-  OA[Old Attractor - Transmission Model] -->|AI removes scarcity| P{Bifurcation Point}
-  P -->|inertia| OA
-  P -->|design intervention| NA[New Attractor - Transformation Model]
+  OA[Transmission Attractor] -->|AI removes scarcity| F{Bifurcation}
+  F -->|inertia| OA
+  F -->|design intervention| NA[Transformation Attractor]
   NA --> AT[Attractor-Shifting Instruction]
-  NA --> SI[Simulation-Based Discovery]
-  NA --> AI[AI as Cognitive Scaffold]
-  NA --> TF[Genuine Transfer]
+  NA --> SI[Simulation Discovery]
+  NA --> AI[AI Tutoring at Scale]
 ```
 
 ### The Institutional Attractor
@@ -206,4 +204,4 @@ The course that follows — *SS 201: Introduction to Learner-First Systemic Educ
 
 ---
 
-*Kurt Rowley is the founder of ISRD. He holds a Ph.D. in Instructional Systems from Florida State University and has designed large-scale instructional systems for the US Air Force, Defense Acquisition University, and the US Navy. His research on expert instructional design practices (Rowley, 2005) forms one of the empirical foundations of the Learner-First Systemic Education framework.*
+

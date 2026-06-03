@@ -297,11 +297,18 @@ export function MECFSSimulator({
     const canvas = canvasRef.current!;
     const resize = () => {
       const parent = canvas.parentElement!;
-      canvas.width  = parent.clientWidth;
-      canvas.height = parent.clientHeight;
+      const w = parent.clientWidth;
+      const h = parent.clientHeight;
+      if (w > 0 && h > 0) {
+        canvas.width  = w;
+        canvas.height = h;
+      }
     };
     resize();
     window.addEventListener('resize', resize);
+    // ResizeObserver catches mobile layout shifts (e.g. container was display:none on mount)
+    const ro = new ResizeObserver(() => resize());
+    if (canvas.parentElement) ro.observe(canvas.parentElement);
 
     const env: SimEnv = {
       r0: outbreak.r0, pathogenSeverity: outbreak.pathogenSeverity,
@@ -324,6 +331,7 @@ export function MECFSSimulator({
 
     return () => {
       window.removeEventListener('resize', resize);
+      ro.disconnect();
       cancelAnimationFrame(simRef.current?.frameId ?? 0);
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('click', handleClick);

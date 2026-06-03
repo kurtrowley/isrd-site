@@ -1,8 +1,8 @@
 // LabLayout — standard wrapper for every lab page.
 // Desktop: side-by-side canvas + sidebar.
-// Mobile: canvas fills screen, bottom toggle bar switches to controls panel.
+// Mobile: canvas always runs (never unmounts), right-edge drawer slides over it.
 
-import { useState, type ReactNode } from 'react';
+import { useState, useRef, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import type { LabConfig } from '../toolkit/types';
 import { THEME_ACCENTS } from '../labs/registry';
@@ -12,20 +12,31 @@ interface Props {
   simArea: ReactNode;
   sidebarContent?: ReactNode;
   children?: ReactNode;
-  // Optional controlled mobile panel (lets parent drive switching via canvas events)
+  // Parent can drive drawer open/closed (e.g. auto-open on person click)
   mobilePanel?: 'sim' | 'controls';
   onMobilePanelChange?: (v: 'sim' | 'controls') => void;
 }
 
 export function LabLayout({ lab, simArea, sidebarContent, children, mobilePanel: mobilePanelProp, onMobilePanelChange }: Props) {
   const accent = THEME_ACCENTS[lab.theme] ?? 'var(--accent)';
-  const [mobilePanelLocal, setMobilePanelLocal] = useState<'sim' | 'controls'>('sim');
+  const [drawerOpenLocal, setDrawerOpenLocal] = useState(false);
 
-  // Use controlled value if provided, otherwise use local state
-  const mobilePanel = mobilePanelProp ?? mobilePanelLocal;
-  const setMobilePanel = (v: 'sim' | 'controls') => {
-    setMobilePanelLocal(v);
-    onMobilePanelChange?.(v);
+  // Treat 'controls' = drawer open, 'sim' = drawer closed
+  const drawerOpen = mobilePanelProp === 'controls' ? true
+                   : mobilePanelProp === 'sim'      ? false
+                   : drawerOpenLocal;
+
+  const setDrawerOpen = (open: boolean) => {
+    setDrawerOpenLocal(open);
+    onMobilePanelChange?.(open ? 'controls' : 'sim');
+  };
+
+  // Touch swipe-to-close
+  const touchStartX = useRef(0);
+  const handleTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd   = (e: React.TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (dx > 60) setDrawerOpen(false); // swipe right → close
   };
 
   return (
@@ -52,43 +63,84 @@ export function LabLayout({ lab, simArea, sidebarContent, children, mobilePanel:
         </div>
       </div>
 
-      {/* ── Mobile layout ── */}
-      <div className="lab-mobile" style={{ flex:1, display:'none', flexDirection:'column', overflow:'hidden', minHeight:0 }}>
-        {/* Active panel */}
-        <div style={{ flex:1, overflow:'hidden', minHeight:0 }}>
-          {mobilePanel === 'sim'
-            ? simArea
-            : <div style={{ height:'100%', overflowY:'auto', background:'var(--panel)' }}>
-                {sidebarContent ?? <DefaultSidebar lab={lab} accent={accent} />}
-              </div>
-          }
+      {/* ── Mobile layout ── sim always mounted, drawer slides over ── */}
+      <div className="lab-mobile" style={{ flex:1, position:'relative', overflow:'hidden', minHeight:0, display:'none' }}>
+
+        {/* Canvas — always in DOM, never unmounts, sim keeps running */}
+        <div style={{ position:'absolute', inset:0 }}>
+          {simArea}
         </div>
 
-        {/* Bottom toggle bar */}
-        <div style={{ display:'flex', borderTop:'1px solid var(--line)', background:'var(--panel)', flexShrink:0 }}>
-          <button
-            onClick={() => setMobilePanel('sim')}
-            style={{
-              flex:1, padding:'12px 8px', fontSize:'.8rem', fontWeight:700,
-              border:'none', cursor:'pointer', transition:'all .15s',
-              borderBottom: `3px solid ${mobilePanel === 'sim' ? accent : 'transparent'}`,
-              background: mobilePanel === 'sim' ? `${accent}18` : 'transparent',
-              color: mobilePanel === 'sim' ? accent : 'var(--muted)',
-            }}>
-            ▶ Simulator
-          </button>
-          <button
-            onClick={() => setMobilePanel('controls')}
-            style={{
-              flex:1, padding:'12px 8px', fontSize:'.8rem', fontWeight:700,
-              border:'none', cursor:'pointer', transition:'all .15s',
-              borderBottom: `3px solid ${mobilePanel === 'controls' ? accent : 'transparent'}`,
-              background: mobilePanel === 'controls' ? `${accent}18` : 'transparent',
-              color: mobilePanel === 'controls' ? accent : 'var(--muted)',
-            }}>
-            ☰ Controls
-          </button>
+        {/* Backdrop — tap to close drawer */}
+        <div
+          onClick={() => setDrawerOpen(false)}
+          style={{
+            position:'absolute', inset:0, zIndex:10,
+            background:'rgba(0,0,0,0.45)',
+            opacity: drawerOpen ? 1 : 0,
+            pointerEvents: drawerOpen ? 'auto' : 'none',
+            transition:'opacity .25s',
+          }}
+        />
+
+        {/* Slide-out drawer from the right */}
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          style={{
+            position:'absolute', top:0, right:0, height:'100%',
+            width:'88%', maxWidth:340,
+            background:'var(--panel)',
+            borderLeft:'1px solid var(--line)',
+            transform: `translateX(${drawerOpen ? '0' : '100%'})`,
+            transition:'transform 0.26s cubic-bezier(0.4,0,0.2,1)',
+            zIndex:20,
+            display:'flex', flexDirection:'column',
+            willChange:'transform',
+          }}
+        >
+          {/* Drawer header */}
+          <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'10px 16px', borderBottom:'1px solid var(--line)', flexShrink:0 }}>
+            <span style={{ fontSize:'.72rem', fontWeight:700, letterSpacing:'.08em', textTransform:'uppercase', color:'var(--muted)' }}>
+              Controls
+            </span>
+            <button
+              onClick={() => setDrawerOpen(false)}
+              style={{ background:'none', border:'none', color:'var(--muted)', fontSize:'1.1rem', cursor:'pointer', padding:'2px 4px', lineHeight:1 }}
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* Drawer content — scrollable */}
+          <div style={{ flex:1, overflow:'hidden', display:'flex', flexDirection:'column' }}>
+            {sidebarContent ?? <DefaultSidebar lab={lab} accent={accent} />}
+          </div>
         </div>
+
+        {/* Pull-tab — always visible on right edge, opens drawer */}
+        <button
+          onClick={() => setDrawerOpen(true)}
+          aria-label="Open controls"
+          style={{
+            position:'absolute', right:0, top:'50%', transform:'translateY(-50%)',
+            width:26, height:68,
+            background:'var(--panel)',
+            border:'1px solid var(--line)',
+            borderRight:'none',
+            borderRadius:'8px 0 0 8px',
+            zIndex:15,
+            cursor:'pointer',
+            display:'flex', alignItems:'center', justifyContent:'center',
+            opacity: drawerOpen ? 0 : 1,
+            pointerEvents: drawerOpen ? 'none' : 'auto',
+            transition:'opacity .2s',
+            padding:0,
+          }}
+        >
+          <span style={{ fontSize:'.85rem', color:'var(--muted)', lineHeight:1 }}>☰</span>
+        </button>
       </div>
 
       {children}
@@ -96,7 +148,7 @@ export function LabLayout({ lab, simArea, sidebarContent, children, mobilePanel:
       <style>{`
         @media (max-width: 768px) {
           .lab-desktop { display: none !important; }
-          .lab-mobile  { display: flex !important; }
+          .lab-mobile  { display: block !important; }
         }
       `}</style>
     </div>

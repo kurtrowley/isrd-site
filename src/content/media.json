@@ -19,6 +19,7 @@
           "image": "/media/art_system_science_overview.png",
           "tags": ["Visual Arts", "General Systems Theory", "Isomorphism", "Emergence"],
           "caption": "🎨 Image 1: Systems Science & General Systems Theory",
+          "order": 1,
           "analysis": {
             "overview": "An integrated epistemological map illustrating reality as an interconnected 'system of systems.' Grounded in Ludwig von Bertalanffy's General Systems Theory, the artwork visually links diverse quadrants of natural and built realities through shared structural isomorphisms, proving that organizational principles transcend material boundaries.",
             "elements": [
@@ -37,6 +38,38 @@
               {
                 "title": "Isomorphic Feedback & Symbiosis",
                 "body": "Rather than separating the domains, glowing mathematical trajectories (marked as Feedback Loops, Interconnection, and Emergence) weave through the nodes. The transition between the harsh laws of physical engineering and soft cognitive synapses is mediated by a vertical, fluid stream reading 'SYMBIOSIS', turning a stark conceptual boundary into an interactive feedback gateway."
+              }
+            ]
+          }
+        },
+        {
+          "id": "art-eras",
+          "slug": "eras-of-systems-science",
+          "title": "The Eras of Systems Science",
+          "subtitle": "A Progression Towards Unifying Organizational Principles",
+          "description": "A chronological infographic tracing the evolutionary lineage of systems thinking — from reductionism to holistic dynamics — while hinting at an emergent future horizon where global human and planetary systems synthesize into an integrated whole.",
+          "image": "/media/art_eras_systems_science.png",
+          "tags": ["Visual Arts", "Systems History", "Paradigm Shift", "Emergence", "Complexity"],
+          "caption": "🎨 Image 2: The Eras of Systems Science",
+          "article_link": "/articles/systems-science-eras",
+          "analysis": {
+            "overview": "A chronological infographic tracing the evolutionary lineage of systems thinking. The visual progression captures how science repeatedly shifted paradigms over the 20th and 21st centuries — moving from reductionism to holistic dynamics — while hinting at an emergent future horizon where global human and planetary systems synthesize into an integrated whole.",
+            "elements": [
+              {
+                "title": "The Overlapping Lens Chronology",
+                "body": "The layout uses a sequential, left-to-right progression of overlapping spheres. Each sphere represents an era. The overlapping boundaries emphasize that new paradigms do not erase previous ones — they encompass them."
+              },
+              {
+                "title": "Dual-Track Progression: Academic & Built",
+                "body": "To mirror the historical thesis of parallel discovery, each era visually balances natural sciences alongside computational engineering. Era One mirrors cellular nuclei with vacuum tubes, while Era Two maps the biology of a spinal reflex against a cybernetic electronic furnace circuit."
+              },
+              {
+                "title": "The Evolution of Visual Complexity",
+                "body": "Era One (The Whole and Its Parts) uses rigid, mechanical linework and classical molecular imagery. Era Two (Feedback & Control) introduces continuous circular arrows and logic gates. Era Three (Self-Organization and Chaos) breaks rigid geometries apart using fluid, swirling fractals and strange attractors. Era Four (Adaptive Agents and Co-Evolution) shifts to network meshes, CPU chips, and biological swarm matrices."
+              },
+              {
+                "title": "The Horizon Matrix — A Future Era",
+                "body": "The final sphere, 'A FUTURE ERA: UNIFYING KNOWLEDGE AND POST-DISCIPLINARY SYSTEMS,' is rendered with an ethereal, iridescent glass-like texture. It glows with complex multi-dimensional geometric matrix strings, synthesizing Physics, Biology, and Social Sciences into 'Global Challenges' and 'Planetary Stability' — communicating that the pending era is a holistic, planetary operating system."
               }
             ]
           }

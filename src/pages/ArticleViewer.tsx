@@ -205,6 +205,8 @@ export function ArticleViewer() {
           display: block;
           margin: 1.8em auto 0.6em;
         }
+        .article-body a img { cursor: pointer; }
+        .article-body a img:hover { opacity: 0.88; transform: scale(1.005); transition: opacity .2s, transform .2s; }
         .article-body img + em {
           display: block;
           text-align: center;

@@ -4,7 +4,7 @@
 
 ---
 
-![The Four Eras of Systems Science](/articles/systems_science_eras-graphic.png)
+[![The Four Eras of Systems Science — click to view artwork](/articles/systems_science_eras-graphic.png)](/media/eras-of-systems-science)
 
 This history of science is full of one repeated cycle. A researcher in one field notices something that doesn't fit the standard framework. They look harder. They realize the anomaly isn't a problem with their data — it's a problem with the framework itself. The framework was built to explain a simpler version of reality than the one they're actually looking at.
 

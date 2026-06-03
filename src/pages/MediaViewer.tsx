@@ -115,11 +115,17 @@ export function MediaViewer() {
           </div>
         )}
 
-        {/* Back link */}
-        <div style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid var(--line)' }}>
+        {/* Footer links */}
+        <div style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid var(--line)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
           <Link to="/media" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: '.85rem' }}>
             ← Back to Media
           </Link>
+          {item.article_link && (
+            <Link to={item.article_link} style={{ color: 'var(--accent2)', textDecoration: 'none', fontSize: '.85rem', display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: '.7rem', padding: '2px 8px', borderRadius: 999, background: 'rgba(122,204,224,0.12)', border: '1px solid rgba(122,204,224,0.3)' }}>Article</span>
+              Read the related article →
+            </Link>
+          )}
         </div>
       </div>
     </div>

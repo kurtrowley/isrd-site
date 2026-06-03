@@ -8,6 +8,7 @@ import { Research } from './pages/Research';
 import { ResearchProgram } from './pages/ResearchProgram';
 import { Publications } from './pages/Publications';
 import { AcademyLab } from './labs/Lab2Academy';
+import { Tools } from './pages/Tools';
 import { BioSystemicsLab } from './labs/Lab3BioSystemics';
 import { LiterarySysLab } from './labs/Lab4Literary';
 import { GlobalFuturismLab } from './labs/Lab5GlobalFuturism';
@@ -31,7 +32,11 @@ export default function App() {
         <Route path="/research"                 element={<Research />} />
         <Route path="/research/:programId"      element={<ResearchProgram />} />
 
-        {/* Core tools (top nav) */}
+        {/* Core (top nav) */}
+        <Route path="/courses"                  element={<AcademyLab />} />
+        <Route path="/tools"                    element={<Tools />} />
+
+        {/* Legacy */}
         <Route path="/lab/academy"              element={<AcademyLab />} />
 
         {/* Simulators (accessible from Research program pages) */}

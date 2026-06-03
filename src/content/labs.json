@@ -21,8 +21,8 @@
     {
       "id": "academy",
       "type": "core",
-      "title": "The Academy",
-      "shortTitle": "The Academy",
+      "title": "Courses",
+      "shortTitle": "Courses",
       "description": "ISRD's training portal. Toolkit API docs for systemic engineers, interactive learning paths, and the Sim-Registry catalog of all active labs.",
       "components": ["api-docs", "learning-paths", "sim-registry"],
       "theme": "cyan",

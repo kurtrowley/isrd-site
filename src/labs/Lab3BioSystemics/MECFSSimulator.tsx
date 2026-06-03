@@ -93,6 +93,8 @@ export function MECFSSimulator({
   const [running,   setRunning]   = useState(false);
   const [speed,     setSpeed]     = useState(3);
   const [timeLimit, setTimeLimit] = useState(2920);
+  const [complete,  setComplete]  = useState(false);  // true once sim reaches limit
+  const timeLimitRef = useRef(2920);                  // always-live ref avoids stale closures
   const [stats,     setStats]     = useState<Record<string, number>>({});
   const [selected,  setSelected]  = useState<Person | null>(null);
   const [activeGroup,  setActiveGroup]  = useState<'status'|'settings'|'about'>('status');
@@ -285,12 +287,17 @@ export function MECFSSimulator({
     s.accumMs = (s.accumMs ?? 0) + elapsed;
     const msPerDay = 1000 / s.speed;
     while (s.accumMs >= msPerDay && s.running) {
-      if (s.day >= timeLimit) { s.running = false; setRunning(false); break; }
+      if (s.day >= timeLimitRef.current) {
+        s.running = false;
+        setRunning(false);
+        setComplete(true);   // mark complete — don't reset, just stop
+        break;
+      }
       stepDay(); s.accumMs -= msPerDay;
     }
     draw();
     s.frameId = requestAnimationFrame(loop);
-  }, [draw, stepDay, timeLimit]);
+  }, [draw, stepDay]);
 
   // ── Init on mount / outbreak change ────────────────────────────────────
   useEffect(() => {
@@ -319,7 +326,8 @@ export function MECFSSimulator({
     const population = initSim(env);
     simRef.current = { population, day: 0, running: false, speed, env,
       selected: null, flashes: [], frameId: 0, lastMs: 0, accumMs: 0 };
-    setDay(0); setRunning(false);
+    setDay(0); setRunning(false); setComplete(false);
+    timeLimitRef.current = timeLimit;
     // Defer so simRef.current is committed before updateStats reads it
     setTimeout(() => updateStats(), 0);
 
@@ -390,7 +398,7 @@ export function MECFSSimulator({
     const population = initSim(s.env);
     s.population = population; s.day = 0; s.running = false; s.selected = null; s.flashes = [];
     s.accumMs = 0;
-    setRunning(false); setSelected(null); setDay(0); updateStats();
+    setRunning(false); setSelected(null); setDay(0); setComplete(false); updateStats();
   };
 
   const handleSpeedChange = (v: number) => {
@@ -444,8 +452,11 @@ export function MECFSSimulator({
 
       {/* Toolbar */}
       <div className="sim-toolbar" style={{ display:'flex', alignItems:'center', gap:8, flexWrap:'wrap', padding:'8px 14px', background:'var(--panel)', borderTop:'1px solid var(--line)', flexShrink:0 }}>
-        <button className="tb-btn" onClick={togglePlay} style={{ background: running ? 'var(--accent)' : 'var(--panel-b)' }}>
-          {running ? '⏸ Pause' : '▶ Play'}
+        <button className="tb-btn" onClick={togglePlay}
+          disabled={complete}
+          title={complete ? 'Simulation complete — increase the Limit or Reset to continue' : undefined}
+          style={{ background: running ? 'var(--accent)' : 'var(--panel-b)', opacity: complete ? 0.45 : 1, cursor: complete ? 'not-allowed' : 'pointer' }}>
+          {running ? '⏸ Pause' : complete ? '■ Complete' : '▶ Play'}
         </button>
         <button className="tb-btn" onClick={reset}>↺ Reset</button>
         <div style={{ width:1, height:20, background:'var(--line)', margin:'0 2px', flexShrink:0 }} />
@@ -458,7 +469,14 @@ export function MECFSSimulator({
         <div style={{ width:1, height:20, background:'var(--line)', margin:'0 2px' }} />
         <div style={{ display:'flex', alignItems:'center', gap:6, color:'var(--muted)', fontSize:'.8rem' }}>
           Limit
-          <select value={timeLimit} onChange={e => setTimeLimit(+e.target.value)}
+          <select value={timeLimit} onChange={e => {
+              const v = +e.target.value;
+              timeLimitRef.current = v;
+              setTimeLimit(v);
+              // Resumable if new limit is beyond current day
+              const s = simRef.current;
+              if (s && v > s.day) setComplete(false);
+            }}
             style={{ background:'var(--panel-b)', color:'var(--text)', border:'1px solid var(--line)', borderRadius:6, padding:'2px 6px', fontSize:'.8rem', cursor:'pointer' }}>
             {[[365,'1 yr'],[730,'2 yr'],[1460,'4 yr'],[2920,'8 yr'],[4380,'12 yr']].map(([v,l]) =>
               <option key={v} value={v}>{l}</option>)}

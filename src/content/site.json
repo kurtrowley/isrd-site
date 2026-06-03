@@ -12,8 +12,8 @@
   "hero": {
     "eyebrow": "Institute for Systemic Research & Development",
     "headline_prefix": "Your Laboratory for",
-    "headline_accent": "Systemic Human Complexity",
-    "body": "Model feedback loops, attractor basins, and bifurcations across diverse domains. From bio-systemics to global futurism — one shared toolkit for complex system simulators.",
+    "headline_accent": "Modelling Human Complexity",
+    "body": "A systemic approach to understanding complex adaptive systems — from human health and cognition to civilisational dynamics. AI-integrated simulation and research tools for every domain.",
     "cta_primary":   { "label": "Launch ME/CFS Simulator", "href": "/lab/bio-systemics" },
     "cta_secondary": { "label": "Try a Simulation",        "href": "/simulations" }
   },

@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "slug": "learner-first-systemic-learning",
+      "title": "Learner-First Systemic Learning",
+      "subtitle": "A new framework for designing instruction in complex domains",
+      "description": "Traditional instruction fails complex domains because it delivers content without addressing the attractor maintaining the wrong mental model. Learner-First Systemic Learning is a framework that treats learning design as an attractor-shifting process — using simulation, AI tutoring, and systemic analysis to produce durable transfer.",
+      "tag": "Theory",
+      "starred": true,
+      "author": "Kurt Rowley",
+      "date": "2025",
+      "file": "learner_first_systemic_learning.md"
+    },
+    {
       "slug": "systems-science-eras",
       "title": "The Four Eras of Systems Science",
       "subtitle": "About the scientific basis of ISRD methodology",

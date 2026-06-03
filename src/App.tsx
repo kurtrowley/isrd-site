@@ -9,6 +9,7 @@ import { Research } from './pages/Research';
 import { ResearchProgram } from './pages/ResearchProgram';
 import { Publications } from './pages/Publications';
 import { AcademyLab } from './labs/Lab2Academy';
+import { CourseCatalog } from './pages/CourseCatalog';
 import { Tools } from './pages/Tools';
 import { Media } from './pages/Media';
 import { MediaViewer } from './pages/MediaViewer';
@@ -39,7 +40,8 @@ export default function App() {
         <Route path="/research/:programId"      element={<ResearchProgram />} />
 
         {/* Core (top nav) */}
-        <Route path="/courses"                  element={<AcademyLab />} />
+        <Route path="/courses"                  element={<CourseCatalog />} />
+        <Route path="/courses/toolkit"          element={<AcademyLab />} />
         <Route path="/tools"                    element={<Tools />} />
 
         {/* Legacy */}

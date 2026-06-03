@@ -1,0 +1,86 @@
+{
+  "catalog": {
+    "eyebrow": "ISRD Courses",
+    "title": "Courses",
+    "intro": "ISRD courses apply the Learner-First Systemic Learning framework — each course is designed to shift the learner's mental model, not just deliver content. Courses combine article-based exposition, interactive simulations, AI-facilitated dialogue, and transfer challenges across real-world domains.",
+    "approach_note": "Every course is built on the Learner-First Systemic Learning framework. Before content is introduced, your current mental model is surfaced. Simulations let you discover dynamics directly. AI tutoring probes whether the new model is operational. Transfer challenges test whether understanding generalizes."
+  },
+
+  "tracks": [
+    {
+      "id": "foundations",
+      "label": "Foundations",
+      "color": "#d4a847",
+      "description": "Core concepts in systems science and systemic thinking — the intellectual foundation for all ISRD work."
+    },
+    {
+      "id": "learner-first",
+      "label": "Learner-First ID",
+      "color": "#3a8fa8",
+      "description": "Instructional design for complex domains, using the Learner-First Systemic Learning framework."
+    },
+    {
+      "id": "bio-systemics",
+      "label": "Bio-Systemics",
+      "color": "#3a6fa8",
+      "description": "Systemic approaches to health, illness, and biological complexity."
+    }
+  ],
+
+  "courses": [
+    {
+      "id": "lfsl-101",
+      "track": "learner-first",
+      "title": "Introduction to Learner-First Systemic Learning",
+      "code": "SS 201",
+      "subtitle": "How to design instruction that actually shifts mental models",
+      "description": "An introduction to the Learner-First Systemic Learning framework — the ISRD approach to instructional design for complex domains. Covers attractor theory applied to learning, the seven-phase module structure, AI tutoring architecture, and simulation as an epistemological tool. Includes hands-on design exercises using ISRD simulation tools.",
+      "status": "In Design",
+      "level": "Intermediate",
+      "modules": 7,
+      "estimated_hours": 8,
+      "track_label": "Learner-First ID",
+      "article_link": "/articles/learner-first-systemic-learning",
+      "tags": ["Instructional Design", "Systems Thinking", "AI Tutoring", "Simulation"],
+      "modules_preview": [
+        { "n": 1, "title": "The Attractor Problem in Learning", "desc": "Why traditional instruction fails complex domains and what attractor theory reveals about persistent misconceptions." },
+        { "n": 2, "title": "Phase 1–2: Surfacing and Perturbation", "desc": "How to reveal the learner's current mental model and introduce productive instability." },
+        { "n": 3, "title": "Phase 3–4: Exposition and Simulation", "desc": "Minimal structural exposition followed by direct simulation-based exploration." },
+        { "n": 4, "title": "Phase 5: AI-Facilitated Reflection", "desc": "Designing the pedagogical context for AI Socratic dialogue — goals, misconception library, adaptive scaffolding." },
+        { "n": 5, "title": "Phase 6–7: Transfer and Integration", "desc": "Cross-domain transfer challenges and explicit course graph navigation." },
+        { "n": 6, "title": "Course as Feedback System", "desc": "Designing the dependency network connecting course modules and modeling the learner's attractor trajectory." },
+        { "n": 7, "title": "Applied Design Project", "desc": "Design a complete Learner-First Systemic Learning module for a complex domain of your choice." }
+      ]
+    },
+    {
+      "id": "ss-101",
+      "track": "foundations",
+      "title": "Introduction to Systems Science",
+      "code": "SS 101",
+      "subtitle": "The four eras of systems thinking and why they matter now",
+      "description": "A ground-up introduction to systems science — from General Systems Theory through cybernetics, complexity science, and the AI era. Each era is explored through interactive simulations and AI-facilitated reflection. Includes the Feedback Loops, Lorenz Attractor, and Emergence simulations.",
+      "status": "Planned",
+      "level": "Beginner",
+      "modules": 6,
+      "estimated_hours": 6,
+      "track_label": "Foundations",
+      "article_link": "/articles/systems-science-eras",
+      "tags": ["Systems Science", "Complexity", "Feedback Loops", "Emergence"]
+    },
+    {
+      "id": "bio-101",
+      "track": "bio-systemics",
+      "title": "Post-Viral Illness as a Complex System",
+      "code": "BIO 301",
+      "subtitle": "Understanding ME/CFS and chronic conditions through attractor dynamics",
+      "description": "A systems-based course for clinicians, patients, and researchers working with post-viral and treatment-resistant conditions. Uses the ME/CFS Population Outbreak Simulator and brainstem ANS model as learning instruments. Applies Learner-First Systemic Learning design throughout.",
+      "status": "Planned",
+      "level": "Intermediate",
+      "modules": 5,
+      "estimated_hours": 5,
+      "track_label": "Bio-Systemics",
+      "article_link": null,
+      "tags": ["ME/CFS", "Post-Viral Syndrome", "Brainstem Dynamics", "Simulation"]
+    }
+  ]
+}

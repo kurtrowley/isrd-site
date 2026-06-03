@@ -3,6 +3,7 @@ import { GlobalNav } from './components/GlobalNav';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Articles } from './pages/Articles';
+import { ArticleViewer } from './pages/ArticleViewer';
 import { Simulations } from './pages/Simulations';
 import { Research } from './pages/Research';
 import { ResearchProgram } from './pages/ResearchProgram';
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/"                         element={<Home />} />
         <Route path="/about"                    element={<About />} />
         <Route path="/articles"                 element={<Articles />} />
+        <Route path="/articles/:slug"           element={<ArticleViewer />} />
         <Route path="/publications"             element={<Publications />} />
 
         {/* Simulations */}

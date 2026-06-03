@@ -1,0 +1,15 @@
+{
+  "articles": [
+    {
+      "slug": "systems-science-eras",
+      "title": "The Four Eras of Systems Science",
+      "subtitle": "About the scientific basis of ISRD methodology",
+      "description": "Systems science began when researchers noticed their frameworks couldn't explain what they were actually seeing. It has repeated that pattern four times — each time revealing a layer of reality with a precise isomorphism to human experience.",
+      "tag": "Foundations",
+      "starred": true,
+      "author": "Kurt Rowley",
+      "date": "2025",
+      "file": "systems_science_eras-article.md"
+    }
+  ]
+}

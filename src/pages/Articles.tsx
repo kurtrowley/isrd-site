@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import { NodeGraph } from '../components/NodeGraph';
-import labsData from '../content/labs.json';
+import articlesData from '../content/articles.json';
 
-const foundationsContent = labsData.labs.find(l => l.id === 'foundations')!;
-const articles = (foundationsContent as any).whitepapers as Array<{
-  title: string; desc: string; tag: string; starred?: boolean;
+const articles = articlesData.articles as Array<{
+  slug: string; title: string; subtitle: string; description: string;
+  tag: string; starred?: boolean; author: string; date: string; file: string;
 }>;
 
 const starred   = articles.filter(a => a.starred);
@@ -19,7 +20,8 @@ const TAG_COLORS: Record<string, string> = {
 export function Articles() {
   return (
     <div style={{ minHeight: 'calc(100vh - 3.5rem)', background: '#060f16' }}>
-      {/* Hero strip with node graph */}
+
+      {/* Hero strip */}
       <div style={{ position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--line)' }}>
         <NodeGraph />
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 1280, margin: '0 auto', padding: '48px 24px 36px' }}>
@@ -38,73 +40,78 @@ export function Articles() {
       {/* Articles */}
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px' }}>
 
-        {/* Starred / pinned */}
         {starred.length > 0 && (
           <div style={{ marginBottom: 36 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <span style={{ fontSize: '.68rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--gold)' }}>
-                ★ Core Articles
-              </span>
-              <div style={{ flex: 1, height: 1, background: 'var(--line)' }} />
-            </div>
+            <SectionDivider label="★ Core Articles" gold />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {starred.map(a => <ArticleCard key={a.title} article={a} pinned />)}
+              {starred.map(a => <ArticleCard key={a.slug} article={a} pinned />)}
             </div>
           </div>
         )}
 
-        {/* All other articles */}
         {unstarred.length > 0 && (
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <span style={{ fontSize: '.68rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                Further Reading
-              </span>
-              <div style={{ flex: 1, height: 1, background: 'var(--line)' }} />
-            </div>
+            <SectionDivider label="Further Reading" />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {unstarred.map(a => <ArticleCard key={a.title} article={a} />)}
+              {unstarred.map(a => <ArticleCard key={a.slug} article={a} />)}
             </div>
           </div>
+        )}
+
+        {articles.length === 0 && (
+          <p style={{ color: 'var(--muted)', fontStyle: 'italic' }}>Articles coming soon.</p>
         )}
       </div>
     </div>
   );
 }
 
-function ArticleCard({ article, pinned = false }: { article: { title: string; desc: string; tag: string }; pinned?: boolean }) {
+function SectionDivider({ label, gold = false }: { label: string; gold?: boolean }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+      <span style={{ fontSize: '.68rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: gold ? 'var(--gold)' : 'var(--muted)', whiteSpace: 'nowrap' }}>
+        {label}
+      </span>
+      <div style={{ flex: 1, height: 1, background: 'var(--line)' }} />
+    </div>
+  );
+}
+
+function ArticleCard({ article, pinned = false }: { article: typeof articles[0]; pinned?: boolean }) {
   const accent = TAG_COLORS[article.tag] ?? 'var(--accent)';
   return (
-    <div
-      className="article-card"
-      style={{
-        padding: '16px 20px',
-        borderRadius: 12,
+    <Link to={`/articles/${article.slug}`} style={{ textDecoration: 'none' }}>
+      <div className="article-card" style={{
+        padding: '18px 22px', borderRadius: 12, cursor: 'pointer', transition: 'all .18s',
         border: `1px solid ${pinned ? 'rgba(212,168,71,0.3)' : 'var(--line)'}`,
         background: pinned ? 'rgba(212,168,71,0.04)' : 'var(--panel)',
-        cursor: 'pointer',
-        transition: 'all .18s',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        gap: 16,
-      }}
-    >
-      <div style={{ flex: 1 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-          {pinned && <span style={{ fontSize: '.75rem', color: 'var(--gold)' }}>★</span>}
-          <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text)', margin: 0 }}>{article.title}</h3>
-        </div>
-        <p style={{ fontSize: '.83rem', color: 'var(--muted)', lineHeight: 1.55, margin: 0 }}>{article.desc}</p>
-      </div>
-      <span style={{
-        flexShrink: 0,
-        fontSize: '.65rem', fontWeight: 700, padding: '3px 10px', borderRadius: 999,
-        background: `${accent}18`, border: `1px solid ${accent}40`, color: accent,
-        letterSpacing: '.04em',
       }}>
-        {article.tag}
-      </span>
-    </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
+              {pinned && <span style={{ fontSize: '.75rem', color: 'var(--gold)' }}>★</span>}
+              <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text)', margin: 0 }}>{article.title}</h3>
+            </div>
+            {article.subtitle && (
+              <p style={{ fontSize: '.82rem', color: 'var(--muted)', fontStyle: 'italic', margin: '0 0 8px', lineHeight: 1.4 }}>
+                {article.subtitle}
+              </p>
+            )}
+            <p style={{ fontSize: '.82rem', color: 'var(--muted)', lineHeight: 1.55, margin: '0 0 10px' }}>
+              {article.description}
+            </p>
+            <span style={{ fontSize: '.72rem', color: 'var(--muted)' }}>
+              {article.author} · {article.date}
+            </span>
+          </div>
+          <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8 }}>
+            <span style={{ fontSize: '.65rem', fontWeight: 700, padding: '2px 9px', borderRadius: 999, background: `${accent}18`, border: `1px solid ${accent}40`, color: accent }}>
+              {article.tag}
+            </span>
+            <span style={{ fontSize: '.78rem', color: accent, fontWeight: 600 }}>Read →</span>
+          </div>
+        </div>
+      </div>
+    </Link>
   );
 }

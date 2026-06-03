@@ -6,7 +6,6 @@ import siteContent from '../content/site.json';
 const { hero, labs_section, showcase, mission } = siteContent;
 
 export function Home() {
-  const coreLabs = LAB_REGISTRY.filter(l => l.type === 'core');
   const userLabs = LAB_REGISTRY.filter(l => l.type === 'lab');
 
   return (
@@ -41,26 +40,11 @@ export function Home() {
         </div>
       </section>
 
-      {/* ── Lab grid ── */}
+      {/* ── Lab grid — user labs only ── */}
       <section style={{ maxWidth:1100, margin:'0 auto', padding:'60px 24px' }}>
-        <h2 style={{ fontSize:'1rem', textTransform:'uppercase', letterSpacing:'.12em', color:'var(--muted)', marginBottom:8, fontWeight:600 }}>
+        <h2 style={{ fontSize:'1rem', textTransform:'uppercase', letterSpacing:'.12em', color:'var(--muted)', marginBottom:20, fontWeight:600 }}>
           {labs_section.title}
         </h2>
-
-        {/* Core capabilities */}
-        <div style={{ marginBottom:10 }}>
-          <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
-            <span style={{ fontSize:'.68rem', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', padding:'3px 10px', borderRadius:999, background:'rgba(212,168,71,0.12)', border:'1px solid rgba(212,168,71,0.3)', color:'var(--gold)' }}>
-              {labs_section.core_label}
-            </span>
-            <span style={{ fontSize:'.78rem', color:'var(--muted)' }}>{labs_section.core_description}</span>
-          </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(300px,1fr))', gap:16, marginBottom:32 }}>
-            {coreLabs.map(lab => <LabCard key={lab.id} lab={lab} />)}
-          </div>
-        </div>
-
-        {/* User labs */}
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(300px,1fr))', gap:16 }}>
           {userLabs.map(lab => <LabCard key={lab.id} lab={lab} />)}
         </div>

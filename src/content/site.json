@@ -15,7 +15,7 @@
     "headline_accent": "Systemic Engineering",
     "body": "Model feedback loops, attractor basins, and bifurcations across diverse domains. From bio-systemics to global futurism — one shared toolkit for complex system simulators.",
     "cta_primary":   { "label": "Launch ME/CFS Simulator", "href": "/lab/bio-systemics" },
-    "cta_secondary": { "label": "Explore the Toolkit",     "href": "/lab/academy" }
+    "cta_secondary": { "label": "Try a Simulation",        "href": "/simulations" }
   },
 
   "labs_section": {

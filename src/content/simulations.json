@@ -1,0 +1,27 @@
+{
+  "simulations": [
+    {
+      "id": "boids",
+      "title": "Emergence / Flocking",
+      "description": "Each agent follows three simple local rules: avoid neighbours, align with nearby headings, and move toward nearby centres. No agent sees the global pattern — the flock emerges from purely local interactions.",
+      "concept": "Emergence",
+      "path": "/simulations/boids"
+    },
+    {
+      "id": "feedback",
+      "title": "Feedback Loops",
+      "description": "Reinforcing loops amplify change (exponential growth or collapse). Balancing loops resist change and seek equilibrium. Most complex systems are networks of both.",
+      "concept": "Systems Dynamics",
+      "path": "/simulations/feedback"
+    },
+    {
+      "id": "lorenz",
+      "title": "Lorenz Attractor",
+      "description": "Three linked differential equations produce a trajectory that never repeats — yet stays bounded in a butterfly-shaped region of phase space. Tiny differences in starting position lead to completely different futures.",
+      "concept": "Chaos Theory",
+      "path": "/simulations/lorenz"
+    }
+  ],
+  "blank_hint": "Select a simulation from the list →",
+  "blank_sub": "Each simulation demonstrates a foundational concept in systemic science. Use the sliders to explore parameter space."
+}

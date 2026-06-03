@@ -39,18 +39,15 @@ But it had a blind spot. It was exquisitely good at explaining what things *are 
 Ludwig von Bertalanffy noticed this first, working in Vienna in the 1930s and 1940s. He was studying living organisms, and he kept running into the same problem: the behavior of an organism couldn't be predicted from the behavior of its parts, even if you knew the parts very well. Something was happening at the level of organization that the parts didn't contain. He began looking for the principles governing that level — and found them appearing everywhere: in physics, in economics, in social systems, in psychology. He called this General Systems Theory, and its central claim was radical: there are universal structural principles that apply to all organized systems, regardless of what they're made of.
 
 ```mermaid
-flowchart TD
-  E["Environment"] -->|"Energy & Matter"| S[["Open System\n(Bertalanffy)"]]
-  S -->|"Output / Waste"| E
-  S --> H["Hierarchical Organization"]
-  H --> P1["Cell"]
-  H --> P2["Person"]
-  H --> P3["Organization"]
-  H --> P4["Civilization"]
-  P1 & P2 & P3 & P4 -->|"same structural\nprinciples"| EM["Emergent Behavior\nunpredictable from parts"]
-  style S fill:#0f2333,stroke:#d4a847,color:#c8dfe8
-  style EM fill:#0a1a26,stroke:#3a8fa8,color:#c8dfe8
-  style H fill:#0d1e2b,stroke:#6a9aaa,color:#c8dfe8
+graph TD
+  E[Environment] -->|Energy and Matter| S(Open System)
+  S -->|Output| E
+  S --> H[Organizational Pattern]
+  H --> P1[Cell]
+  H --> P2[Person]
+  H --> P3[Organization]
+  H --> P4[Civilization]
+  H --> EM[Emergent Behavior]
 ```
 
 Think of it this way: a computer's behavior is not explained by its transistors. The transistors are the hardware — necessary, but not sufficient. What the computer *does* is governed by the logic running on top of that hardware: the operating system, the software architecture, the rules for how components communicate. You could swap out every physical component and, if the organizational logic were preserved, the computer would behave identically. Bertalanffy was arguing that reality works this way too — that there is an organizational logic running across all complex systems, independent of what those systems are physically made of, and that understanding that logic was a new kind of science.
@@ -68,17 +65,14 @@ The second era built on Bertalanffy's abstract framework and made it dynamic. Tw
 Wiener showed, with mathematical precision, that a specific mechanism — a system using information about its own outputs to regulate its behavior — appeared across wildly different contexts: thermostats, nervous systems, guided missiles, and social institutions. He called this mechanism feedback, and he showed that it was not just an analogy between these systems. It was the same process operating in different media. The feedback loop in a nervous system and the feedback loop in a social institution obey the same equations.
 
 ```mermaid
-flowchart LR
-  G["Goal / Target State"] --> C{{"Comparator"}}
-  A["Actual State"] --> C
-  C -->|"Error Signal"| AC["Corrective Action"]
-  AC --> SY["System"]
-  SY -->|"new state"| A
-  SY -.->|"delay"| U["Unintended\nConsequences"]
-  U -.->|"policy resistance"| SY
-  style C fill:#0f2333,stroke:#3a8fa8,color:#c8dfe8
-  style AC fill:#0d1e2b,stroke:#c87832,color:#c8dfe8
-  style U fill:#1a0a12,stroke:#c03050,color:#c8dfe8
+graph LR
+  G[Goal] --> C{Compare}
+  A[Actual State] --> C
+  C -->|Error Signal| AC[Corrective Action]
+  AC --> SY[System]
+  SY --> A
+  SY -.->|Delay| U[Unintended Effects]
+  U -.-> SY
 ```
 
 What made this concrete was the computer. Wiener wasn't working alongside computing by coincidence — he was part of the same intellectual milieu that produced it. A digital circuit is a feedback system in the most literal sense: logic gates compare input states and produce outputs that cascade through the system, each stage's output becoming the next stage's input, the whole chain governed by rules about how signals combine. The *if-then* logic that makes software work is feedback given formal structure. Wiener was essentially discovering the theoretical principle at the same moment engineers were building the hardware instantiation of it.
@@ -100,18 +94,13 @@ This was chaos theory, and its most famous image is the Lorenz attractor.
 Edward Lorenz was a meteorologist studying atmospheric convection. His three coupled differential equations — describing how air moves in a heated convection cell — produced a trajectory in phase space that never repeated but also never escaped. It traced a butterfly-shaped path forever: two lobes, each one a region the system was drawn toward, with the system circling from one to the other in patterns that looked almost regular but never quite were. Two trajectories starting from almost identical initial conditions would track together for a while, then diverge, ending up in completely different regions of the attractor.
 
 ```mermaid
-flowchart TD
-  IC["Initial Conditions\n(nearly identical)"] --> SP{{"Sensitive\nDependence"}}
-  SP -->|"Path A"| T1["Trajectory A"]
-  SP -->|"Path B\n(0.001% different)"| T2["Trajectory B"]
-  T1 --> AB1[["Attractor Basin A\n— Healthy State —"]]
-  T2 --> AB2[["Attractor Basin B\n— Chronic Illness —"]]
-  AB1 -->|"stable,\nself-maintaining"| AB1
-  AB2 -->|"stable,\nself-maintaining"| AB2
-  AB2 -.->|"high intervention\nrequired"| AB1
-  style SP fill:#0f2333,stroke:#c87832,color:#c8dfe8
-  style AB1 fill:#0a1e12,stroke:#50c090,color:#c8dfe8
-  style AB2 fill:#1a0a12,stroke:#c03050,color:#c8dfe8
+graph TD
+  IC[Nearly Identical Start] --> SP{Sensitive Dependence}
+  SP -->|Path A| AB1[Healthy Attractor]
+  SP -->|Path B| AB2[Illness Attractor]
+  AB1 -->|self-maintaining| AB1
+  AB2 -->|self-maintaining| AB2
+  AB2 -.->|high effort required| AB1
 ```
 
 Here is something worth sitting with: the Lorenz attractor is a program. Three equations, iterated forward in time with a tiny time step, over and over, millions of times. The butterfly shape is not stored anywhere in those equations. It *emerges* from the rules running forward. And critically: you can run the same program twice from starting positions that differ by a thousandth of a decimal place, and watch two identical-looking trajectories gradually pull apart until they're tracing entirely different regions of the attractor. The code is identical. The output diverges. This is not a bug. It is a mathematical property of the system — and it is the same property that makes two nearly-identical patients respond to the same treatment in completely opposite ways, and two nearly-identical organizations facing the same challenge end up in completely different states five years later.
@@ -133,18 +122,14 @@ The fourth era is the one we are living in, and its defining development is some
 The mathematics of neural networks had existed since the 1940s — since Wiener's era, not coincidentally. The conceptual framework — networks of simple processing units, weighted connections, learning through iterative adjustment of those weights based on feedback about errors — had been developed and largely abandoned twice before the current wave. What changed was not the theory. It was the scale of data and the speed of compute.
 
 ```mermaid
-flowchart LR
-  SR["Simple Rule:\nPredict next token"] --> FB["Iterative\nFeedback"]
-  FB --> W["Weight\nAdjustment\n× billions"]
-  W --> E{{"Emergence\nat Scale"}}
-  E --> C1["Reasoning"]
-  E --> C2["Creative Writing"]
-  E --> C3["Cross-domain\nTransfer"]
-  E --> C4["Capabilities\nnobody specified"]
-  C4 -.->|"unpredicted\nby the rules"| SR
-  style SR fill:#0d1e2b,stroke:#3a8fa8,color:#c8dfe8
-  style E fill:#0f2333,stroke:#7a5ac8,color:#c8dfe8
-  style C4 fill:#1e1e3a,stroke:#7a5ac8,color:#7acce0
+graph LR
+  R[Simple Rule] --> FB[Iteration]
+  FB --> W[Weight Adjustment]
+  W --> E{Emergence}
+  E --> C1[Reasoning]
+  E --> C2[Language]
+  E --> C3[Generalization]
+  C3 -.->|unpredicted by rules| R
 ```
 
 And what emerged, when those elements finally came together, was the most dramatic demonstration of the central theorem of complexity science that humanity has ever produced: simple rules applied iteratively with feedback, at sufficient scale, generate behavior that cannot be predicted from the rules. Nobody specified what a large language model would be able to do. Nobody programmed it to reason, to write poetry, to explain a technical concept in the style of a particular author. The rules said: take a network of weighted connections, show it sequences of text, and adjust the weights slightly based on how well the network predicts what comes next. That's the entire specification. Everything else emerged.
@@ -162,25 +147,13 @@ Now for the thread that was foreshadowed at the start.
 Running alongside each of the four eras described above — not as a consumer of systems science ideas, but as an independent and extraordinarily rapid source of the same discoveries — is the history of software engineering. Most systems scientists are not software engineers. Most software engineers do not think of themselves as systems scientists. The disciplines developed largely in parallel, with different vocabularies, different institutions, and different problems. But the isomorphism between what systems science discovered theoretically and what software engineering discovered empirically is among the most striking in the history of ideas.
 
 ```mermaid
-flowchart LR
-  subgraph SS["Systems Science  (Theory)"]
-  direction TB
-  S1["Era 1\nGeneral Systems\nTheory"] --> S2["Era 2\nCybernetics &\nFeedback"]
-  S2 --> S3["Era 3\nChaos &\nComplexity"]
-  S3 --> S4["Era 4\nAI & Neural\nNetworks"]
-  end
-  subgraph SE["Software Engineering  (Empirical)"]
-  direction TB
-  P1["1960s\nMonolithic\nCode"] --> P2["1970s\nModular\nArchitecture"]
-  P2 --> P3["1980s–90s\nObject-Oriented\nSystems"]
-  P3 --> P4["2000s–now\nAgile + ML\n& LLMs"]
-  end
-  S1 <-.->|"isomorphism"| P1
-  S2 <-.->|"isomorphism"| P2
-  S3 <-.->|"isomorphism"| P3
-  S4 <-.->|"isomorphism"| P4
-  style SS fill:#0a1820,stroke:#3a8fa8
-  style SE fill:#0a1820,stroke:#c87832
+graph LR
+  SS[Systems Science] -->|theorizes| T[Structural Principles]
+  SE[Software Engineering] -->|independently discovers| T
+  T --> I1[Era 1 - Organization]
+  T --> I2[Era 2 - Feedback]
+  T --> I3[Era 3 - Emergence]
+  T --> I4[Era 4 - AI]
 ```
 
 And the reason it's striking is the timescale.
@@ -212,15 +185,14 @@ Four eras of systems science — and a parallel software track that compressed d
 There is a fifth layer visible on the horizon, though its full character isn't yet clear. It has to do with non-locality — with the possibility that the organizational principles governing complex systems operate in ways not fully captured by the local interaction rules we've been studying. Quantum entanglement demonstrates non-local correlation at the physical level. The holographic principle in physics suggests that information about a volume of space may be encoded on its boundary in ways that violate simple locality assumptions. Consciousness — the aspect of human experience most resistant to explanation at any of the first four levels — may turn out to require a framework that accounts for non-local structure in ways we don't yet know how to formalize.
 
 ```mermaid
-flowchart TD
-  E4["Era 4 — Known Territory\nNetworked Complexity · AI · Emergence"] --> F{{"Scientific\nFrontier"}}
-  F --> NL["Non-locality\n(Quantum entanglement)"]
-  F --> QC["Quantum Coherence\nin biological systems"]
-  F --> CS["Consciousness\n& subjective experience"]
-  F --> AE["AI Emergence\nbeyond mechanistic account"]
-  NL & QC & CS & AE -.->|"unknown\nconnections"| E5["Era 5 — ?\n(structure not yet visible)"]
-  style F fill:#0f2333,stroke:#d4a847,color:#c8dfe8
-  style E5 fill:#1e1e3a,stroke:#7a5ac8,stroke-dasharray:6,color:#7acce0
+graph TD
+  E4[Era 4 - Known Territory] --> F{Scientific Frontier}
+  F --> NL[Non-locality]
+  F --> CS[Consciousness]
+  F --> AE[AI Emergence]
+  NL -.-> E5[Era 5 - Unknown]
+  CS -.-> E5
+  AE -.-> E5
 ```
 
 Whether this involves something like invisible organizational blueprints operating through entanglement and emergence from quantum-level phenomena — whether it eventually makes sense to speak of quantum isomorphisms in the same way we speak of the feedback-loop isomorphisms of Era Two — remains genuinely open. The AI systems we've built at Era Four's leading edge already exhibit properties we can't fully account for mechanistically: representations that generalize across domains in ways that mirror human conceptual understanding, emergent capabilities that appear suddenly at scale thresholds. Whether this is merely complex-systems emergence well-understood in principle, or whether it points to something in Era Five territory, is a live question.

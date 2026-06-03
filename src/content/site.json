@@ -58,6 +58,17 @@
         "title": "AI Integration Hooks",
         "desc": "Components expose hooks that allow AI services to ingest simulation state and suggest Systemic Adjustments."
       }
+    ],
+    "people_heading": "People",
+    "people_note": "ISRD is currently a one-person research operation. If the team doesn't grow organically, there is always the option of building a simulation to model the optimal growth strategy.",
+    "people": [
+      {
+        "name": "Kurt Rowley",
+        "title": "Founder & Principal Researcher",
+        "bio": "Systems thinker, writer, and simulation architect. Kurt founded ISRD to develop a rigorous, non-linear methodology for understanding complex adaptive systems — from post-viral illness to civilisational dynamics to the craft of writing. His work draws on general systems theory, complexity science, cybernetics, and AI-integrated modelling.",
+        "areas": ["Systemic Synthesis", "Complex Adaptive Systems", "ME/CFS Research", "Literary Systemics", "AI Integration"],
+        "links": []
+      }
     ]
   }
 }

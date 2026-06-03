@@ -1,0 +1,55 @@
+{
+  "page": {
+    "eyebrow": "ISRD Publications",
+    "title": "Publications",
+    "intro": "ISRD publishes working papers, research reports, and methodology notes documenting our systemic synthesis approach and its application across research programs. All publications are grounded in interactive simulation and AI-assisted analysis.",
+    "status_note": "Publications marked 'In Preparation' are active working papers. Those marked 'Forthcoming' are near completion. All are available for early review on request."
+  },
+
+  "publications": [
+    {
+      "id": "methodology-01",
+      "title": "Systemic Synthesis as a Research Framework: Attractor-Based Modelling Across Domains",
+      "authors": ["ISRD Core Team"],
+      "year": 2025,
+      "type": "Methodology",
+      "status": "In Preparation",
+      "program": null,
+      "abstract": "Presents the foundational methodology of Systemic Synthesis — a non-linear, attractor-based approach to modelling complex adaptive systems. Describes the Sim-Toolkit architecture, the feedback graph primitive, and the principles governing multi-domain application. Argues for a shift from reductionist systems analysis toward engineering that accounts for basin dynamics, bifurcation thresholds, and emergent stability.",
+      "tags": ["Methodology", "Systemic Synthesis", "Attractor Theory", "AI Integration"]
+    },
+    {
+      "id": "bio-01",
+      "title": "Post-Viral ME/CFS as a Brainstem Attractor State: A Population Simulation Model",
+      "authors": ["ISRD Bio-Systemics Program"],
+      "year": 2025,
+      "type": "Research Report",
+      "status": "In Preparation",
+      "program": "bio-systemics",
+      "abstract": "Presents a 100-person agent-based simulation of viral outbreak and ME/CFS conversion, calibrated against published epidemiological benchmarks (Wessely et al. 1995; Jason et al.; Carruthers et al. 2011; Chicago mono study). Models the brainstem-HPA axis as a structural attractor that, once destabilised by viral insult in susceptible individuals, resists return to healthy function. Identifies autonomic involvement during acute illness as the strongest single predictor of ME/CFS conversion.",
+      "tags": ["ME/CFS", "Post-Viral Syndrome", "Agent-Based Modelling", "Brainstem Dynamics", "AI-assisted Analysis"]
+    },
+    {
+      "id": "literary-01",
+      "title": "Narrative as Feedback System: A Reader-First Framework for Systemic Writing",
+      "authors": ["ISRD Literary Systemics Program"],
+      "year": 2025,
+      "type": "Working Paper",
+      "status": "Forthcoming",
+      "program": "literary-systemics",
+      "abstract": "Proposes that effective narrative structure can be modelled as a directed feedback graph in which reader clarity, tension, and engagement are interdependent stock-and-flow variables. Introduces the Reader-First Systemic Writing framework, applies attractor theory to reader drop-off and emotional arc, and demonstrates how small structural interventions can cascade through the narrative system. AI-assisted structural analysis is used to map passages to feedback graph nodes.",
+      "tags": ["Narrative Structure", "Feedback Loops", "Reader-First", "Systemic Writing", "AI-assisted"]
+    },
+    {
+      "id": "futurism-01",
+      "title": "Civilisational Tipping Points: Socio-Economic Attractor Basins in the 21st Century",
+      "authors": ["ISRD Global Futurism Program"],
+      "year": 2025,
+      "type": "Working Paper",
+      "status": "Forthcoming",
+      "program": "global-futurism",
+      "abstract": "Models civilisational stability as a multi-basin attractor landscape with at least four identifiable equilibrium states: stable cooperation, managed tension, rising disorder, and systemic collapse. Using a five-node feedback simulation calibrated to contemporary socio-economic data, we identify inequality and social infrastructure degradation as the highest-leverage tipping variables. AI-assisted scenario generation is used to explore rare but high-impact bifurcation events.",
+      "tags": ["Civilisational Dynamics", "Tipping Points", "Socio-Economics", "Attractor Basins", "AI-integrated"]
+    }
+  ]
+}

@@ -4,6 +4,9 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Articles } from './pages/Articles';
 import { Simulations } from './pages/Simulations';
+import { Research } from './pages/Research';
+import { ResearchProgram } from './pages/ResearchProgram';
+import { Publications } from './pages/Publications';
 import { AcademyLab } from './labs/Lab2Academy';
 import { BioSystemicsLab } from './labs/Lab3BioSystemics';
 import { LiterarySysLab } from './labs/Lab4Literary';
@@ -15,25 +18,30 @@ export default function App() {
       <GlobalNav />
       <Routes>
         {/* Top-level */}
-        <Route path="/"                       element={<Home />} />
-        <Route path="/about"                  element={<About />} />
-        <Route path="/articles"               element={<Articles />} />
+        <Route path="/"                         element={<Home />} />
+        <Route path="/about"                    element={<About />} />
+        <Route path="/articles"                 element={<Articles />} />
+        <Route path="/publications"             element={<Publications />} />
 
-        {/* Simulations — blank or with active sim */}
-        <Route path="/simulations"            element={<Simulations />} />
-        <Route path="/simulations/:simId"     element={<Simulations />} />
+        {/* Simulations */}
+        <Route path="/simulations"              element={<Simulations />} />
+        <Route path="/simulations/:simId"       element={<Simulations />} />
 
-        {/* Core (top nav) */}
-        <Route path="/lab/academy"            element={<AcademyLab />} />
+        {/* Research */}
+        <Route path="/research"                 element={<Research />} />
+        <Route path="/research/:programId"      element={<ResearchProgram />} />
 
-        {/* Labs */}
-        <Route path="/lab/bio-systemics"      element={<BioSystemicsLab />} />
-        <Route path="/lab/literary-systemics" element={<LiterarySysLab />} />
-        <Route path="/lab/global-futurism"    element={<GlobalFuturismLab />} />
+        {/* Core tools (top nav) */}
+        <Route path="/lab/academy"              element={<AcademyLab />} />
+
+        {/* Simulators (accessible from Research program pages) */}
+        <Route path="/lab/bio-systemics"        element={<BioSystemicsLab />} />
+        <Route path="/lab/literary-systemics"   element={<LiterarySysLab />} />
+        <Route path="/lab/global-futurism"      element={<GlobalFuturismLab />} />
 
         {/* Legacy redirects */}
-        <Route path="/lab/foundations"        element={<Articles />} />
-        <Route path="/lab/foundry"            element={<AcademyLab />} />
+        <Route path="/lab/foundations"          element={<Articles />} />
+        <Route path="/lab/foundry"              element={<AcademyLab />} />
 
         <Route path="*" element={
           <div style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--muted)' }}>

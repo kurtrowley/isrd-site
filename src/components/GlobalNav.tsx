@@ -1,26 +1,24 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, type MutableRefObject } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSimStore } from '../store/useSimStore';
-import { LAB_REGISTRY } from '../labs/registry';
 import siteContent from '../content/site.json';
 import simContent from '../content/simulations.json';
-
-const userLabs = LAB_REGISTRY.filter(l => l.type === 'lab');
+import researchData from '../content/research.json';
 
 export function GlobalNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [labsOpen,   setLabsOpen]   = useState(false);
-  const [simsOpen,   setSimsOpen]   = useState(false);
-  const labsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const simsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [researchOpen, setResearchOpen] = useState(false);
+  const [simsOpen,     setSimsOpen]     = useState(false);
+  const researchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const simsTimer     = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { theme, toggleTheme } = useSimStore();
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname.startsWith(path);
 
-  const openMenu  = (set: (v:boolean)=>void, timer: React.MutableRefObject<ReturnType<typeof setTimeout>|null>) =>
+  const openMenu  = (set: (v:boolean)=>void, timer: MutableRefObject<ReturnType<typeof setTimeout>|null>) =>
     () => { if (timer.current) clearTimeout(timer.current); set(true); };
-  const closeMenu = (set: (v:boolean)=>void, timer: React.MutableRefObject<ReturnType<typeof setTimeout>|null>) =>
+  const closeMenu = (set: (v:boolean)=>void, timer: MutableRefObject<ReturnType<typeof setTimeout>|null>) =>
     () => { timer.current = setTimeout(() => set(false), 120); };
 
   return (
@@ -74,29 +72,38 @@ export function GlobalNav() {
             )}
           </div>
 
-          {/* Labs dropdown — user labs only */}
-          <div className="relative" onMouseEnter={openMenu(setLabsOpen, labsTimer)} onMouseLeave={closeMenu(setLabsOpen, labsTimer)}>
-            <button className={`nav-link flex items-center gap-1 ${isActive('/lab') && !isActive('/lab/academy') ? 'active' : ''}`}>
-              Labs <span className="text-[10px]">▾</span>
+          {/* Research dropdown */}
+          <div className="relative" onMouseEnter={openMenu(setResearchOpen, researchTimer)} onMouseLeave={closeMenu(setResearchOpen, researchTimer)}>
+            <button className={`nav-link flex items-center gap-1 ${isActive('/research') ? 'active' : ''}`}>
+              Research <span className="text-[10px]">▾</span>
             </button>
-            {labsOpen && (
+            {researchOpen && (
               <div
-                onMouseEnter={openMenu(setLabsOpen, labsTimer)}
-                onMouseLeave={closeMenu(setLabsOpen, labsTimer)}
-                className="absolute top-full left-0 w-64 rounded-xl border py-2 shadow-2xl"
+                onMouseEnter={openMenu(setResearchOpen, researchTimer)}
+                onMouseLeave={closeMenu(setResearchOpen, researchTimer)}
+                className="absolute top-full left-0 w-72 rounded-xl border py-2 shadow-2xl"
                 style={{ background: 'var(--panel)', borderColor: 'var(--line)', marginTop: 2 }}
               >
-                {userLabs.map(lab => (
-                  <Link key={lab.id} to={lab.path} onClick={() => setLabsOpen(false)}
+                <Link to="/research" onClick={() => setResearchOpen(false)}
+                  className="block px-4 py-2 text-sm hover:bg-white/5"
+                  style={{ color: location.pathname === '/research' ? 'var(--accent2)' : 'var(--muted)', textDecoration: 'none', fontStyle: 'italic' }}>
+                  All Research Programs
+                </Link>
+                <div style={{ height: 1, background: 'var(--line)', margin: '4px 12px' }} />
+                {researchData.programs.map(prog => (
+                  <Link key={prog.id} to={prog.path} onClick={() => setResearchOpen(false)}
                     className="block px-4 py-2 text-sm hover:bg-white/5"
-                    style={{ color: isActive(lab.path) ? 'var(--accent2)' : 'var(--text)', textDecoration: 'none' }}>
-                    <span className="font-semibold">{lab.shortTitle}</span>
-                    <span className="block text-xs mt-0.5" style={{ color: 'var(--muted)' }}>{lab.description.slice(0, 52)}…</span>
+                    style={{ color: isActive(prog.path) ? 'var(--accent2)' : 'var(--text)', textDecoration: 'none' }}>
+                    <span className="font-semibold">{prog.title}</span>
+                    <span className="block text-xs mt-0.5" style={{ color: 'var(--muted)' }}>{prog.subtitle}</span>
                   </Link>
                 ))}
               </div>
             )}
           </div>
+
+          {/* Publications */}
+          <Link to="/publications" className={`nav-link ${isActive('/publications') ? 'active' : ''}`}>Publications</Link>
 
           <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>About</Link>
         </div>
@@ -128,12 +135,14 @@ export function GlobalNav() {
               {sim.title}
             </Link>
           ))}
-          <div style={{ fontSize: '.72rem', color: 'var(--muted)', padding: '4px 0 2px', textTransform: 'uppercase', letterSpacing: '.08em' }}>Labs</div>
-          {userLabs.map(lab => (
-            <Link key={lab.id} to={lab.path} className="mobile-nav-link" style={{ paddingLeft: 12 }} onClick={() => setMobileOpen(false)}>
-              {lab.shortTitle}
+          <div style={{ fontSize: '.72rem', color: 'var(--muted)', padding: '4px 0 2px', textTransform: 'uppercase', letterSpacing: '.08em' }}>Research</div>
+          <Link to="/research" className="mobile-nav-link" style={{ paddingLeft: 12 }} onClick={() => setMobileOpen(false)}>All Programs</Link>
+          {researchData.programs.map(prog => (
+            <Link key={prog.id} to={prog.path} className="mobile-nav-link" style={{ paddingLeft: 12 }} onClick={() => setMobileOpen(false)}>
+              {prog.title}
             </Link>
           ))}
+          <Link to="/publications" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Publications</Link>
           <Link to="/about" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>About</Link>
         </div>
       )}

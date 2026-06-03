@@ -1,0 +1,59 @@
+{
+  "page": {
+    "eyebrow": "ISRD Research",
+    "title": "Complex Systemics Research",
+    "intro": "ISRD investigates complex adaptive systems through the lens of Systemic Synthesis — a non-linear, attractor-based methodology. Each research program uses interactive simulators, feedback graph modeling, and AI-assisted interpretation to generate and test hypotheses across domains.",
+    "ai_note": "All programs are AI-integrated. Language models assist with simulation interpretation, pattern recognition across runs, and surfacing non-obvious systemic relationships. AI is a standard analytical tool in our workflow — not a novelty."
+  },
+
+  "programs": [
+    {
+      "id": "bio-systemics",
+      "title": "Bio-Systemics",
+      "subtitle": "Post-viral illness and brainstem attractor dynamics",
+      "description": "Investigates ME/CFS and post-viral syndromes as emergent attractor states — conditions where the nervous system settles into a dysfunctional stable basin following viral insult. We model the population epidemiology of ME/CFS conversion, the role of brainstem-HPA axis dysregulation, and intervention pathways that might shift the system toward recovery basins.",
+      "research_questions": [
+        "What combination of pre-existing risk factors most reliably predicts ME/CFS conversion post-infection?",
+        "Can brainstem mechanical load (Chiari, CCI) be modelled as a structural attractor modifier?",
+        "How do social and environmental stressors interact with immune function to shape post-viral trajectory?"
+      ],
+      "tools": ["ME/CFS Population Outbreak Simulator", "Brainstem ANS Diagram", "Risk Factor Modelling"],
+      "simulator_path": "/lab/bio-systemics",
+      "theme": "blue-pulse",
+      "path": "/research/bio-systemics",
+      "ai_use": "AI assists in interpreting multi-run simulation outputs, identifying non-linear risk interactions, and connecting simulation findings to published epidemiological literature."
+    },
+    {
+      "id": "literary-systemics",
+      "title": "Literary Systemics",
+      "subtitle": "Narrative structure as a feedback system",
+      "description": "Applies systemic synthesis to the craft and impact of writing. Narrative is modelled as a feedback network: reader clarity, tension, and engagement are interdependent nodes. We develop a Reader-First framework that helps authors understand how structural choices propagate through the reading experience — and where interventions have the highest leverage.",
+      "research_questions": [
+        "How do reinforcing and balancing feedback loops manifest in effective narrative structure?",
+        "Can systemic analysis predict reader drop-off, confusion, or emotional disengagement?",
+        "What is the optimal tension-clarity trade-off for different reader objectives?"
+      ],
+      "tools": ["Writing Impact Simulator", "Narrative Feedback Loop Modeller", "Author Strategy Analyser"],
+      "simulator_path": "/lab/literary-systemics",
+      "theme": "amber",
+      "path": "/research/literary-systemics",
+      "ai_use": "AI assists in generating structural critiques of narrative drafts, suggesting rebalancing interventions, and mapping text passages to feedback graph nodes."
+    },
+    {
+      "id": "global-futurism",
+      "title": "Global Futurism",
+      "subtitle": "Civilisational tipping points and macro-systemic attractors",
+      "description": "Models the macro-dynamics of civilisation as a complex adaptive system — one with multiple potential attractor basins ranging from stable cooperation to systemic collapse. We investigate how inequality, technological acceleration, climate stress, and social infrastructure interact to push societies toward or away from tipping points.",
+      "research_questions": [
+        "Which combinations of stressors most reliably push civilisational systems past bifurcation thresholds?",
+        "Do socio-economic tipping points follow the same attractor geometry as physical systems?",
+        "What systemic interventions have the highest leverage for stabilising cooperative attractor states?"
+      ],
+      "tools": ["Macro-Systemic Trend Simulator", "Attractor Basin Visualiser", "Tipping Point Forecaster"],
+      "simulator_path": "/lab/global-futurism",
+      "theme": "violet",
+      "path": "/research/global-futurism",
+      "ai_use": "AI assists in scenario generation, cross-domain pattern recognition, and connecting simulation states to current geopolitical and economic indicators."
+    }
+  ]
+}

@@ -44,7 +44,7 @@ export function CourseCatalog() {
             <div>
               <p style={{ fontSize: '.8rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 0 5px' }}>{catalog.approach_note}</p>
               <Link to="/articles/learner-first-systemic-learning" style={{ fontSize: '.78rem', color: 'var(--accent)', textDecoration: 'none' }}>
-                Read: Learner-First Systemic Learning →
+                Read: Learner-First Systemic Education →
               </Link>
             </div>
           </div>
@@ -140,7 +140,7 @@ export function CourseCatalog() {
 
         {/* Coming soon note */}
         <div style={{ marginTop: 40, padding: '20px 24px', borderRadius: 12, border: '1px dashed var(--line)', background: 'rgba(255,255,255,0.01)', fontSize: '.82rem', color: 'var(--muted)', lineHeight: 1.65 }}>
-          <strong style={{ color: 'var(--text)' }}>Building the curriculum.</strong> Courses marked <em>In Design</em> are actively being developed using the Learner-First Systemic Learning framework. Courses marked <em>Planned</em> have defined outlines and will be developed as the framework and tooling mature. Each course will include interactive simulations, AI-facilitated exercises, and transfer challenges — not just content delivery.
+          <strong style={{ color: 'var(--text)' }}>Building the curriculum.</strong> Courses marked <em>In Design</em> are actively being developed using the Learner-First Systemic Education framework. Courses marked <em>Planned</em> have defined outlines and will be developed as the framework and tooling mature. Each course will include interactive simulations, AI-facilitated exercises, and transfer challenges — not just content delivery.
         </div>
       </div>
     </div>

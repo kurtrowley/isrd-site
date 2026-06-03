@@ -2,8 +2,8 @@
   "catalog": {
     "eyebrow": "ISRD Courses",
     "title": "Courses",
-    "intro": "ISRD courses apply the Learner-First Systemic Learning framework — each course is designed to shift the learner's mental model, not just deliver content. Courses combine article-based exposition, interactive simulations, AI-facilitated dialogue, and transfer challenges across real-world domains.",
-    "approach_note": "Every course is built on the Learner-First Systemic Learning framework. Before content is introduced, your current mental model is surfaced. Simulations let you discover dynamics directly. AI tutoring probes whether the new model is operational. Transfer challenges test whether understanding generalizes."
+    "intro": "ISRD courses apply the Learner-First Systemic Education framework — each course is designed to shift the learner's mental model, not just deliver content. Courses combine article-based exposition, interactive simulations, AI-facilitated dialogue, and transfer challenges across real-world domains.",
+    "approach_note": "Every course is built on the Learner-First Systemic Education framework. Before content is introduced, your current mental model is surfaced. Simulations let you discover dynamics directly. AI tutoring probes whether the new model is operational. Transfer challenges test whether understanding generalizes."
   },
 
   "tracks": [
@@ -17,7 +17,7 @@
       "id": "learner-first",
       "label": "Learner-First ID",
       "color": "#3a8fa8",
-      "description": "Instructional design for complex domains, using the Learner-First Systemic Learning framework."
+      "description": "Instructional design for complex domains, using the Learner-First Systemic Education framework."
     },
     {
       "id": "bio-systemics",
@@ -31,10 +31,10 @@
     {
       "id": "lfsl-101",
       "track": "learner-first",
-      "title": "Introduction to Learner-First Systemic Learning",
+      "title": "Introduction to Learner-First Systemic Education",
       "code": "SS 201",
       "subtitle": "How to design instruction that actually shifts mental models",
-      "description": "An introduction to the Learner-First Systemic Learning framework — the ISRD approach to instructional design for complex domains. Covers attractor theory applied to learning, the seven-phase module structure, AI tutoring architecture, and simulation as an epistemological tool. Includes hands-on design exercises using ISRD simulation tools.",
+      "description": "An introduction to the Learner-First Systemic Education framework — the ISRD approach to instructional design for complex domains. Covers attractor theory applied to learning, the seven-phase module structure, AI tutoring architecture, and simulation as an epistemological tool. Includes hands-on design exercises using ISRD simulation tools.",
       "status": "In Design",
       "level": "Intermediate",
       "modules": 7,
@@ -49,7 +49,7 @@
         { "n": 4, "title": "Phase 5: AI-Facilitated Reflection", "desc": "Designing the pedagogical context for AI Socratic dialogue — goals, misconception library, adaptive scaffolding." },
         { "n": 5, "title": "Phase 6–7: Transfer and Integration", "desc": "Cross-domain transfer challenges and explicit course graph navigation." },
         { "n": 6, "title": "Course as Feedback System", "desc": "Designing the dependency network connecting course modules and modeling the learner's attractor trajectory." },
-        { "n": 7, "title": "Applied Design Project", "desc": "Design a complete Learner-First Systemic Learning module for a complex domain of your choice." }
+        { "n": 7, "title": "Applied Design Project", "desc": "Design a complete Learner-First Systemic Education module for a complex domain of your choice." }
       ]
     },
     {
@@ -73,7 +73,7 @@
       "title": "Post-Viral Illness as a Complex System",
       "code": "BIO 301",
       "subtitle": "Understanding ME/CFS and chronic conditions through attractor dynamics",
-      "description": "A systems-based course for clinicians, patients, and researchers working with post-viral and treatment-resistant conditions. Uses the ME/CFS Population Outbreak Simulator and brainstem ANS model as learning instruments. Applies Learner-First Systemic Learning design throughout.",
+      "description": "A systems-based course for clinicians, patients, and researchers working with post-viral and treatment-resistant conditions. Uses the ME/CFS Population Outbreak Simulator and brainstem ANS model as learning instruments. Applies Learner-First Systemic Education design throughout.",
       "status": "Planned",
       "level": "Intermediate",
       "modules": 5,

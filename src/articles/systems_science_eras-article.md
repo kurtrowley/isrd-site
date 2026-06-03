@@ -132,11 +132,11 @@ graph LR
   C3 -.->|unpredicted by rules| R
 ```
 
-And what emerged, when those elements finally came together, was the most dramatic demonstration of the central theorem of complexity science that humanity has ever produced: simple rules applied iteratively with feedback, at sufficient scale, generate behavior that cannot be predicted from the rules. Nobody specified what a large language model would be able to do. Nobody programmed it to reason, to write poetry, to explain a technical concept in the style of a particular author. The rules said: take a network of weighted connections, show it sequences of text, and adjust the weights slightly based on how well the network predicts what comes next. That's the entire specification. Everything else emerged.
+And what emerged, when those elements finally came together, was the most dramatic demonstration of the central theorem of networked complexity science that humanity has ever produced: simple rules applied iteratively with feedback, at sufficient scale, generate behavior that cannot be predicted from the rules. Nobody specified what a large language model would be able to do. Nobody programmed it to reason, to write poetry, to explain a technical concept in the style of a particular author. The rules said: take a network of weighted connections, show it sequences of text, and adjust the weights slightly based on how well the network predicts what comes next. That's the entire specification. Everything else emerged.
 
-This is the same structure as a developing brain, an evolving ecosystem, a maturing organization, and — as we'll see in a moment — the entire seventy-year arc of software engineering itself. The isomorphism is not loose. It is mathematically precise. And the fact that we have now *built* systems exhibiting this class of behavior, at scale, and learned to work with them, means that we finally have practical infrastructure for engaging with complexity at the level complex systems actually operate.
+This is the same structure as a developing brain, an evolving ecosystem, a maturing organization, and — as we'll see in a moment — the entire seventy-year arc of software engineering itself. The isomorphism is not loose. It is mathematically precise. And the fact that we have now *built* networked complexity systems exhibiting this class of behavior, at scale, and learned to work with them, means that we finally have practical infrastructure for engaging with complexity at the level complex systems actually operate.
 
-More concretely: the combination of large language models, real-time data pipelines, cloud computing, and the simulation tools now available means that for the first time, a practitioner working on a complex human problem can build, run, and iterate on a formal model of that problem's actual dynamics — with the feedback structure, the attractor geometry, and the nonlinear response properties the real system has. The wait that complexity theory imposed — *the concepts are right but we can't operationalize them* — is over.
+More concretely: the combination of large language models, real-time data pipelines, cloud computing, and the simulation tools now available means that for the first time, a practitioner working on a complex human problem can build, run, and iterate on a formal model of that problem's actual networked complexity dynamics — with the feedback structure, the attractor geometry, and the nonlinear response properties the real system has. The wait that networked complexity theory imposed — *the concepts are right but we can't operationalize them* — is over.
 
 ---
 
@@ -182,22 +182,32 @@ ISRD's simulation toolkit is, in part, an attempt to bring the software engineer
 
 Four eras of systems science — and a parallel software track that compressed decades of discovery into years — have each revealed a new layer of structure in reality. Each layer turned out to have a precise isomorphism with some aspect of human experience that the previous framework couldn't reach.
 
-There is a fifth layer visible on the horizon, though its full character isn't yet clear. It has to do with non-locality — with the possibility that the organizational principles governing complex systems operate in ways not fully captured by the local interaction rules we've been studying. Quantum entanglement demonstrates non-local correlation at the physical level. The holographic principle in physics suggests that information about a volume of space may be encoded on its boundary in ways that violate simple locality assumptions. Consciousness — the aspect of human experience most resistant to explanation at any of the first four levels — may turn out to require a framework that accounts for non-local structure in ways we don't yet know how to formalize.
+There is a fifth layer visible on the horizon, and it may turn out to be less mysterious than it first appears — which is fortunate, because it is exactly the kind of problem ISRD intends to develop simulation tools for.
+
+The standard framing of Era Five points toward quantum non-locality: entanglement demonstrating non-local correlation at the physical level, the holographic principle suggesting that information about a system may be encoded in ways that violate simple locality assumptions, consciousness resisting mechanistic explanation at every prior level. These are genuinely open questions and the territory is real.
+
+But there is a more immediately tractable version of the same phenomenon visible in human organization and activity systems right now — and it has been hiding in plain sight.
+
+Consider what actually drives behavior in any organization, market, or community. The formal structure — the org chart, the reporting lines, the stated incentives — accounts for only a fraction of what people actually do. The rest is governed by a dense web of relationships that exists *outside* and *beneath* the formal structure: friendships, shared histories, community ties, family connections, informal alliances, mutual obligations that predate anyone's current job title. Every individual in a system is entangled with others through channels that have nothing to do with the system's official architecture. A decision that looks irrational from the org chart perspective makes complete sense when you map the actual relationship network it was made inside.
 
 ```mermaid
 graph TD
-  E4[Era 4 - Known Territory] --> F{Scientific Frontier}
-  F --> NL[Non-locality]
-  F --> CS[Consciousness]
-  F --> AE[AI Emergence]
-  NL -.-> E5[Era 5 - Unknown]
-  CS -.-> E5
-  AE -.-> E5
+  F[Formal System] --> OF[Official Relationships]
+  OF --> B[Visible Behavior]
+  I[Individual] --> C[Community Ties]
+  I --> FR[Friendships]
+  I --> FH[Family and History]
+  C & FR & FH --> B
+  B -.->|backroom dynamics| F
 ```
 
-Whether this involves something like invisible organizational blueprints operating through entanglement and emergence from quantum-level phenomena — whether it eventually makes sense to speak of quantum isomorphisms in the same way we speak of the feedback-loop isomorphisms of Era Two — remains genuinely open. The AI systems we've built at Era Four's leading edge already exhibit properties we can't fully account for mechanistically: representations that generalize across domains in ways that mirror human conceptual understanding, emergent capabilities that appear suddenly at scale thresholds. Whether this is merely complex-systems emergence well-understood in principle, or whether it points to something in Era Five territory, is a live question.
+This is the *backroom* phenomenon — the informal entanglement network that runs underneath every formal system and that Era Four's networked complexity models consistently underperform on, precisely because the relevant network is invisible to the model. Understanding why organizations repeatedly reconstruct the same dysfunctional culture despite complete personnel replacement, why markets behave contrary to every rational-actor model, why ecosystems respond to intervention in ways that contradict every node in the formal model — these failures share a structural cause: the model mapped the official network and missed the entanglement layer beneath it.
 
-This is genuinely speculative. But speculation at the frontier of systems science has a good track record. Every era's central claim sounded overreaching at the time. Each turned out to be conservative.
+Whether this constitutes a quantum phenomenon in the strict physical sense, or whether it is better understood as a higher-order networked complexity problem that just requires mapping a different and less visible set of connections, is an open question. But the practical implication is the same either way: the relevant structure exists, it is causally important, and current simulation tools do not adequately represent it.
+
+ISRD intends, at some point, to develop appropriate simulation approaches for this level — to identify what it would mean to formally model the entanglement layer in human systems, and to build tools that make it possible to run those models the same way we currently run feedback-graph simulations at Era Three and Four levels. The AI systems we've built at Era Four's leading edge already exhibit properties suggestive of this layer: representations that generalize across domains in ways that mirror human conceptual understanding, emergent capabilities that appear suddenly at scale thresholds, sensitivity to context that goes well beyond what the explicit training structure would predict. Whether this is merely networked complexity emergence well-understood in principle, or whether it requires Era Five concepts to fully account for, is a live research question.
+
+This is genuinely speculative at the frontier. But every era's central claim sounded overreaching at the time. Each turned out to be conservative.
 
 ---
 

@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+import labsData from '../content/labs.json';
+
+const apiDocs = (labsData.labs.find(l => l.id === 'academy') as any)?.api_docs ?? [];
 
 const TOOL_CATEGORIES = [
   {
@@ -10,6 +13,7 @@ const TOOL_CATEGORIES = [
       { name: 'Sim-Toolkit SDK', desc: 'The core React/TypeScript library for building systemic simulations. FeedbackLoop, AttractorBasin, and useSystemicSimulation hook.', status: 'Active' },
       { name: 'LabConfig Registry', desc: 'Drop-in configuration format for spinning up new simulation labs without writing engine code.', status: 'Active' },
     ],
+    api: apiDocs,
   },
   {
     id: 'ai-prompts',
@@ -77,7 +81,7 @@ export function Tools() {
             </p>
 
             {/* Tool cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 14 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 14, marginBottom: (cat as any).api?.length ? 20 : 0 }}>
               {cat.items.map(item => (
                 <div key={item.name} style={{ padding: '16px 18px', borderRadius: 10, border: '1px solid var(--line)', background: 'var(--panel)', opacity: item.status === 'Coming Soon' ? 0.75 : 1 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
@@ -90,6 +94,23 @@ export function Tools() {
                 </div>
               ))}
             </div>
+
+            {/* Sim-Toolkit API reference (Software section only) */}
+            {(cat as any).api?.length > 0 && (
+              <div>
+                <div style={{ fontSize: '.68rem', textTransform: 'uppercase', letterSpacing: '.1em', color: 'var(--muted)', fontWeight: 700, margin: '4px 0 12px' }}>
+                  API Reference
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {(cat as any).api.map((api: any) => (
+                    <div key={api.name} style={{ padding: '12px 14px', borderRadius: 10, border: '1px solid var(--line)', background: 'var(--panel-b)' }}>
+                      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '.78rem', color: 'var(--accent2)', marginBottom: 5 }}>{api.sig}</div>
+                      <p style={{ fontSize: '.78rem', color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>{api.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

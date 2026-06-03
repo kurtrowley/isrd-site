@@ -6,8 +6,7 @@ import labsData from '../../content/labs.json';
 const LAB = LAB_REGISTRY.find(l => l.id === 'academy')!;
 const content = labsData.labs.find(l => l.id === 'academy')!;
 
-const API_DOCS    = (content as any).api_docs    ?? [];
-const LEARNING    = (content as any).learning_paths ?? [];
+const LEARNING = (content as any).learning_paths ?? [];
 
 export function AcademyLab() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -79,15 +78,6 @@ export function AcademyLab() {
       sidebarContent={
         <div style={{ flex:1, overflowY:'auto', padding:16 }}>
           <div style={{ fontSize:'.7rem', textTransform:'uppercase', letterSpacing:'.1em', color:'var(--muted)', marginBottom:10 }}>
-            Sim-Toolkit API
-          </div>
-          {API_DOCS.map((api: any) => (
-            <div key={api.name} style={{ marginBottom:12, padding:'10px 12px', borderRadius:10, border:'1px solid var(--line)', background:'var(--panel-b)' }}>
-              <div style={{ fontFamily:'JetBrains Mono,monospace', fontSize:'.75rem', color:'var(--accent2)', marginBottom:4 }}>{api.sig}</div>
-              <p style={{ fontSize:'.77rem', color:'var(--muted)', margin:0, lineHeight:1.45 }}>{api.desc}</p>
-            </div>
-          ))}
-          <div style={{ fontSize:'.7rem', textTransform:'uppercase', letterSpacing:'.1em', color:'var(--muted)', margin:'16px 0 10px' }}>
             Learning Paths
           </div>
           {LEARNING.map((path: any) => (

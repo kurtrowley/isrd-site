@@ -39,6 +39,9 @@ export function GlobalNav() {
           {/* Articles */}
           <Link to="/articles" className={`nav-link ${isActive('/articles') ? 'active' : ''}`}>Articles</Link>
 
+          {/* Media */}
+          <Link to="/media" className={`nav-link ${isActive('/media') ? 'active' : ''}`}>Media</Link>
+
           {/* Courses */}
           <Link to="/courses" className={`nav-link ${isActive('/courses') || isActive('/lab/academy') ? 'active' : ''}`}>Courses</Link>
 
@@ -130,6 +133,7 @@ export function GlobalNav() {
       {mobileOpen && (
         <div className="md:hidden border-t px-4 py-3 flex flex-col gap-2" style={{ borderColor: 'var(--line)', background: 'var(--panel)' }}>
           <Link to="/articles"   className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Articles</Link>
+          <Link to="/media"      className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Media</Link>
           <Link to="/courses" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Courses</Link>
           <Link to="/tools"   className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Tools</Link>
           <div style={{ fontSize: '.72rem', color: 'var(--muted)', padding: '4px 0 2px', textTransform: 'uppercase', letterSpacing: '.08em' }}>Simulations</div>

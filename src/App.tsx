@@ -10,6 +10,7 @@ import { ResearchProgram } from './pages/ResearchProgram';
 import { Publications } from './pages/Publications';
 import { AcademyLab } from './labs/Lab2Academy';
 import { Tools } from './pages/Tools';
+import { Media } from './pages/Media';
 import { BioSystemicsLab } from './labs/Lab3BioSystemics';
 import { LiterarySysLab } from './labs/Lab4Literary';
 import { GlobalFuturismLab } from './labs/Lab5GlobalFuturism';
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/"                         element={<Home />} />
         <Route path="/about"                    element={<About />} />
         <Route path="/articles"                 element={<Articles />} />
+        <Route path="/media"                    element={<Media />} />
         <Route path="/articles/:slug"           element={<ArticleViewer />} />
         <Route path="/publications"             element={<Publications />} />
 

@@ -1,0 +1,30 @@
+{
+  "page": {
+    "eyebrow": "ISRD · Media",
+    "title": "Media & Systems Science",
+    "intro": "Complex systems thinking doesn't only belong in laboratories and research papers. It appears — sometimes deliberately, sometimes intuitively — in art, music, film, and literature. This section explores those intersections: works that reveal the hidden architecture of complex systems, or that themselves exhibit systemic properties in their structure and effect."
+  },
+  "sections": [
+    {
+      "id": "visual-arts",
+      "title": "Visual Arts",
+      "description": "Visual artists have been drawn to systems thinking long before the terminology existed. From fractal geometry in natural forms to the emergence of pattern from rule-based processes, the visual domain offers some of the most immediate and intuitive demonstrations of systemic principles — attractors made visible, feedback rendered as form.",
+      "items": [
+        {
+          "id": "art-overview",
+          "title": "Systems Science in Visual Art",
+          "subtitle": "From fractal geometry to generative process",
+          "description": "An overview of how visual artists — from the Impressionists noticing the systemic nature of light, to generative artists writing rules that produce infinite variation — have worked with and demonstrated principles of complexity, feedback, and emergence.",
+          "image": "/media/art_system_science_overview.png",
+          "tags": ["Visual Arts", "Emergence", "Fractal", "Generative"]
+        }
+      ]
+    }
+  ],
+  "coming_soon": [
+    { "title": "Music", "desc": "Harmony, rhythm, and the feedback structures of musical form." },
+    { "title": "Film", "desc": "Narrative systems, nonlinear storytelling, and emergent meaning." },
+    { "title": "Literature", "desc": "Language as a complex adaptive system — and the novels that know it." },
+    { "title": "Architecture", "desc": "Built environments as systemic interventions in human behaviour." }
+  ]
+}

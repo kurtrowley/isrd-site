@@ -10,6 +10,7 @@ import { ResearchProgram } from './pages/ResearchProgram';
 import { Media } from './pages/Media';
 import { MediaViewer } from './pages/MediaViewer';
 import { BioSystemicsLab } from './labs/Lab3BioSystemics';
+import { Tools } from './pages/Tools';
 import { LiterarySysLab } from './labs/Lab4Literary';
 import { GlobalFuturismLab } from './labs/Lab5GlobalFuturism';
 
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/research/:programId"      element={<ResearchProgram />} />
 
         {/* Simulators (linked from Research program pages) */}
+        <Route path="/tools"                    element={<Tools />} />
         <Route path="/lab/bio-systemics"        element={<BioSystemicsLab />} />
         <Route path="/lab/literary-systemics"   element={<LiterarySysLab />} />
         <Route path="/lab/global-futurism"      element={<GlobalFuturismLab />} />

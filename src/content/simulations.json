@@ -3,34 +3,66 @@
     {
       "id": "mecfs",
       "title": "ME/CFS Outbreak Simulator",
-      "description": "Agent-based population simulation tracking viral outbreak and post-viral ME/CFS conversion across 100 individuals, with 25+ calibrated risk factors and brainstem ANS dynamics.",
+      "description": "Agent-based population simulation tracking viral outbreak and post-viral ME/CFS conversion across 100 individuals. 25+ calibrated risk factors, brainstem ANS dynamics, YOU character.",
       "concept": "Bio-Systemics",
+      "era": 3,
+      "tier": "agent",
+      "topology": "grid",
       "path": "/lab/bio-systemics",
       "type": "research",
-      "status": "Research in Progress"
+      "status": "Expert Sim"
     },
     {
       "id": "boids",
       "title": "Emergence / Flocking",
-      "description": "Each agent follows three simple local rules: avoid neighbours, align with nearby headings, and move toward nearby centres. No agent sees the global pattern — the flock emerges from purely local interactions.",
+      "description": "Each agent follows three simple local rules — avoid, align, cohere. No agent sees the global pattern. The flock emerges from purely local interactions.",
       "concept": "Emergence",
+      "era": 3,
+      "tier": "demo",
+      "topology": "continuous",
       "path": "/simulations/boids"
     },
     {
       "id": "feedback",
       "title": "Feedback Loops",
-      "description": "Reinforcing loops amplify change (exponential growth or collapse). Balancing loops resist change and seek equilibrium. Most complex systems are networks of both.",
+      "description": "Reinforcing loops amplify change. Balancing loops resist change and seek equilibrium. Most complex systems are networks of both.",
       "concept": "Systems Dynamics",
+      "era": 3,
+      "tier": "demo",
+      "topology": "continuous",
       "path": "/simulations/feedback"
     },
     {
       "id": "lorenz",
       "title": "Lorenz Attractor",
-      "description": "Three linked differential equations produce a trajectory that never repeats — yet stays bounded in a butterfly-shaped region of phase space. Tiny differences in starting position lead to completely different futures.",
+      "description": "Three linked differential equations produce a trajectory that never repeats yet stays bounded. Tiny differences in starting position lead to completely different futures.",
       "concept": "Chaos Theory",
+      "era": 3,
+      "tier": "demo",
+      "topology": "continuous",
       "path": "/simulations/lorenz"
+    },
+    {
+      "id": "era4-network",
+      "title": "Network Diffusion",
+      "description": "A contagion spreads through a small-world network. Hubs drive early cascades; local clusters slow saturation. Network topology — not transmission rate alone — determines the shape of spread.",
+      "concept": "Networked Complexity",
+      "era": 4,
+      "tier": "demo",
+      "topology": "network",
+      "path": "/simulations/era4-network"
+    },
+    {
+      "id": "era5-entanglement",
+      "title": "Backroom Dynamics",
+      "description": "Two networks overlay the same population: the formal hierarchy and the informal relationship layer. A decision cascades through both — the informal network redistributes influence in ways the org chart cannot predict.",
+      "concept": "Entanglement",
+      "era": 5,
+      "tier": "demo",
+      "topology": "multilayer",
+      "path": "/simulations/era5-entanglement"
     }
   ],
-  "blank_hint": "Select a simulation from the list →",
-  "blank_sub": "Each simulation demonstrates a foundational concept in systemic science. Use the sliders to explore parameter space."
+  "blank_hint": "Select a simulation →",
+  "blank_sub": "Each simulation demonstrates a structural concept in systems science. Use the sliders to explore parameter space and observe how the architecture of the system — not just its components — determines behavior."
 }

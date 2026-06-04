@@ -109,6 +109,8 @@ export function GlobalNav() {
             )}
           </div>
 
+          <Link to="/tools" className={`nav-link ${isActive('/tools') ? 'active' : ''}`}>Tools</Link>
+
           <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>About</Link>
 
           {/* Theme toggle — desktop, inline with nav links */}
@@ -145,6 +147,7 @@ export function GlobalNav() {
               {prog.title}
             </Link>
           ))}
+          <Link to="/tools" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Tools</Link>
           <Link to="/about" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>About</Link>
           <button onClick={toggleTheme}
             style={{ marginTop: 6, padding: '8px 0', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted)', fontSize: '.88rem', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8 }}>

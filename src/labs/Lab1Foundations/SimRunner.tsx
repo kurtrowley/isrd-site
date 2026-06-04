@@ -5,9 +5,9 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import type { Sim } from './sims/types';
 
-interface Props { sim: Sim; }
+interface Props { sim: Sim; eraColor?: string; eraLabel?: string; }
 
-export function SimRunner({ sim }: Props) {
+export function SimRunner({ sim, eraColor, eraLabel }: Props) {
   const canvasRef  = useRef<HTMLCanvasElement>(null);
   const ctxRef     = useRef<CanvasRenderingContext2D | null>(null);
   const rafRef     = useRef<number>(0);
@@ -106,6 +106,15 @@ export function SimRunner({ sim }: Props) {
       <div style={{ flex:1, position:'relative', background:'#040e14', overflow:'hidden', minHeight:0 }}>
         <canvas ref={canvasRef}
           style={{ position:'absolute', inset:0, width:'100%', height:'100%', display:'block' }} />
+
+        {/* Era badge */}
+        {eraLabel && (
+          <div style={{ position:'absolute', top:8, left:10, fontSize:'.62rem', fontWeight:700, letterSpacing:'.07em',
+            padding:'2px 9px', borderRadius:999, border:`1px solid ${eraColor ?? '#7a5ac8'}60`,
+            background: (eraColor ?? '#7a5ac8') + '18', color: eraColor ?? '#7a5ac8', pointerEvents:'none' }}>
+            {eraLabel}
+          </div>
+        )}
 
         {/* Stats overlay */}
         {Object.keys(stats).length > 0 && (

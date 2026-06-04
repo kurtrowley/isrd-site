@@ -79,6 +79,8 @@ export function GlobalNav() {
             )}
           </div>
 
+          <Link to="/tools" className={`nav-link ${isActive('/tools') ? 'active' : ''}`}>Tools</Link>
+
           {/* Research dropdown */}
           <div className="relative" onMouseEnter={openMenu(setResearchOpen, researchTimer)} onMouseLeave={closeMenu(setResearchOpen, researchTimer)}>
             <button className={`nav-link flex items-center gap-1 ${isActive('/research') ? 'active' : ''}`}>
@@ -108,8 +110,6 @@ export function GlobalNav() {
               </div>
             )}
           </div>
-
-          <Link to="/tools" className={`nav-link ${isActive('/tools') ? 'active' : ''}`}>Tools</Link>
 
           <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>About</Link>
 

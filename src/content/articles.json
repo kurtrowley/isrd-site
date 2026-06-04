@@ -13,6 +13,18 @@
       "file": "systems_science_eras-article.md"
     },
     {
+      "slug": "the-tools-are-the-argument",
+      "title": "The Tools Are the Argument",
+      "subtitle": "Why ISRD builds simulations — and what they are actually for",
+      "description": "Most practitioners working on hard problems use frameworks built for simpler ones. The ISRD simulation toolkit exists to close that gap — not as demonstration, but as intervention instrument. Every simulation on this site is a practice environment for attractor-shifting.",
+      "tag": "Methodology",
+      "starred": true,
+      "pinned": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "the_tools_are_the_argument.md"
+    },
+    {
       "slug": "learner-first-systemic-learning",
       "title": "Learner-First Systemic Education",
       "subtitle": "A new framework for designing instruction in complex domains",

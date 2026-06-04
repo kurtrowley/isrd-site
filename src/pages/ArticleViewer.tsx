@@ -7,10 +7,12 @@ import articlesIndex from '../content/articles.json';
 // Static raw imports — add one line here for each new article file
 import systemsScienceEras from '../articles/systems_science_eras-article.md?raw';
 import learnerFirst from '../articles/learner_first_systemic_learning.md?raw';
+import toolsAreTheArgument from '../articles/the_tools_are_the_argument.md?raw';
 
 const ARTICLE_FILES: Record<string, string> = {
   'systems_science_eras-article.md':        systemsScienceEras,
   'learner_first_systemic_learning.md':     learnerFirst,
+  'the_tools_are_the_argument.md':          toolsAreTheArgument,
 };
 
 // Configure Mermaid once — dark ISRD theme

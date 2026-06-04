@@ -5,7 +5,7 @@ import articlesData from '../content/articles.json';
 import simContent from '../content/simulations.json';
 import researchData from '../content/research.json';
 
-const { hero, showcase, mission } = siteContent;
+const { hero, mission } = siteContent;
 
 // Featured article = pinned or first starred
 const featuredArticle = (articlesData.articles as any[]).find(a => a.pinned) ?? articlesData.articles[0];
@@ -120,36 +120,6 @@ export function Home() {
               </div>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* ── Client Showcase ── */}
-      <section style={{ maxWidth:1100, margin:'0 auto', padding:'0 24px 60px' }}>
-        <div style={{ borderRadius:16, border:'1px dashed var(--line)', padding:'32px 36px', background:'rgba(255,255,255,0.01)' }}>
-          <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', flexWrap:'wrap', gap:20 }}>
-            <div style={{ flex:1, minWidth:240 }}>
-              <div style={{ fontSize:'.7rem', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', color:'var(--muted)', marginBottom:8 }}>
-                {showcase.title}
-              </div>
-              <p style={{ fontSize:'.82rem', color:'var(--muted)', margin:'0 0 16px', lineHeight:1.5 }}>{showcase.subtitle}</p>
-              <h3 style={{ fontSize:'1.1rem', fontWeight:600, color:'var(--text)', margin:'0 0 10px', fontFamily:'Lora,Georgia,serif' }}>
-                {showcase.placeholder.heading}
-              </h3>
-              <p style={{ fontSize:'.85rem', color:'var(--muted)', margin:'0 0 20px', lineHeight:1.6, maxWidth:540 }}>{showcase.placeholder.body}</p>
-              <Link to={showcase.placeholder.cta.href}
-                style={{ display:'inline-block', padding:'8px 20px', borderRadius:8, border:'1px solid var(--line)', color:'var(--muted)', textDecoration:'none', fontSize:'.85rem' }}
-                className="showcase-cta">
-                {showcase.placeholder.cta.label} →
-              </Link>
-            </div>
-            <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
-              {[1,2,3].map(i => (
-                <div key={i} style={{ width:140, height:100, borderRadius:12, border:'1px dashed var(--line)', background:'rgba(255,255,255,0.015)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                  <span style={{ fontSize:'.7rem', color:'var(--line)', textAlign:'center', lineHeight:1.4 }}>Client<br />Lab {i}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

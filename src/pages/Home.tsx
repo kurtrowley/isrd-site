@@ -1,19 +1,63 @@
 import { Link } from 'react-router-dom';
 import { NodeGraph } from '../components/NodeGraph';
-import { LAB_REGISTRY, THEME_ACCENTS, TYPE_BG, TYPE_BORDER, type LabConfig } from '../labs/registry';
 import siteContent from '../content/site.json';
+import articlesData from '../content/articles.json';
+import simContent from '../content/simulations.json';
+import researchData from '../content/research.json';
 
-const { hero, labs_section, showcase, mission } = siteContent;
+const { hero, showcase, mission } = siteContent;
+
+// Featured article = pinned or first starred
+const featuredArticle = (articlesData.articles as any[]).find(a => a.pinned) ?? articlesData.articles[0];
+
+const SECTION_CARDS = [
+  {
+    id: 'articles',
+    label: 'Articles',
+    accent: '#d4a847',
+    path: '/articles',
+    title: featuredArticle?.title ?? 'Articles & Theory',
+    body: featuredArticle?.description ?? 'Foundational thinking on systemic synthesis, feedback dynamics, and AI integration theory.',
+    cta: 'Read articles →',
+    tag: featuredArticle?.tag,
+  },
+  {
+    id: 'simulations',
+    label: 'Simulations',
+    accent: '#3a8fa8',
+    path: '/simulations',
+    title: 'Foundry Simulations',
+    body: 'Interactive demonstrations of core systemic concepts — Emergence, Feedback Loops, and Chaos Theory. Run them in your browser.',
+    cta: 'Try a simulation →',
+    items: simContent.simulations.filter((s: any) => !s.type || s.type !== 'research').map(s => s.title),
+  },
+  {
+    id: 'research',
+    label: 'Research',
+    accent: '#7a5ac8',
+    path: '/research',
+    title: 'Research Programs',
+    body: 'Active ISRD research programs using systemic simulation and AI-integrated analysis across health, writing, and macro-systems.',
+    cta: 'View programs →',
+    items: researchData.programs.map(p => p.title),
+  },
+  {
+    id: 'media',
+    label: 'Media',
+    accent: '#c87832',
+    path: '/media',
+    title: 'Media & Systems Science',
+    body: 'How systems thinking appears in visual art, music, film, and literature — and what those works reveal about complexity.',
+    cta: 'Explore media →',
+  },
+];
 
 export function Home() {
-  const userLabs = LAB_REGISTRY.filter(l => l.type === 'lab');
-
   return (
     <div>
       {/* ── Hero ── */}
       <section style={{ position:'relative', overflow:'hidden', background:'#060f16' }}>
         <NodeGraph />
-        {/* Container matches nav width so section aligns with page — text is centered within */}
         <div style={{ position:'relative', zIndex:1, maxWidth:1280, margin:'0 auto', padding:'80px 24px 64px', textAlign:'center' }}>
           <div style={{ maxWidth:680, margin:'0 auto' }}>
             <div style={{ fontSize:'.72rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--gold)', marginBottom:16, fontWeight:600 }}>
@@ -40,13 +84,42 @@ export function Home() {
         </div>
       </section>
 
-      {/* ── Lab grid — user labs only ── */}
+      {/* ── Section cards ── */}
       <section style={{ maxWidth:1100, margin:'0 auto', padding:'60px 24px' }}>
-        <h2 style={{ fontSize:'1rem', textTransform:'uppercase', letterSpacing:'.12em', color:'var(--muted)', marginBottom:20, fontWeight:600 }}>
-          {labs_section.title}
-        </h2>
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(300px,1fr))', gap:16 }}>
-          {userLabs.map(lab => <LabCard key={lab.id} lab={lab} />)}
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:20 }}>
+          {SECTION_CARDS.map(card => (
+            <Link key={card.id} to={card.path} style={{ textDecoration:'none' }}>
+              <div className="section-card" style={{
+                padding:'22px 24px', borderRadius:14, height:'100%',
+                border:`1px solid var(--line)`, background:'var(--panel)',
+                transition:'all .2s', cursor:'pointer', display:'flex', flexDirection:'column',
+              }}>
+                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10 }}>
+                  <span style={{ fontSize:'.7rem', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', color:card.accent }}>
+                    {card.label}
+                  </span>
+                  {card.tag && (
+                    <span style={{ fontSize:'.6rem', padding:'1px 7px', borderRadius:999, background:`${card.accent}18`, border:`1px solid ${card.accent}35`, color:card.accent }}>
+                      {card.tag}
+                    </span>
+                  )}
+                </div>
+                <h3 style={{ fontSize:'.95rem', fontWeight:700, color:'var(--text)', margin:'0 0 8px', lineHeight:1.3 }}>{card.title}</h3>
+                <p style={{ fontSize:'.8rem', color:'var(--muted)', lineHeight:1.6, margin:'0 0 14px', flex:1 }}>{card.body}</p>
+                {card.items && (
+                  <div style={{ display:'flex', flexDirection:'column', gap:4, marginBottom:14 }}>
+                    {card.items.slice(0,3).map(item => (
+                      <div key={item} style={{ fontSize:'.72rem', color:'var(--muted)', display:'flex', alignItems:'center', gap:6 }}>
+                        <span style={{ width:4, height:4, borderRadius:'50%', background:card.accent, flexShrink:0 }} />
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <span style={{ fontSize:'.78rem', color:card.accent, fontWeight:600, marginTop:'auto' }}>{card.cta}</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -58,22 +131,17 @@ export function Home() {
               <div style={{ fontSize:'.7rem', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', color:'var(--muted)', marginBottom:8 }}>
                 {showcase.title}
               </div>
-              <p style={{ fontSize:'.82rem', color:'var(--muted)', margin:'0 0 16px', lineHeight:1.5 }}>
-                {showcase.subtitle}
-              </p>
+              <p style={{ fontSize:'.82rem', color:'var(--muted)', margin:'0 0 16px', lineHeight:1.5 }}>{showcase.subtitle}</p>
               <h3 style={{ fontSize:'1.1rem', fontWeight:600, color:'var(--text)', margin:'0 0 10px', fontFamily:'Lora,Georgia,serif' }}>
                 {showcase.placeholder.heading}
               </h3>
-              <p style={{ fontSize:'.85rem', color:'var(--muted)', margin:'0 0 20px', lineHeight:1.6, maxWidth:540 }}>
-                {showcase.placeholder.body}
-              </p>
+              <p style={{ fontSize:'.85rem', color:'var(--muted)', margin:'0 0 20px', lineHeight:1.6, maxWidth:540 }}>{showcase.placeholder.body}</p>
               <Link to={showcase.placeholder.cta.href}
-                style={{ display:'inline-block', padding:'8px 20px', borderRadius:8, border:'1px solid var(--line)', color:'var(--muted)', textDecoration:'none', fontSize:'.85rem', transition:'all .15s' }}
+                style={{ display:'inline-block', padding:'8px 20px', borderRadius:8, border:'1px solid var(--line)', color:'var(--muted)', textDecoration:'none', fontSize:'.85rem' }}
                 className="showcase-cta">
                 {showcase.placeholder.cta.label} →
               </Link>
             </div>
-            {/* Placeholder card slots */}
             <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
               {[1,2,3].map(i => (
                 <div key={i} style={{ width:140, height:100, borderRadius:12, border:'1px dashed var(--line)', background:'rgba(255,255,255,0.015)', display:'flex', alignItems:'center', justifyContent:'center' }}>
@@ -97,44 +165,9 @@ export function Home() {
       </section>
 
       <style>{`
-        .lab-card:hover { border-color: var(--accent) !important; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+        .section-card:hover { border-color: var(--accent) !important; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
         .showcase-cta:hover { color: var(--text) !important; border-color: var(--accent) !important; }
       `}</style>
     </div>
-  );
-}
-
-function LabCard({ lab }: { lab: LabConfig }) {
-  const accent = THEME_ACCENTS[lab.theme] ?? 'var(--accent)';
-  const bg     = TYPE_BG[lab.type]     ?? 'var(--panel)';
-  const border = TYPE_BORDER[lab.type] ?? 'var(--line)';
-
-  return (
-    <Link to={lab.path} style={{ textDecoration:'none' }}>
-      <div className="lab-card" style={{ padding:20, borderRadius:14, border:`1px solid ${border}`, background:bg, transition:'all .2s', cursor:'pointer', height:'100%' }}>
-        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:10 }}>
-          <span style={{ fontSize:'.72rem', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', color:accent }}>
-            {lab.shortTitle}
-          </span>
-          <div style={{ display:'flex', gap:6 }}>
-            {lab.type === 'core' && (
-              <span style={{ fontSize:'.6rem', padding:'2px 6px', borderRadius:999, background:'rgba(212,168,71,0.12)', border:'1px solid rgba(212,168,71,0.25)', color:'var(--gold)', opacity:.8 }}>core</span>
-            )}
-            {lab.ai_enabled && (
-              <span style={{ fontSize:'.6rem', padding:'2px 6px', borderRadius:999, border:`1px solid ${accent}`, color:accent, opacity:.7 }}>AI</span>
-            )}
-          </div>
-        </div>
-        <h3 style={{ fontSize:'1rem', fontWeight:700, color:'var(--text)', margin:'0 0 8px', lineHeight:1.3 }}>{lab.title}</h3>
-        <p style={{ fontSize:'.82rem', color:'var(--muted)', margin:0, lineHeight:1.5 }}>{lab.description}</p>
-        <div style={{ marginTop:14, display:'flex', flexWrap:'wrap', gap:6 }}>
-          {lab.components.slice(0,3).map(c => (
-            <span key={c} style={{ fontSize:'.65rem', padding:'2px 8px', borderRadius:999, background:`${accent}15`, border:`1px solid ${accent}30`, color:accent }}>
-              {c}
-            </span>
-          ))}
-        </div>
-      </div>
-    </Link>
   );
 }

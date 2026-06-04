@@ -4,10 +4,12 @@ import articlesData from '../content/articles.json';
 
 const articles = articlesData.articles as Array<{
   slug: string; title: string; subtitle: string; description: string;
-  tag: string; starred?: boolean; author: string; date: string; file: string;
+  tag: string; starred?: boolean; pinned?: boolean; author: string; date: string; file: string;
 }>;
 
-const starred   = articles.filter(a => a.starred);
+// Pinned always first, then remaining starred, then unstarred
+const pinned    = articles.filter(a => a.pinned);
+const starred   = articles.filter(a => a.starred && !a.pinned);
 const unstarred = articles.filter(a => !a.starred);
 
 const TAG_COLORS: Record<string, string> = {
@@ -40,10 +42,11 @@ export function Articles() {
       {/* Articles */}
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px' }}>
 
-        {starred.length > 0 && (
+        {(pinned.length > 0 || starred.length > 0) && (
           <div style={{ marginBottom: 36 }}>
             <SectionDivider label="★ Core Articles" gold />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {pinned.map(a => <ArticleCard key={a.slug} article={a} pinned />)}
               {starred.map(a => <ArticleCard key={a.slug} article={a} pinned />)}
             </div>
           </div>

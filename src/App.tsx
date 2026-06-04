@@ -7,10 +7,6 @@ import { ArticleViewer } from './pages/ArticleViewer';
 import { Simulations } from './pages/Simulations';
 import { Research } from './pages/Research';
 import { ResearchProgram } from './pages/ResearchProgram';
-import { Publications } from './pages/Publications';
-import { AcademyLab } from './labs/Lab2Academy';
-import { CourseCatalog } from './pages/CourseCatalog';
-import { Tools } from './pages/Tools';
 import { Media } from './pages/Media';
 import { MediaViewer } from './pages/MediaViewer';
 import { BioSystemicsLab } from './labs/Lab3BioSystemics';
@@ -22,14 +18,12 @@ export default function App() {
     <div style={{ minHeight: '100vh', background: 'var(--bg)', color: 'var(--text)' }}>
       <GlobalNav />
       <Routes>
-        {/* Top-level */}
         <Route path="/"                         element={<Home />} />
         <Route path="/about"                    element={<About />} />
         <Route path="/articles"                 element={<Articles />} />
+        <Route path="/articles/:slug"           element={<ArticleViewer />} />
         <Route path="/media"                    element={<Media />} />
         <Route path="/media/:slug"              element={<MediaViewer />} />
-        <Route path="/articles/:slug"           element={<ArticleViewer />} />
-        <Route path="/publications"             element={<Publications />} />
 
         {/* Simulations */}
         <Route path="/simulations"              element={<Simulations />} />
@@ -39,22 +33,13 @@ export default function App() {
         <Route path="/research"                 element={<Research />} />
         <Route path="/research/:programId"      element={<ResearchProgram />} />
 
-        {/* Core (top nav) */}
-        <Route path="/courses"                  element={<CourseCatalog />} />
-        <Route path="/courses/toolkit"          element={<AcademyLab />} />
-        <Route path="/tools"                    element={<Tools />} />
-
-        {/* Legacy */}
-        <Route path="/lab/academy"              element={<AcademyLab />} />
-
-        {/* Simulators (accessible from Research program pages) */}
+        {/* Simulators (linked from Research program pages) */}
         <Route path="/lab/bio-systemics"        element={<BioSystemicsLab />} />
         <Route path="/lab/literary-systemics"   element={<LiterarySysLab />} />
         <Route path="/lab/global-futurism"      element={<GlobalFuturismLab />} />
 
         {/* Legacy redirects */}
         <Route path="/lab/foundations"          element={<Articles />} />
-        <Route path="/lab/foundry"              element={<AcademyLab />} />
 
         <Route path="*" element={
           <div style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--muted)' }}>

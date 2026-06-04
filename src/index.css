@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* ── Dark theme (default) ── */
+:root, html.dark {
   --bg:       #060f16;
   --surface:  #0d1e2b;
   --panel:    #0f2333;
@@ -13,6 +14,20 @@
   --muted:    #6a9aaa;
   --text:     #c8dfe8;
   --gold:     #d4a847;
+}
+
+/* ── Light theme ── */
+html:not(.dark) {
+  --bg:       #f2f6f9;
+  --surface:  #ffffff;
+  --panel:    #ffffff;
+  --panel-b:  #eaf0f4;
+  --line:     #c8d8e4;
+  --accent:   #1a6f88;
+  --accent2:  #1a8aaa;
+  --muted:    #4a6a7a;
+  --text:     #0e2030;
+  --gold:     #9a6e10;
 }
 
 * { box-sizing: border-box; }

@@ -110,16 +110,15 @@ export function GlobalNav() {
           </div>
 
           <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>About</Link>
+
+          {/* Theme toggle — desktop, inline with nav links */}
+          <button onClick={toggleTheme} className="nav-link" style={{ marginLeft: 8, opacity: .65 }}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+            {theme === 'dark' ? '☀' : '☾'}
+          </button>
         </div>
 
         <div className="flex-1 md:flex-none" />
-
-        {/* Theme toggle */}
-        <button onClick={toggleTheme}
-          className="text-xs px-3 py-1.5 rounded-lg border transition-all"
-          style={{ background: 'var(--panel-b)', borderColor: 'var(--line)', color: 'var(--muted)' }}>
-          {theme === 'dark' ? '☀ Light' : '☾ Dark'}
-        </button>
 
         {/* Mobile toggle */}
         <button className="md:hidden flex flex-col gap-1.5 p-1" onClick={() => setMobileOpen(o => !o)} aria-label="Toggle navigation">
@@ -147,6 +146,10 @@ export function GlobalNav() {
             </Link>
           ))}
           <Link to="/about" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>About</Link>
+          <button onClick={toggleTheme}
+            style={{ marginTop: 6, padding: '8px 0', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted)', fontSize: '.88rem', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8 }}>
+            {theme === 'dark' ? '☀ Switch to Light mode' : '☾ Switch to Dark mode'}
+          </button>
         </div>
       )}
 

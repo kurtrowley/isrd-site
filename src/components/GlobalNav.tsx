@@ -36,11 +36,8 @@ export function GlobalNav() {
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-4 text-sm flex-1">
 
-          {/* Articles */}
-          <Link to="/articles" className={`nav-link ${isActive('/articles') ? 'active' : ''}`}>Articles</Link>
-
-          {/* Media */}
-          <Link to="/media" className={`nav-link ${isActive('/media') ? 'active' : ''}`}>Media</Link>
+          {/* Publications */}
+          <Link to="/publications" className={`nav-link ${isActive('/publications') || isActive('/articles') || isActive('/media') ? 'active' : ''}`}>Publications</Link>
 
           {/* Simulations dropdown */}
           <div className="relative" onMouseEnter={openMenu(setSimsOpen, simsTimer)} onMouseLeave={closeMenu(setSimsOpen, simsTimer)}>
@@ -131,8 +128,7 @@ export function GlobalNav() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden border-t px-4 py-3 flex flex-col gap-2" style={{ borderColor: 'var(--line)', background: 'var(--panel)' }}>
-          <Link to="/articles"   className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Articles</Link>
-          <Link to="/media"      className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Media</Link>
+          <Link to="/publications" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Publications</Link>
           <div style={{ fontSize: '.72rem', color: 'var(--muted)', padding: '4px 0 2px', textTransform: 'uppercase', letterSpacing: '.08em' }}>Simulations</div>
           <Link to="/simulations" className="mobile-nav-link" style={{ paddingLeft: 12 }} onClick={() => setMobileOpen(false)}>All Simulations</Link>
           {simContent.simulations.map(sim => (

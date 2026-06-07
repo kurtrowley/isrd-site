@@ -4,6 +4,7 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Publications } from './pages/Publications';
 import { ArticleViewer } from './pages/ArticleViewer';
+import { ReportViewer } from './pages/ReportViewer';
 import { MediaViewer } from './pages/MediaViewer';
 import { Simulations } from './pages/Simulations';
 import { Research } from './pages/Research';
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/publications"             element={<Publications />} />
         <Route path="/articles"                 element={<Publications />} />
         <Route path="/articles/:slug"           element={<ArticleViewer />} />
+        <Route path="/publications/reports/:slug" element={<ReportViewer />} />
         <Route path="/media"                    element={<Publications />} />
         <Route path="/media/:slug"              element={<MediaViewer />} />
 

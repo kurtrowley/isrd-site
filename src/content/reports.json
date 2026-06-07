@@ -1,0 +1,16 @@
+{
+  "reports": [
+    {
+      "slug": "designing-toward-a-theory",
+      "title": "Designing Toward a Theory: An AI-Assisted Writing System as Design Experiment",
+      "subtitle": "A thirteen-month design experiment in applied systems science",
+      "description": "A case study of a thirteen-month design experiment in applied systems science: modeling the cognitive structure of expert long-form writing and building an AI-assisted environment — Systemic Writer — scaffolded around that structure rather than around text generation.",
+      "tag": "Case Study",
+      "starred": true,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "Systemic Writer.md",
+      "program": "writing-with-ai"
+    }
+  ]
+}

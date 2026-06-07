@@ -54,6 +54,25 @@
       "theme": "violet",
       "path": "/research/global-futurism",
       "ai_use": "AI assists in scenario generation, cross-domain pattern recognition, and connecting simulation states to current geopolitical and economic indicators."
+    },
+    {
+      "id": "writing-with-ai",
+      "title": "Writing With AI",
+      "subtitle": "Designing AI-assisted systems that scaffold expert writing practice",
+      "description": "Investigates expert long-form writing as a complex cognitive system, and asks what a software environment looks like when it is built around the structure of that process — clarity, tension, structural revision, voice — rather than around the easier-to-automate task of generating text. This program produced Systemic Writer, an AI-assisted writing environment built as a design experiment: software as both output and evidence that the underlying model of the writing process holds up under real-world use.",
+      "research_questions": [
+        "What is the cognitive structure of expert long-form writing, and where are its highest-leverage intervention points?",
+        "Can an AI-assisted environment scaffold that structure — preserving human judgment at every consequential decision — without collapsing into pure text generation?",
+        "Does a production system built on this model function as evidence that the underlying theory of the writing process is accurate?"
+      ],
+      "tools": ["Systemic Writer"],
+      "simulator_path": null,
+      "theme": "amber",
+      "path": "/research/writing-with-ai",
+      "ai_use": "AI is the core process facilitator under study — not a novelty feature. The program investigates how language models can be structured to support, rather than replace, expert judgment throughout the writing process.",
+      "report_slug": "designing-toward-a-theory",
+      "product_url": "https://systemicwriter.com",
+      "product_label": "Visit Systemic Writer →"
     }
   ]
 }

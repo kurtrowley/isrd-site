@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import researchData from '../content/research.json';
 import pubData from '../content/publications.json';
+import reportsData from '../content/reports.json';
 
 const THEME_ACCENT: Record<string, string> = {
   'blue-pulse': '#3a6fa8',
@@ -23,6 +24,9 @@ export function ResearchProgram() {
 
   const accent = THEME_ACCENT[prog.theme] ?? 'var(--accent)';
   const programPubs = pubData.publications.filter(p => p.program === prog.id);
+  const programReports = reportsData.reports.filter(r => (r as any).program === prog.id);
+  const productUrl = (prog as any).product_url as string | undefined;
+  const productLabel = (prog as any).product_label as string | undefined;
 
   return (
     <div style={{ minHeight: 'calc(100vh - 3.5rem)', background: '#060f16' }}>
@@ -88,18 +92,52 @@ export function ResearchProgram() {
         </div>
 
         {/* CTA: open simulator */}
-        <div style={{ marginBottom: 40, padding: '20px 24px', borderRadius: 12, border: `1px solid ${accent}35`, background: `${accent}08`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
-          <div>
-            <div style={{ fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>Interactive Simulator</div>
-            <p style={{ fontSize: '.83rem', color: 'var(--muted)', margin: 0 }}>
-              Explore this research program's simulation environment — adjust parameters, run scenarios, and inspect individual outcomes.
-            </p>
+        {prog.simulator_path && (
+          <div style={{ marginBottom: 24, padding: '20px 24px', borderRadius: 12, border: `1px solid ${accent}35`, background: `${accent}08`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+            <div>
+              <div style={{ fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>Interactive Simulator</div>
+              <p style={{ fontSize: '.83rem', color: 'var(--muted)', margin: 0 }}>
+                Explore this research program's simulation environment — adjust parameters, run scenarios, and inspect individual outcomes.
+              </p>
+            </div>
+            <Link to={prog.simulator_path}
+              style={{ padding: '10px 22px', borderRadius: 10, background: accent, color: '#fff', textDecoration: 'none', fontWeight: 600, fontSize: '.88rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
+              Open Simulator →
+            </Link>
           </div>
-          <Link to={prog.simulator_path}
-            style={{ padding: '10px 22px', borderRadius: 10, background: accent, color: '#fff', textDecoration: 'none', fontWeight: 600, fontSize: '.88rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
-            Open Simulator →
+        )}
+
+        {/* CTA: research report */}
+        {programReports.map(report => (
+          <Link key={report.slug} to={`/publications/reports/${report.slug}`} style={{ textDecoration: 'none' }}>
+            <div style={{ marginBottom: 24, padding: '20px 24px', borderRadius: 12, border: '1px solid var(--line)', background: 'var(--panel)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+              <div>
+                <div style={{ fontSize: '.7rem', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: accent, marginBottom: 6 }}>Research Report</div>
+                <div style={{ fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>{report.title}</div>
+                <p style={{ fontSize: '.83rem', color: 'var(--muted)', margin: 0 }}>{report.subtitle}</p>
+              </div>
+              <span style={{ padding: '10px 22px', borderRadius: 10, border: `1px solid ${accent}50`, color: accent, fontWeight: 600, fontSize: '.88rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
+                Read Report →
+              </span>
+            </div>
           </Link>
-        </div>
+        ))}
+
+        {/* CTA: external product */}
+        {productUrl && (
+          <div style={{ marginBottom: 40, padding: '20px 24px', borderRadius: 12, border: `1px solid ${accent}35`, background: `${accent}08`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+            <div>
+              <div style={{ fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>Systemic Writer</div>
+              <p style={{ fontSize: '.83rem', color: 'var(--muted)', margin: 0 }}>
+                The production system this research program produced — an AI-assisted writing environment built around the structure of expert long-form writing.
+              </p>
+            </div>
+            <a href={productUrl} target="_blank" rel="noopener noreferrer"
+              style={{ padding: '10px 22px', borderRadius: 10, background: accent, color: '#fff', textDecoration: 'none', fontWeight: 600, fontSize: '.88rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
+              {productLabel ?? 'Visit site →'}
+            </a>
+          </div>
+        )}
 
         {/* Publications for this program */}
         <div>

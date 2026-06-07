@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { NodeGraph } from '../components/NodeGraph';
 import articlesData from '../content/articles.json';
 import mediaData from '../content/media.json';
+import reportsData from '../content/reports.json';
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -20,6 +21,14 @@ const ARTICLE_TAG_COLORS: Record<string, string> = {
   Research:    '#c87832',
   Methodology: '#50c090',
 };
+
+const REPORT_TAG_COLORS: Record<string, string> = {
+  'Case Study': '#c87832',
+  Methodology:  '#50c090',
+  Research:     '#3a8fa8',
+};
+
+const reports = reportsData.reports;
 
 const MEDIA_TAG_COLORS: Record<string, string> = {
   'Visual Arts':            '#c87832',
@@ -98,6 +107,35 @@ export function Publications() {
                     </div>
                     <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8 }}>
                       <span style={{ fontSize: '.62rem', fontWeight: 700, padding: '2px 8px', borderRadius: 999, background: `${accent}18`, border: `1px solid ${accent}40`, color: accent }}>{article.tag}</span>
+                      <span style={{ fontSize: '.75rem', color: accent, fontWeight: 600 }}>Read →</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* ── Research Reports ── */}
+        <Section label="Research Reports" color="#c87832" />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 11, marginBottom: 52 }}>
+          {reports.map(report => {
+            const accent = REPORT_TAG_COLORS[report.tag] ?? 'var(--accent)';
+            return (
+              <Link key={report.slug} to={`/publications/reports/${report.slug}`} style={{ textDecoration: 'none' }}>
+                <div className="pub-card" style={{ padding: '16px 20px', borderRadius: 12, border: `1px solid ${(report as any).starred ? 'rgba(212,168,71,0.25)' : 'var(--line)'}`, background: (report as any).starred ? 'rgba(212,168,71,0.04)' : 'var(--panel)', transition: 'all .18s' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                        {(report as any).starred && <span style={{ fontSize: '.72rem', color: 'var(--gold)' }}>★</span>}
+                        <h3 style={{ fontSize: '.95rem', fontWeight: 600, color: 'var(--text)', margin: 0 }}>{report.title}</h3>
+                      </div>
+                      {report.subtitle && <p style={{ fontSize: '.8rem', color: 'var(--muted)', fontStyle: 'italic', margin: '0 0 6px', lineHeight: 1.4 }}>{report.subtitle}</p>}
+                      <p style={{ fontSize: '.8rem', color: 'var(--muted)', lineHeight: 1.55, margin: '0 0 6px' }}>{report.description}</p>
+                      <span style={{ fontSize: '.72rem', color: 'var(--muted)' }}>{report.author} · {report.date}</span>
+                    </div>
+                    <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8 }}>
+                      <span style={{ fontSize: '.62rem', fontWeight: 700, padding: '2px 8px', borderRadius: 999, background: `${accent}18`, border: `1px solid ${accent}40`, color: accent }}>{report.tag}</span>
                       <span style={{ fontSize: '.75rem', color: accent, fontWeight: 600 }}>Read →</span>
                     </div>
                   </div>

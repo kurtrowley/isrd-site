@@ -1,7 +1,7 @@
 {
   "nav": {
     "brand": "ISRD",
-    "brand_sub": "Independent Research",
+    "brand_sub": "Systems\nResearch",
     "links": [
       { "label": "Home",  "path": "/" },
       { "label": "About", "path": "/about" }

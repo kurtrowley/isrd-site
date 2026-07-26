@@ -90,7 +90,7 @@ export function MECFSSimulator({
   } | null>(null);
 
   const [day,       setDay]       = useState(0);
-  const [running,   setRunning]   = useState(false);
+  const [running,   setRunning]   = useState(true);
   const [speed,     setSpeed]     = useState(3);
   const [timeLimit, setTimeLimit] = useState(2920);
   const [complete,  setComplete]  = useState(false);  // true once sim reaches limit
@@ -324,9 +324,9 @@ export function MECFSSimulator({
       transmission: outbreak.transmission, outbreakId: outbreak.id, outbreakLabel: outbreak.label,
     };
     const population = initSim(env);
-    simRef.current = { population, day: 0, running: false, speed, env,
+    simRef.current = { population, day: 0, running: true, speed, env,
       selected: null, flashes: [], frameId: 0, lastMs: 0, accumMs: 0 };
-    setDay(0); setRunning(false); setComplete(false);
+    setDay(0); setRunning(true); setComplete(false);
     timeLimitRef.current = timeLimit;
     // Defer so simRef.current is committed before updateStats reads it
     setTimeout(() => updateStats(), 0);

@@ -5,10 +5,19 @@ import siteContent from '../content/site.json';
 import simContent from '../content/simulations.json';
 import researchData from '../content/research.json';
 
+const PUB_LINKS = [
+  { label: 'Articles',       path: '/articles',    desc: 'Long-form theoretical and applied writing' },
+  { label: 'Research Notes', path: '/publications', desc: 'Working papers and research write-ups' },
+  { label: 'Courses',        path: '/courses',     desc: 'Structured systems-science curriculum' },
+  { label: 'Media',          path: '/media',       desc: 'Visual arts and simulation demos' },
+];
+
 export function GlobalNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [pubsOpen,     setPubsOpen]     = useState(false);
   const [researchOpen, setResearchOpen] = useState(false);
   const [simsOpen,     setSimsOpen]     = useState(false);
+  const pubsTimer     = useRef<ReturnType<typeof setTimeout> | null>(null);
   const researchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const simsTimer     = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { theme, toggleTheme } = useSimStore();
@@ -30,14 +39,41 @@ export function GlobalNav() {
         {/* Brand */}
         <Link to="/" className="flex flex-col leading-tight shrink-0" style={{ textDecoration: 'none', marginRight: 8 }}>
           <span className="text-xs font-bold tracking-widest uppercase" style={{ color: 'var(--gold)' }}>{siteContent.nav.brand}</span>
-          <span className="text-[10px] tracking-wider" style={{ color: 'var(--muted)' }}>{siteContent.nav.brand_sub}</span>
+          <span className="text-[10px] tracking-wider" style={{ color: 'var(--muted)', whiteSpace: 'pre-line', lineHeight: 1.15 }}>{siteContent.nav.brand_sub}</span>
         </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-4 text-sm flex-1">
 
-          {/* Publications */}
-          <Link to="/publications" className={`nav-link ${isActive('/publications') || isActive('/articles') || isActive('/media') ? 'active' : ''}`}>Publications</Link>
+          {/* Publications dropdown */}
+          <div className="relative" onMouseEnter={openMenu(setPubsOpen, pubsTimer)} onMouseLeave={closeMenu(setPubsOpen, pubsTimer)}>
+            <button className={`nav-link flex items-center gap-1 ${isActive('/publications') || isActive('/articles') || isActive('/media') || isActive('/courses') ? 'active' : ''}`}>
+              Publications <span className="text-[10px]">▾</span>
+            </button>
+            {pubsOpen && (
+              <div
+                onMouseEnter={openMenu(setPubsOpen, pubsTimer)}
+                onMouseLeave={closeMenu(setPubsOpen, pubsTimer)}
+                className="absolute top-full left-0 w-72 rounded-xl border py-2 shadow-2xl"
+                style={{ background: 'var(--panel)', borderColor: 'var(--line)', marginTop: 2 }}
+              >
+                <Link to="/publications" onClick={() => setPubsOpen(false)}
+                  className="block px-4 py-2 text-sm hover:bg-white/5"
+                  style={{ color: location.pathname === '/publications' ? 'var(--accent2)' : 'var(--muted)', textDecoration: 'none', fontStyle: 'italic' }}>
+                  View all publications
+                </Link>
+                <div style={{ height: 1, background: 'var(--line)', margin: '4px 12px' }} />
+                {PUB_LINKS.map(link => (
+                  <Link key={link.path} to={link.path} onClick={() => setPubsOpen(false)}
+                    className="block px-4 py-2 text-sm hover:bg-white/5"
+                    style={{ color: isActive(link.path) ? 'var(--accent2)' : 'var(--text)', textDecoration: 'none' }}>
+                    <span className="font-semibold">{link.label}</span>
+                    <span className="block text-xs mt-0.5" style={{ color: 'var(--muted)' }}>{link.desc}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Simulations dropdown */}
           <div className="relative" onMouseEnter={openMenu(setSimsOpen, simsTimer)} onMouseLeave={closeMenu(setSimsOpen, simsTimer)}>
@@ -127,7 +163,13 @@ export function GlobalNav() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden border-t px-4 py-3 flex flex-col gap-2" style={{ borderColor: 'var(--line)', background: 'var(--panel)' }}>
-          <Link to="/publications" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Publications</Link>
+          <div style={{ fontSize: '.72rem', color: 'var(--muted)', padding: '4px 0 2px', textTransform: 'uppercase', letterSpacing: '.08em' }}>Publications</div>
+          <Link to="/publications" className="mobile-nav-link" style={{ paddingLeft: 12 }} onClick={() => setMobileOpen(false)}>View all publications</Link>
+          {PUB_LINKS.map(link => (
+            <Link key={link.path} to={link.path} className="mobile-nav-link" style={{ paddingLeft: 12 }} onClick={() => setMobileOpen(false)}>
+              {link.label}
+            </Link>
+          ))}
           <div style={{ fontSize: '.72rem', color: 'var(--muted)', padding: '4px 0 2px', textTransform: 'uppercase', letterSpacing: '.08em' }}>Simulations</div>
           <Link to="/simulations" className="mobile-nav-link" style={{ paddingLeft: 12 }} onClick={() => setMobileOpen(false)}>All Simulations</Link>
           {simContent.simulations.map(sim => (

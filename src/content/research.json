@@ -17,7 +17,8 @@
         "Can brainstem mechanical load (Chiari, CCI) be modelled as a structural attractor modifier?",
         "How do social and environmental stressors interact with immune function to shape post-viral trajectory?"
       ],
-      "tools": ["ME/CFS Population Outbreak Simulator", "Brainstem ANS Diagram", "Risk Factor Modelling"],
+      "tools": ["Post-Viral Syndrome Outbreak Simulator", "Brainstem ANS Diagram", "Risk Factor Modelling"],
+      "simulator_path": "/simulations/postviral",
       "theme": "blue-pulse",
       "path": "/research/bio-systemics",
       "ai_use": "AI assists in interpreting multi-run simulation outputs, identifying non-linear risk interactions, and connecting simulation findings to published epidemiological literature."

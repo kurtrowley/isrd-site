@@ -13,7 +13,7 @@
     "headline_prefix": "Learning Laboratory for",
     "headline_accent": "Modeling Human Complexity",
     "body": "A systemic approach to understanding complex adaptive systems — from human health and cognition to civilizational dynamics. AI-integrated simulation and research tools for every domain.",
-    "cta_primary":   { "label": "Launch ME/CFS Simulator", "href": "/research/bio-systemics" },
+    "cta_primary":   { "label": "Launch Post-Viral Outbreak Simulator", "href": "/simulations/postviral" },
     "cta_secondary": { "label": "Try a Simulation",        "href": "/simulations" }
   },
 

@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { MobileShelf } from '../components/MobileShelf';
 import { SimRunner } from '../labs/Lab1Foundations/SimRunner';
+import { BioSystemicsPanel } from '../labs/Lab3BioSystemics';
 
 // Era 3 — existing demo sims
 import { BoidsSim }    from '../labs/Lab1Foundations/sims/boids';
@@ -35,8 +36,9 @@ const ERA_DESC: Record<number, string> = {
 };
 
 // ── Sim registry ──────────────────────────────────────────────────────────────
-// Maps sim id → Sim implementation.
-// Agent-tier sims (ME/CFS) open their dedicated lab page.
+// Maps sim id → Sim implementation. The Post-Viral Syndrome Outbreak sim doesn't
+// implement the generic Sim interface (it's a custom agent-based React component
+// with its own sidebar), so it's special-cased below rather than added here.
 
 const SIM_MAP: Record<string, Sim> = {
   boids:            BoidsSim,
@@ -52,12 +54,12 @@ export function Simulations() {
   const { simId } = useParams<{ simId?: string }>();
   const navigate  = useNavigate();
 
+  const isPostviral   = simId === 'postviral';
   const activeSim     = simId ? SIM_MAP[simId] ?? null : null;
   const activeSimMeta = simContent.simulations.find((s: any) => s.id === simId) ?? null;
 
-  // Group sims by era for the sidebar
-  const demoSims    = simContent.simulations.filter((s: any) => s.tier === 'demo' || !s.tier);
-  const researchSims = simContent.simulations.filter((s: any) => s.tier === 'agent' || s.type === 'research');
+  // Group all sims by era for the sidebar — same hierarchy for every entry
+  const demoSims = simContent.simulations;
 
   const eras = [3, 4, 5] as const;
   const simsByEra: Record<number, typeof demoSims> = {};
@@ -107,28 +109,6 @@ export function Simulations() {
             </div>
           );
         })}
-
-        {/* Research / Expert sims divider */}
-        {researchSims.length > 0 && (
-          <>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: '14px 0 8px' }}>
-              <span style={{ fontSize: '.6rem', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', whiteSpace: 'nowrap' }}>
-                Expert Simulations
-              </span>
-              <div style={{ flex: 1, height: 1, background: 'var(--line)' }} />
-            </div>
-            <p style={{ fontSize: '.7rem', color: 'var(--muted)', margin: '0 2px 8px', lineHeight: 1.4, opacity: .75 }}>
-              Full agent-based sims with domain-specific risk formulas and YOU character.
-            </p>
-            {researchSims.map((sim: any) => {
-              const color = ERA_COLOR[sim.era as number] ?? 'var(--accent)';
-              return (
-                <SimCard key={sim.id} sim={sim} isActive={false} accent={color}
-                  onClick={() => navigate(sim.path)} isExternal />
-              );
-            })}
-          </>
-        )}
       </div>
     </div>
   );
@@ -137,9 +117,11 @@ export function Simulations() {
     <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 3.5rem)' }}>
       <MobileShelf
         main={
-          activeSim
-            ? <SimRunner key={simId} sim={activeSim} eraColor={ERA_COLOR[activeSimMeta?.era as number] ?? '#7a5ac8'} eraLabel={activeSimMeta ? ERA_LABEL[activeSimMeta.era as number] : undefined} />
-            : <BlankCanvas />
+          isPostviral
+            ? <BioSystemicsPanel key={simId} />
+            : activeSim
+              ? <SimRunner key={simId} sim={activeSim} eraColor={ERA_COLOR[activeSimMeta?.era as number] ?? '#7a5ac8'} eraLabel={activeSimMeta ? ERA_LABEL[activeSimMeta.era as number] : undefined} />
+              : <BlankCanvas />
         }
         shelf={shelfPanel}
         shelfTitle="Simulations"
@@ -152,8 +134,8 @@ export function Simulations() {
 
 // ── SimCard ───────────────────────────────────────────────────────────────────
 
-function SimCard({ sim, isActive, accent, onClick, isExternal = false }: {
-  sim: any; isActive: boolean; accent: string; onClick: () => void; isExternal?: boolean;
+function SimCard({ sim, isActive, accent, onClick }: {
+  sim: any; isActive: boolean; accent: string; onClick: () => void;
 }) {
   return (
     <div onClick={onClick} className="sim-card"
@@ -170,7 +152,7 @@ function SimCard({ sim, isActive, accent, onClick, isExternal = false }: {
           {sim.status && (
             <span style={{ fontSize: '.58rem', color: accent, fontWeight: 600, whiteSpace: 'nowrap',
               padding: '1px 6px', borderRadius: 999, background: accent + '18', border: `1px solid ${accent}40` }}>
-              {isExternal ? '↗ ' : ''}{sim.status}
+              {sim.status}
             </span>
           )}
         </div>

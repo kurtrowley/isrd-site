@@ -1,16 +1,14 @@
 {
   "simulations": [
     {
-      "id": "mecfs",
-      "title": "ME/CFS Outbreak Simulator",
+      "id": "postviral",
+      "title": "Post-Viral Syndrome Outbreak",
       "description": "Agent-based population simulation tracking viral outbreak and post-viral ME/CFS conversion across 100 individuals. 25+ calibrated risk factors, brainstem ANS dynamics, YOU character.",
       "concept": "Bio-Systemics",
       "era": 3,
-      "tier": "agent",
+      "tier": "demo",
       "topology": "grid",
-      "path": "/research/bio-systemics",
-      "type": "research",
-      "status": "Expert Sim"
+      "path": "/simulations/postviral"
     },
     {
       "id": "boids",

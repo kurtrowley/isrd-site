@@ -285,31 +285,114 @@ export class Person {
   get isContagious(): boolean { return this.status === STATUS.INFECTIOUS; }
 }
 
+export interface OutbreakAbout {
+  overview: string[];
+  mechanisms: string[];
+}
+
 export interface OutbreakPreset {
   id: string; label: string; category: string; desc: string;
   r0: number; pathogenSeverity: number; transmission?: string;
+  about: OutbreakAbout;
 }
 
 export const OUTBREAK_PRESETS: OutbreakPreset[] = [
   { id:'influenza', label:'Seasonal Influenza', category:'Respiratory virus',
     desc:'Typical winter flu season. Moderate severity, standard respiratory transmission.',
-    r0:1.3, pathogenSeverity:0.20 },
+    r0:1.3, pathogenSeverity:0.20,
+    about: {
+      overview: [
+        'Seasonal influenza is a well-characterized respiratory virus with a long epidemiological record. Post-viral fatigue after flu is common but typically resolves within weeks; conversion to a persistent ME/CFS-like state is comparatively rare but non-zero.',
+        "This preset models influenza's lower pathogen severity and shorter acute phase, producing a lower baseline CFS conversion rate — a useful low-risk comparison case against the other presets.",
+      ],
+      mechanisms: [
+        'Standard respiratory droplet transmission with moderate R₀',
+        'Lower baseline HPA-axis and autonomic disruption than more severe pathogens',
+        'Occasional post-influenza fatigue syndrome in susceptible individuals',
+      ],
+    } },
   { id:'covid19', label:'COVID-19 (Omicron)', category:'Respiratory virus',
     desc:'High transmissibility, moderate severity. Long COVID / ME/CFS risk well-documented.',
-    r0:5.0, pathogenSeverity:0.55 },
+    r0:5.0, pathogenSeverity:0.55,
+    about: {
+      overview: [
+        'The Omicron variant combined high transmissibility with comparatively lower acute severity, but still produced a substantial population burden of Long COVID / post-viral ME/CFS-spectrum illness due to sheer infection volume.',
+        'This preset models a highly contagious, moderate-severity pathogen — most conversions to chronic illness in this scenario come from the scale of the outbreak rather than the severity of any single case.',
+      ],
+      mechanisms: [
+        'Very high R₀ drives rapid, large-scale spread',
+        'Moderate pathogen severity per case, but high case volume',
+        'Long COVID risk factors overlap substantially with classical ME/CFS risk factors',
+      ],
+    } },
   { id:'ebv', label:'Epstein-Barr (Mono)', category:'Viral',
     desc:'Infectious mononucleosis. Strong ME/CFS conversion risk via post-viral syndrome.',
-    r0:1.5, pathogenSeverity:0.70 },
+    r0:1.5, pathogenSeverity:0.70,
+    about: {
+      overview: [
+        'Epstein-Barr virus (infectious mononucleosis) is one of the best-documented triggers of post-viral ME/CFS in the epidemiological literature — prospective cohort studies have repeatedly found EBV-triggered mono to be a strong, specific risk factor for later chronic fatigue syndrome.',
+        "This preset uses a high pathogen-severity value reflecting mono's characteristically prolonged and severe acute illness, and a strong weighting toward the CFS conversion pathway.",
+      ],
+      mechanisms: [
+        'Prolonged acute illness with high systemic inflammatory load',
+        'Strong association with subsequent chronic fatigue syndrome in prospective studies',
+        'Immune dysregulation persisting well beyond acute symptom resolution',
+      ],
+    } },
   { id:'sars1', label:'SARS-CoV-1 (2003)', category:'Respiratory virus',
     desc:'Original SARS — high severity, 4-year follow-up showed ~27% CFS rate.',
-    r0:2.0, pathogenSeverity:1.0 },
+    r0:2.0, pathogenSeverity:1.0,
+    about: {
+      overview: [
+        'The 2003 SARS outbreak produced one of the clearest natural experiments in post-viral chronic illness: a Hong Kong cohort followed for four years after infection found roughly a quarter still met criteria for chronic fatigue syndrome. This preset is calibrated directly against that finding.',
+        "The high pathogen-severity value reflects SARS's severe acute respiratory illness and correspondingly higher rate of lasting autonomic and HPA-axis disruption.",
+      ],
+      mechanisms: [
+        'High acute severity with frequent hospitalisation in the original outbreak',
+        "Four-year follow-up data anchors this preset's ~24–27% CFS conversion calibration target",
+        'Severe acute autonomic involvement as the strongest single predictor of conversion',
+      ],
+    } },
   { id:'lyme', label:'Lyme Disease', category:'Bacterial (tick)',
     desc:'Tick-borne infection. Post-treatment Lyme syndrome overlaps heavily with ME/CFS.',
-    r0:0.0, pathogenSeverity:0.75, transmission:'environmental' },
+    r0:0.0, pathogenSeverity:0.75, transmission:'environmental',
+    about: {
+      overview: [
+        'Lyme disease is transmitted by tick bite rather than person-to-person contact, so this preset models a fixed-window environmental exposure rather than a spreading contagion curve. Post-treatment Lyme disease syndrome — persistent fatigue, pain, and cognitive symptoms after antibiotic treatment — overlaps heavily with ME/CFS in presentation and, plausibly, in underlying mechanism.',
+        'Because transmission is environmental rather than social, this scenario is useful for isolating pathogen-severity effects from network and contact-structure effects.',
+      ],
+      mechanisms: [
+        'Environmental (non-contagious) exposure model — no person-to-person spread',
+        "High pathogen severity reflecting Borrelia's capacity for persistent, multi-system involvement",
+        'Post-treatment Lyme syndrome as a close clinical analogue to classical ME/CFS',
+      ],
+    } },
   { id:'mold', label:'Toxic Mold Exposure', category:'Environmental',
     desc:'Mycotoxin-driven immune disruption. Community-wide environmental event.',
-    r0:0.0, pathogenSeverity:0.60, transmission:'environmental' },
+    r0:0.0, pathogenSeverity:0.60, transmission:'environmental',
+    about: {
+      overview: [
+        'Toxic mold exposure is not an infectious outbreak at all, but a community-wide environmental insult — this preset repurposes the outbreak-simulation framework to model a shared-environment exposure event rather than person-to-person contagion.',
+        "Mycotoxin exposure is a more contested trigger in the clinical literature than the viral presets here; it's included as a comparison case for a non-infectious, chronic low-grade immune disruption pathway into the same downstream attractor state.",
+      ],
+      mechanisms: [
+        'Environmental (non-contagious) exposure model, community-wide rather than individual contact',
+        'Chronic low-grade immune and inflammatory disruption rather than acute infection',
+        'Included as a comparison case for non-infectious triggers of the same downstream syndrome',
+      ],
+    } },
   { id:'covid_alpha', label:'COVID-19 (Alpha/Delta)', category:'Respiratory virus',
     desc:'Earlier variants — higher severity, more hospitalisation, higher ME/CFS burden.',
-    r0:4.0, pathogenSeverity:0.75 },
+    r0:4.0, pathogenSeverity:0.75,
+    about: {
+      overview: [
+        'The earlier Alpha and Delta variants caused substantially more severe acute illness and hospitalisation than the later Omicron variant, at the cost of somewhat lower transmissibility. This preset models that higher-severity, higher-burden combination.',
+        'The resulting CFS conversion rate in this scenario is driven more by per-case severity than by outbreak scale — the opposite emphasis from the Omicron preset.',
+      ],
+      mechanisms: [
+        'High acute severity with elevated hospitalisation and ICU rates relative to Omicron',
+        'Strong autonomic and HPA-axis disruption during acute illness',
+        'Higher per-case Long COVID / ME/CFS conversion risk than later, milder variants',
+      ],
+    } },
 ];

@@ -1,7 +1,7 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { MobileShelf } from '../components/MobileShelf';
 import { SimRunner } from '../labs/Lab1Foundations/SimRunner';
-import { BioSystemicsPanel } from '../labs/Lab3BioSystemics';
+import { useBioSystemicsSim, BIO_SYSTEMICS_ACCENT } from '../labs/Lab3BioSystemics';
 
 // Era 3 — existing demo sims
 import { BoidsSim }    from '../labs/Lab1Foundations/sims/boids';
@@ -58,6 +58,12 @@ export function Simulations() {
   const activeSim     = simId ? SIM_MAP[simId] ?? null : null;
   const activeSimMeta = simContent.simulations.find((s: any) => s.id === simId) ?? null;
 
+  // Always called (rules of hooks) — its main/shelf are only rendered below when
+  // postviral is actually selected. Kept unnested from the outer MobileShelf so
+  // the sim only mounts twice (desktop/mobile), the same as every other sim here,
+  // instead of quadrupling from a MobileShelf nested inside a MobileShelf.
+  const bioSim = useBioSystemicsSim();
+
   // Group all sims by era for the sidebar — same hierarchy for every entry
   const demoSims = simContent.simulations;
 
@@ -67,7 +73,7 @@ export function Simulations() {
     simsByEra[era] = demoSims.filter((s: any) => s.era === era);
   }
 
-  const shelfPanel = (
+  const simPickerPanel = (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
 
       {/* Header */}
@@ -113,19 +119,38 @@ export function Simulations() {
     </div>
   );
 
+  // While Post-Viral Syndrome Outbreak is active, its own Status/Settings/About
+  // controls replace the sim-picker list in the sidebar (it needs the room) —
+  // a back link keeps the other sims reachable without leaving this pane.
+  const postviralShelf = (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <div style={{ padding: '10px 14px', borderBottom: '1px solid var(--line)', flexShrink: 0 }}>
+        <Link to="/simulations" style={{ fontSize: '.76rem', color: 'var(--accent)', textDecoration: 'none' }}>
+          ← All Simulations
+        </Link>
+      </div>
+      <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+        {bioSim.shelf}
+      </div>
+    </div>
+  );
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 3.5rem)' }}>
       <MobileShelf
         main={
           isPostviral
-            ? <BioSystemicsPanel key={simId} />
+            ? bioSim.main
             : activeSim
               ? <SimRunner key={simId} sim={activeSim} eraColor={ERA_COLOR[activeSimMeta?.era as number] ?? '#7a5ac8'} eraLabel={activeSimMeta ? ERA_LABEL[activeSimMeta.era as number] : undefined} />
               : <BlankCanvas />
         }
-        shelf={shelfPanel}
+        shelf={isPostviral ? postviralShelf : simPickerPanel}
         shelfTitle="Simulations"
         sidebarWidth={310}
+        accent={isPostviral ? BIO_SYSTEMICS_ACCENT : undefined}
+        shelfOpen={isPostviral ? bioSim.shelfOpen : undefined}
+        onShelfChange={isPostviral ? bioSim.onShelfChange : undefined}
       />
       <style>{`.sim-card:hover { border-color: var(--accent) !important; }`}</style>
     </div>

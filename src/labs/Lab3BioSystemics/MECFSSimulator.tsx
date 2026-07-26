@@ -60,7 +60,7 @@ function drawBrainstemDiagram(canvas: HTMLCanvasElement, symptoms: NonNullable<P
 
 // Grid layout helper — reserves 50px at top for the Day/Phase/Outbreak labels.
 // Used in draw, spread, and mouse hit-testing so all are consistent.
-const TOP_PAD = 50;
+const TOP_PAD = 56;
 function gridLayout(W: number, H: number) {
   const gridH = H - TOP_PAD;
   const cs = Math.min(W, gridH) / Math.max(COLS, ROWS);
@@ -86,7 +86,7 @@ export function MECFSSimulator({
   const simRef       = useRef<{
     population: Person[]; day: number; running: boolean; speed: number;
     env: SimEnv; selected: number|null; flashes: Array<{x1:number;y1:number;x2:number;y2:number;t:number}>;
-    frameId: number; lastMs: number; accumMs: number;
+    frameId: number; lastMs: number | undefined; accumMs: number;
   } | null>(null);
 
   const [day,       setDay]       = useState(0);
@@ -97,8 +97,6 @@ export function MECFSSimulator({
   const timeLimitRef = useRef(2920);                  // always-live ref avoids stale closures
   const [stats,     setStats]     = useState<Record<string, number>>({});
   const [selected,  setSelected]  = useState<Person | null>(null);
-  const [activeGroup,  setActiveGroup]  = useState<'status'|'settings'|'about'>('status');
-  const [activeTab,    setActiveTab]    = useState('stats');
   const [outbreak, setOutbreak] = useState(outbreakProp ?? OUTBREAK_PRESETS[0]);
 
   // Sync outbreak from parent when it changes
@@ -193,19 +191,42 @@ export function MECFSSimulator({
       }
     }
 
-    const fs = Math.round(W * 0.028);
-    ctx.fillStyle='rgba(180,210,220,0.55)'; ctx.font=`bold ${fs}px Inter,sans-serif`; ctx.textAlign='left';
+    // Header text — font sizes clamp to a fixed range so they stay legible without
+    // overflowing on narrow canvases or ballooning on wide ones.
+    const fs  = Math.min(Math.max(Math.round(W * 0.022), 12), 16);
+    const fs2 = Math.min(Math.max(Math.round(W * 0.015), 9),  12);
+    const lineY1 = 24, lineY2 = 42;
+    const sidePad = 14;
+    const midGap = 16; // minimum gap to keep between the left and right header text
+
+    ctx.textAlign='left';
+    ctx.fillStyle='rgba(180,210,220,0.55)'; ctx.font=`bold ${fs}px Inter,sans-serif`;
     const yearStr = s.day >= 365 ? `  ·  Yr ${(s.day/365).toFixed(1)}` : '';
-    ctx.fillText(`Day ${s.day}${yearStr}`, 12, 22);
+    const dayText = `Day ${s.day}${yearStr}`;
+    ctx.fillText(dayText, sidePad, lineY1);
+    const dayTextW = ctx.measureText(dayText).width;
+
     const phase = s.day===0?'Pre-outbreak':s.day<30?'Acute spread':s.day<90?'Resolving':s.day<180?'Post-viral window':'Chronic phase';
-    ctx.fillStyle='rgba(140,185,200,0.45)'; ctx.font=`${Math.round(W*0.02)}px Inter,sans-serif`; ctx.fillText(phase,12,38);
+    ctx.fillStyle='rgba(140,185,200,0.45)'; ctx.font=`${fs2}px Inter,sans-serif`; ctx.fillText(phase,sidePad,lineY2);
+
     const simState = s.day===0&&!s.running?'Waiting to start':s.running?'Running':'Paused';
     const stateColor = s.running?'rgba(80,210,130,0.85)':s.day===0?'rgba(160,185,200,0.55)':'rgba(220,170,60,0.85)';
+
+    // Shrink the outbreak label until it fits the remaining width without
+    // colliding with the day/phase text on the left.
+    const availableW = Math.max(0, W - sidePad*2 - dayTextW - midGap);
+    const label = s.env.outbreakLabel || '—';
+    let labelFs = fs;
+    ctx.font = `bold ${labelFs}px Inter,sans-serif`;
+    while (labelFs > 9 && ctx.measureText(label).width > availableW) {
+      labelFs -= 1;
+      ctx.font = `bold ${labelFs}px Inter,sans-serif`;
+    }
     ctx.textAlign='right';
-    ctx.fillStyle='rgba(180,210,220,0.70)'; ctx.font=`bold ${fs}px Inter,sans-serif`;
-    ctx.fillText(s.env.outbreakLabel||'—', W-12, 22);
-    ctx.fillStyle=stateColor; ctx.font=`${Math.round(W*0.02)}px Inter,sans-serif`;
-    ctx.fillText(simState, W-12, 38); ctx.textAlign='start';
+    ctx.fillStyle='rgba(180,210,220,0.70)';
+    ctx.fillText(label, W-sidePad, lineY1);
+    ctx.fillStyle=stateColor; ctx.font=`${Math.min(labelFs, fs2)}px Inter,sans-serif`;
+    ctx.fillText(simState, W-sidePad, lineY2); ctx.textAlign='start';
   }, []);
 
   // ── Step simulation ────────────────────────────────────────────────────
@@ -282,7 +303,9 @@ export function MECFSSimulator({
   const loop = useCallback((nowMs: number) => {
     const s = simRef.current;
     if (!s) return;
-    const elapsed = nowMs - (s.lastMs ?? nowMs);
+    // s.lastMs is unset (not 0) on the first tick so elapsed starts at 0 instead
+    // of jumping by the full time since mount.
+    const elapsed = s.lastMs != null ? nowMs - s.lastMs : 0;
     s.lastMs = nowMs;
     s.accumMs = (s.accumMs ?? 0) + elapsed;
     const msPerDay = 1000 / s.speed;
@@ -301,6 +324,8 @@ export function MECFSSimulator({
 
   // ── Init on mount / outbreak change ────────────────────────────────────
   useEffect(() => {
+    (window as any).__mountCount = ((window as any).__mountCount ?? 0) + 1;
+    console.log('MOUNT EFFECT START', (window as any).__mountCount);
     const canvas = canvasRef.current!;
     const resize = () => {
       const parent = canvas.parentElement!;
@@ -325,19 +350,22 @@ export function MECFSSimulator({
     };
     const population = initSim(env);
     simRef.current = { population, day: 0, running: true, speed, env,
-      selected: null, flashes: [], frameId: 0, lastMs: 0, accumMs: 0 };
+      selected: null, flashes: [], frameId: 0, lastMs: undefined, accumMs: 0 };
     setDay(0); setRunning(true); setComplete(false);
     timeLimitRef.current = timeLimit;
     // Defer so simRef.current is committed before updateStats reads it
     setTimeout(() => updateStats(), 0);
 
+    console.log('MOUNT EFFECT: about to schedule rAF', (window as any).__mountCount);
     const id = requestAnimationFrame(loop);
+    console.log('MOUNT EFFECT: scheduled rAF id=', id, 'mount#', (window as any).__mountCount);
     simRef.current.frameId = id;
 
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('click', handleClick);
 
     return () => {
+      console.log('MOUNT EFFECT CLEANUP', (window as any).__mountCount, 'cancelling frameId', simRef.current?.frameId);
       window.removeEventListener('resize', resize);
       ro.disconnect();
       cancelAnimationFrame(simRef.current?.frameId ?? 0);
@@ -374,7 +402,6 @@ export function MECFSSimulator({
     s.selected = hit?.id ?? null;
     setSelected(hit);
     onSelectRef.current?.(hit);
-    setActiveGroup('status'); setActiveTab('person');
   }, []);
 
   // Draw brainstem diagram when selected person changes
@@ -397,7 +424,7 @@ export function MECFSSimulator({
     if (!s) return;
     const population = initSim(s.env);
     s.population = population; s.day = 0; s.running = false; s.selected = null; s.flashes = [];
-    s.accumMs = 0;
+    s.accumMs = 0; s.lastMs = undefined;
     setRunning(false); setSelected(null); setDay(0); setComplete(false); updateStats();
   };
 
@@ -416,32 +443,6 @@ export function MECFSSimulator({
     const [r,g,b] = rgb;
     return `rgb(${Math.min(255,r+80)},${Math.min(255,g+80)},${Math.min(255,b+80)})`;
   };
-
-  // ── Tab content ────────────────────────────────────────────────────────
-  const groups: Array<{ id: 'status'|'settings'|'about'; label: string }> = [
-    { id:'status',   label:'Status' },
-    { id:'settings', label:'Settings' },
-    { id:'about',    label:'About' },
-  ];
-
-  const tabsByGroup: Record<string, Array<{id:string;label:string}>> = {
-    status:   [{ id:'stats', label:'Population' }, { id:'person', label:'Person' }],
-    settings: [{ id:'env',      label:'Environment' }, { id:'outbreak', label:'Outbreak' }],
-    about:    [{ id:'about-sim', label:'The Sim' }, { id:'about-mecfs', label:'ME/CFS' }],
-  };
-
-  const defaultTabByGroup: Record<string, string> = {
-    status:'stats', settings:'env', about:'about-sim',
-  };
-
-  const handleGroupChange = (g: 'status'|'settings'|'about') => {
-    setActiveGroup(g);
-    setActiveTab(defaultTabByGroup[g]);
-  };
-
-  const cfsRatePct = stats.cfs_rate_den > 0
-    ? ((stats.cfs / stats.cfs_rate_den) * 100).toFixed(1) + '%'
-    : '—';
 
   return (
     <div style={{ display:'flex', flexDirection:'column', height:'100%', overflow:'hidden' }}>
@@ -532,9 +533,9 @@ export function MECFSSidebar({
   const tabsByGroup: Record<string, Array<{id:string;label:string}>> = {
     status:   [{ id:'stats', label:'Population' }, { id:'person', label:'Person' }],
     settings: [{ id:'outbreak', label:'Outbreak' }, { id:'env', label:'Environment' }],
-    about:    [{ id:'about-sim', label:'The Sim' }, { id:'about-mecfs', label:'ME/CFS' }],
+    about:    [{ id:'about', label:'Report' }],
   };
-  const defaultTab: Record<string, string> = { status:'stats', settings:'outbreak', about:'about-sim' };
+  const defaultTab: Record<string, string> = { status:'stats', settings:'outbreak', about:'about' };
 
   useEffect(() => {
     if (selected?.symptoms && bsRef.current) drawBrainstemDiagram(bsRef.current, selected.symptoms);
@@ -589,6 +590,7 @@ export function MECFSSidebar({
       </div>
 
       {/* Sub-tabs */}
+      {group !== 'about' && (
       <div style={{ display:'flex', borderBottom:'1px solid var(--line)', flexShrink:0, background:'var(--panel-b)', overflowX:'auto' }}>
         {tabsByGroup[group].map(t => (
           <div key={t.id} onClick={() => setTab(t.id)}
@@ -600,6 +602,7 @@ export function MECFSSidebar({
           </div>
         ))}
       </div>
+      )}
 
       {/* Panel body */}
       <div style={{ flex:1, overflowY:'auto', padding:14, scrollbarWidth:'thin', scrollbarColor:'var(--line) transparent' }}>
@@ -772,8 +775,8 @@ export function MECFSSidebar({
           </div>
         )}
 
-        {/* ── About tabs ── */}
-        {tab === 'about-sim' && (
+        {/* ── About report (simulator info + currently selected condition) ── */}
+        {tab === 'about' && (
           <div style={{ fontSize:'.83rem', color:'var(--muted)', lineHeight:1.65 }}>
             <h3 style={{ color:'var(--text)', fontSize:'.92rem', margin:'0 0 8px' }}>About This Simulator</h3>
             <p>Models a viral outbreak through a 10×10 community grid, tracking post-viral ME/CFS development using epidemiological risk factors.</p>
@@ -784,23 +787,17 @@ export function MECFSSidebar({
               <li>EBV/COVID moderate: ~11–12%</li>
               <li>SARS Hong Kong (4-year): ~24–27%</li>
             </ul>
-            <p style={{ fontSize:'.73rem', opacity:.7 }}>
+            <p style={{ fontSize:'.73rem', opacity:.7, margin:'0 0 4px' }}>
               Wessely et al. (1995) · Jason et al. · Carruthers et al. (2011) · Tomas &amp; Newton (2018) · Chicago mono study
             </p>
-          </div>
-        )}
 
-        {tab === 'about-mecfs' && (
-          <div style={{ fontSize:'.83rem', color:'var(--muted)', lineHeight:1.65 }}>
-            <h3 style={{ color:'var(--text)', fontSize:'.92rem', margin:'0 0 8px' }}>ME/CFS Overview</h3>
-            <p>Myalgic Encephalomyelitis / Chronic Fatigue Syndrome is a complex, multi-system neuroimmune disease often triggered by viral infections.</p>
-            <p>Hallmark symptom: post-exertional malaise (PEM) — worsening of symptoms after minimal physical or cognitive exertion that would not cause problems in healthy people.</p>
+            <div style={{ height:1, background:'var(--line)', margin:'16px 0' }} />
+
+            <h3 style={{ color:'var(--text)', fontSize:'.92rem', margin:'0 0 8px' }}>{outbreak.label} Overview</h3>
+            {outbreak.about.overview.map((p, i) => <p key={i}>{p}</p>)}
             <h3 style={{ color:'var(--text)', fontSize:'.92rem', margin:'12px 0 6px' }}>Key mechanisms modelled</h3>
-            <ul style={{ paddingLeft:16, margin:'0 0 9px' }}>
-              <li>Brainstem / ANS dysregulation (Porges polyvagal theory)</li>
-              <li>HPA axis blunting (cortisol hypo-response)</li>
-              <li>Dorsal vagal shutdown (Naviaux cell danger response)</li>
-              <li>Autonomic involvement during acute phase as primary predictor</li>
+            <ul style={{ paddingLeft:16, margin:0 }}>
+              {outbreak.about.mechanisms.map((m, i) => <li key={i}>{m}</li>)}
             </ul>
           </div>
         )}

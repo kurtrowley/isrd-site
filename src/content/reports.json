@@ -13,6 +13,18 @@
       "program": "writing-with-ai"
     },
     {
+      "slug": "regulatory-capture-model",
+      "title": "Regulatory Capture: How Closed Feedback Loops Get Stuck",
+      "subtitle": "A systems model of bistable regulatory failure, applied to an ME/CFS hypothesis",
+      "description": "Sets a proposed ME/CFS mechanism (sustained cortical override of the respiratory pacemaker) alongside the same bistability, feedback, and sensitive-dependence patterns already illustrated through flocking and the Lorenz attractor — and introduces two new interactive demonstrations.",
+      "tag": "Methodology",
+      "starred": true,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "regulatory-capture-model.md",
+      "program": "bio-systemics"
+    },
+    {
       "slug": "energy-envelopes",
       "title": "Energy Envelopes and Feedback Loops",
       "subtitle": "Why pacing works when rest doesn't",

@@ -324,8 +324,6 @@ export function MECFSSimulator({
 
   // ── Init on mount / outbreak change ────────────────────────────────────
   useEffect(() => {
-    (window as any).__mountCount = ((window as any).__mountCount ?? 0) + 1;
-    console.log('MOUNT EFFECT START', (window as any).__mountCount);
     const canvas = canvasRef.current!;
     const resize = () => {
       const parent = canvas.parentElement!;
@@ -356,16 +354,13 @@ export function MECFSSimulator({
     // Defer so simRef.current is committed before updateStats reads it
     setTimeout(() => updateStats(), 0);
 
-    console.log('MOUNT EFFECT: about to schedule rAF', (window as any).__mountCount);
     const id = requestAnimationFrame(loop);
-    console.log('MOUNT EFFECT: scheduled rAF id=', id, 'mount#', (window as any).__mountCount);
     simRef.current.frameId = id;
 
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('click', handleClick);
 
     return () => {
-      console.log('MOUNT EFFECT CLEANUP', (window as any).__mountCount, 'cancelling frameId', simRef.current?.frameId);
       window.removeEventListener('resize', resize);
       ro.disconnect();
       cancelAnimationFrame(simRef.current?.frameId ?? 0);

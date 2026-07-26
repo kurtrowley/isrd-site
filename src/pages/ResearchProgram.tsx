@@ -38,7 +38,8 @@ export function ResearchProgram() {
   const productUrl = (prog as any).product_url as string | undefined;
   const productLabel = (prog as any).product_label as string | undefined;
   const SimPanel = SIM_PANELS[prog.id];
-  const simulatorPath = (prog as any).simulator_path as string | undefined;
+  const relatedSimulators = (prog as any).related_simulators as
+    Array<{ label: string; path: string; status?: string }> | undefined;
 
   return (
     <div style={{ minHeight: 'calc(100vh - 3.5rem)', background: '#060f16' }}>
@@ -115,19 +116,32 @@ export function ResearchProgram() {
           </div>
         )}
 
-        {/* CTA: link to simulator (for programs whose sim lives in the shared Simulations pane) */}
-        {!SimPanel && simulatorPath && (
-          <div style={{ marginBottom: 24, padding: '20px 24px', borderRadius: 12, border: `1px solid ${accent}35`, background: `${accent}08`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
-            <div>
-              <div style={{ fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>Interactive Simulator</div>
-              <p style={{ fontSize: '.83rem', color: 'var(--muted)', margin: 0 }}>
-                Explore this research program's simulation environment — adjust parameters, run scenarios, and inspect individual outcomes.
-              </p>
+        {/* CTA: links to simulators that live in the shared Simulations pane */}
+        {!SimPanel && relatedSimulators && relatedSimulators.length > 0 && (
+          <div style={{ marginBottom: 24 }}>
+            <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.1em', color: 'var(--muted)', margin: '0 0 12px', fontWeight: 700 }}>
+              Interactive Simulators
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {relatedSimulators.map(sim => {
+                const pending = sim.status === 'In Development';
+                const card = (
+                  <div style={{ padding: '16px 20px', borderRadius: 12, border: `1px solid ${accent}35`, background: `${accent}08`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, opacity: pending ? 0.7 : 1 }}>
+                    <div style={{ fontWeight: 600, color: 'var(--text)' }}>{sim.label}</div>
+                    {pending ? (
+                      <span style={{ fontSize: '.72rem', fontWeight: 600, color: accent }}>{sim.status}</span>
+                    ) : (
+                      <span style={{ padding: '8px 18px', borderRadius: 10, background: accent, color: '#fff', fontWeight: 600, fontSize: '.85rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
+                        Open Simulator →
+                      </span>
+                    )}
+                  </div>
+                );
+                return pending
+                  ? <div key={sim.path}>{card}</div>
+                  : <Link key={sim.path} to={sim.path} style={{ textDecoration: 'none' }}>{card}</Link>;
+              })}
             </div>
-            <Link to={simulatorPath}
-              style={{ padding: '10px 22px', borderRadius: 10, background: accent, color: '#fff', textDecoration: 'none', fontWeight: 600, fontSize: '.88rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
-              Open Simulator →
-            </Link>
           </div>
         )}
 

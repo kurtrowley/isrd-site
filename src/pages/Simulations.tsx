@@ -11,6 +11,7 @@ import { LorenzSim }   from '../labs/Lab1Foundations/sims/lorenz';
 // Era 4 + Era 5 — new demo sims
 import { Era4NetworkSim }      from '../sims/era4-network';
 import { Era5EntanglementSim } from '../sims/era5-entanglement';
+import { RegulatoryCaptureSim } from '../sims/regulatory-capture';
 
 import type { Sim } from '../labs/Lab1Foundations/sims/types';
 import simContent from '../content/simulations.json';
@@ -46,7 +47,31 @@ const SIM_MAP: Record<string, Sim> = {
   lorenz:           LorenzSim,
   'era4-network':   Era4NetworkSim    as unknown as Sim,
   'era5-entanglement': Era5EntanglementSim as unknown as Sim,
+  'regulatory-capture': RegulatoryCaptureSim,
 };
+
+// Clusters consecutive sims sharing a `collection` tag under one sub-heading
+// (e.g. the two RPND demos), leaving ungrouped sims as standalone entries.
+type SimBlock =
+  | { type: 'single'; sim: any }
+  | { type: 'group'; label: string; sims: any[] };
+
+function groupSims(sims: any[]): SimBlock[] {
+  const blocks: SimBlock[] = [];
+  for (const sim of sims) {
+    if (sim.collection) {
+      const last = blocks[blocks.length - 1];
+      if (last && last.type === 'group' && last.label === sim.collectionLabel) {
+        last.sims.push(sim);
+      } else {
+        blocks.push({ type: 'group', label: sim.collectionLabel ?? sim.collection, sims: [sim] });
+      }
+    } else {
+      blocks.push({ type: 'single', sim });
+    }
+  }
+  return blocks;
+}
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -57,6 +82,9 @@ export function Simulations() {
   const isPostviral   = simId === 'postviral';
   const activeSim     = simId ? SIM_MAP[simId] ?? null : null;
   const activeSimMeta = simContent.simulations.find((s: any) => s.id === simId) ?? null;
+  // A sim can be listed (discoverable, tagged with an era/collection) before its
+  // Sim implementation exists — shown as "in development" rather than a broken canvas.
+  const isPending = !!activeSimMeta && !activeSim && !isPostviral;
 
   // Always called (rules of hooks) — its main/shelf are only rendered below when
   // postviral is actually selected. Kept unnested from the outer MobileShelf so
@@ -108,10 +136,25 @@ export function Simulations() {
               <p style={{ fontSize: '.7rem', color: 'var(--muted)', margin: '0 2px 8px', lineHeight: 1.4, opacity: .75 }}>
                 {ERA_DESC[era]}
               </p>
-              {sims.map((sim: any) => (
-                <SimCard key={sim.id} sim={sim} isActive={sim.id === simId}
-                  accent={color} onClick={() => navigate(`/simulations/${sim.id}`)} />
-              ))}
+              {groupSims(sims).map(block =>
+                block.type === 'group' ? (
+                  <div key={block.label} style={{
+                    marginBottom: 10, padding: '8px 8px 2px', borderRadius: 10,
+                    border: `1px solid ${color}25`, background: `${color}06`,
+                  }}>
+                    <div style={{ fontSize: '.62rem', fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color, margin: '0 2px 6px' }}>
+                      {block.label}
+                    </div>
+                    {block.sims.map(sim => (
+                      <SimCard key={sim.id} sim={sim} isActive={sim.id === simId}
+                        accent={color} onClick={() => navigate(`/simulations/${sim.id}`)} />
+                    ))}
+                  </div>
+                ) : (
+                  <SimCard key={block.sim.id} sim={block.sim} isActive={block.sim.id === simId}
+                    accent={color} onClick={() => navigate(`/simulations/${block.sim.id}`)} />
+                )
+              )}
             </div>
           );
         })}
@@ -143,7 +186,9 @@ export function Simulations() {
             ? bioSim.main
             : activeSim
               ? <SimRunner key={simId} sim={activeSim} eraColor={ERA_COLOR[activeSimMeta?.era as number] ?? '#7a5ac8'} eraLabel={activeSimMeta ? ERA_LABEL[activeSimMeta.era as number] : undefined} />
-              : <BlankCanvas />
+              : isPending
+                ? <ComingSoon sim={activeSimMeta} accent={ERA_COLOR[activeSimMeta?.era as number] ?? '#7a5ac8'} />
+                : <BlankCanvas />
         }
         shelf={isPostviral ? postviralShelf : simPickerPanel}
         shelfTitle="Simulations"
@@ -184,6 +229,28 @@ function SimCard({ sim, isActive, accent, onClick }: {
       </div>
       <p style={{ fontSize: '.73rem', color: 'var(--muted)', margin: 0, lineHeight: 1.4 }}>
         {sim.description}
+      </p>
+    </div>
+  );
+}
+
+// ── ComingSoon ────────────────────────────────────────────────────────────────
+
+function ComingSoon({ sim, accent }: { sim: any; accent: string }) {
+  return (
+    <div style={{
+      flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
+      justifyContent: 'center', background: '#060f16', padding: 32, textAlign: 'center',
+    }}>
+      <span style={{ fontSize: '.62rem', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase',
+        padding: '3px 10px', borderRadius: 999, background: `${accent}18`, border: `1px solid ${accent}40`, color: accent, marginBottom: 16 }}>
+        {sim?.status ?? 'In Development'}
+      </span>
+      <h2 style={{ fontFamily: 'Lora, Georgia, serif', fontSize: '1.25rem', color: 'var(--text)', margin: '0 0 10px', fontWeight: 600 }}>
+        {sim?.title}
+      </h2>
+      <p style={{ fontSize: '.85rem', color: 'var(--muted)', lineHeight: 1.65, maxWidth: 420, margin: 0 }}>
+        {sim?.description}
       </p>
     </div>
   );

@@ -377,6 +377,10 @@ class BackroomDynamicsSimClass implements Sim {
 
   resize(w: number, h: number): void {
     this.w = w; this.h = h;
+    // SimRunner calls resize() once before the first init() to size the canvas —
+    // nodes don't exist yet, so skip rebuilding positions; init() will lay them
+    // out using the dimensions just stored above.
+    if (this.nodes.length === 0) return;
     this.computeHierarchyPositions();
     this.buildInformalNetwork();
   }

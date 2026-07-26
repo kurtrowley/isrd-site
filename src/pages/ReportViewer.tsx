@@ -21,12 +21,14 @@ export function ReportViewer() {
   const html = useMemo(() => {
     if (!meta) return '';
     const raw = getContentByFile(meta.file) ?? '';
-    // Strip the leading H1, bold byline, and first HR — rendered in the hero
+    // Strip the leading H1, bold byline, and first HR — rendered in the hero.
+    // Each step consumes any blank lines left behind so a later step's `^`
+    // anchor still lines up with the start of the string.
     const stripped = raw
-      .replace(/^#[^\n]+\n/, '')
-      .replace(/\*\*[^\n*]+\*\*\s*\n/, '')
-      .replace(/^[^\n]*\|[^\n]*\n/, '')
-      .replace(/^\s*---\n/, '')
+      .replace(/^#[^\n]*\n+/, '')
+      .replace(/^\*\*[^\n*]+\*\*\s*\n+/, '')
+      .replace(/^[^\n]*\|[^\n]*\n+/, '')
+      .replace(/^---\n+/, '')
       .trimStart();
     return marked(stripped) as string;
   }, [meta]);

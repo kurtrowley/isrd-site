@@ -15,10 +15,15 @@
       "research_questions": [
         "What combination of pre-existing risk factors most reliably predicts ME/CFS conversion post-infection?",
         "Can brainstem mechanical load (Chiari, CCI) be modelled as a structural attractor modifier?",
-        "How do social and environmental stressors interact with immune function to shape post-viral trajectory?"
+        "How do social and environmental stressors interact with immune function to shape post-viral trajectory?",
+        "Does a bistable regulatory-capture model (sustained cortical/limbic override of the respiratory pacemaker) account for why the illness state outlasts its trigger?"
       ],
-      "tools": ["Post-Viral Syndrome Outbreak Simulator", "Brainstem ANS Diagram", "Risk Factor Modelling"],
-      "simulator_path": "/simulations/postviral",
+      "tools": ["Post-Viral Syndrome Outbreak Simulator", "The Latched Loop", "Brainstem ANS Diagram", "Risk Factor Modelling"],
+      "related_simulators": [
+        { "label": "Post-Viral Syndrome Outbreak", "path": "/simulations/postviral" },
+        { "label": "The Latched Loop", "path": "/simulations/regulatory-capture" },
+        { "label": "The Privileged Node", "path": "/simulations/privileged-node", "status": "In Development" }
+      ],
       "theme": "blue-pulse",
       "path": "/research/bio-systemics",
       "ai_use": "AI assists in interpreting multi-run simulation outputs, identifying non-linear risk interactions, and connecting simulation findings to published epidemiological literature."

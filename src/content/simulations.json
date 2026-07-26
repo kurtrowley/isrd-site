@@ -11,6 +11,31 @@
       "path": "/simulations/postviral"
     },
     {
+      "id": "regulatory-capture",
+      "title": "The Latched Loop",
+      "description": "A closed feedback loop can settle into two different stable states — and the pressure needed to enter the unhealthy one is lower than the pressure needed to leave it. Models the bistable regulatory-capture mechanism proposed in an ME/CFS hypothesis.",
+      "concept": "Regulatory Capture",
+      "collection": "rpnd",
+      "collectionLabel": "RPND: Regulatory Capture Model",
+      "era": 3,
+      "tier": "demo",
+      "topology": "continuous",
+      "path": "/simulations/regulatory-capture"
+    },
+    {
+      "id": "privileged-node",
+      "title": "The Privileged Node",
+      "description": "Four biological pacemakers keep the body's rhythms in sync. Three are entrained peers — one has a voluntary override door, a body-wide diffusible output, and a direct limbic connection the others lack. Why that structural asymmetry matters.",
+      "concept": "Regulatory Capture",
+      "collection": "rpnd",
+      "collectionLabel": "RPND: Regulatory Capture Model",
+      "era": 3,
+      "tier": "demo",
+      "topology": "network",
+      "path": "/simulations/privileged-node",
+      "status": "In Development"
+    },
+    {
       "id": "boids",
       "title": "Emergence / Flocking",
       "description": "Each agent follows three simple local rules — avoid, align, cohere. No agent sees the global pattern. The flock emerges from purely local interactions.",

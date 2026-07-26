@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { LAB_REGISTRY } from '../registry';
-import { LabLayout } from '../../components/LabLayout';
+import { MobileShelf } from '../../components/MobileShelf';
 import { FeedbackLoop } from '../../toolkit/FeedbackLoop';
 import { AttractorBasin } from '../../toolkit/AttractorBasin';
 
-const LAB = LAB_REGISTRY.find(l => l.id === 'literary-systemics')!;
+const ACCENT = '#c87832';
 
-export function LiterarySysLab() {
+export function LiterarySystemicsPanel() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const loopRef   = useRef(new FeedbackLoop());
   const basinRef  = useRef(new AttractorBasin());
@@ -79,14 +78,15 @@ export function LiterarySysLab() {
   }, []);
 
   return (
-    <LabLayout
-      lab={LAB}
-      simArea={
+    <MobileShelf
+      accent={ACCENT}
+      shelfTitle="Controls"
+      main={
         <div style={{ flex:1, position:'relative', overflow:'hidden', minHeight:0, background:'#060f16' }}>
           <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', display:'block' }} />
         </div>
       }
-      sidebarContent={
+      shelf={
         <div style={{ flex:1, overflowY:'auto', padding:16 }}>
           <div style={{ fontSize:'.7rem', textTransform:'uppercase', letterSpacing:'.1em', color:'var(--muted)', marginBottom:12 }}>
             Writing System Controls

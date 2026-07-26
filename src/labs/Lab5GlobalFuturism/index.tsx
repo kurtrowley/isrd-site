@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { LAB_REGISTRY } from '../registry';
-import { LabLayout } from '../../components/LabLayout';
+import { MobileShelf } from '../../components/MobileShelf';
 import { FeedbackLoop } from '../../toolkit/FeedbackLoop';
 import { AttractorBasin } from '../../toolkit/AttractorBasin';
 
-const LAB = LAB_REGISTRY.find(l => l.id === 'global-futurism')!;
+const ACCENT = '#7a5ac8';
 
-export function GlobalFuturismLab() {
+export function GlobalFuturismPanel() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const loopRef   = useRef(new FeedbackLoop());
   const basinRef  = useRef(new AttractorBasin({ numBasins:4, thresholds:[0.25,0.50,0.75], dampening:0.04 }));
@@ -89,14 +88,15 @@ export function GlobalFuturismLab() {
   const BASINS = ['Stable Cooperation', 'Managed Tension', 'Rising Disorder', 'Civilizational Crisis'];
 
   return (
-    <LabLayout
-      lab={LAB}
-      simArea={
+    <MobileShelf
+      accent={ACCENT}
+      shelfTitle="Controls"
+      main={
         <div style={{ flex:1, position:'relative', overflow:'hidden', minHeight:0, background:'#060f16' }}>
           <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', display:'block' }} />
         </div>
       }
-      sidebarContent={
+      shelf={
         <div style={{ flex:1, overflowY:'auto', padding:16 }}>
           <div style={{ fontSize:'.7rem', textTransform:'uppercase', letterSpacing:'.1em', color:'var(--muted)', marginBottom:12 }}>
             Macro-Systemic Inputs

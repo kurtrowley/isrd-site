@@ -1,12 +1,11 @@
 import { useState, useCallback } from 'react';
-import { LabLayout } from '../../components/LabLayout';
-import { LAB_REGISTRY } from '../registry';
+import { MobileShelf } from '../../components/MobileShelf';
 import { MECFSSimulator, MECFSSidebar } from './MECFSSimulator';
 import { OUTBREAK_PRESETS, type OutbreakPreset, type Person } from './mecfs-engine';
 
-const LAB = LAB_REGISTRY.find(l => l.id === 'bio-systemics')!;
+const ACCENT = '#3a6fa8';
 
-export function BioSystemicsLab() {
+export function BioSystemicsPanel() {
   const [stats,    setStats]    = useState<Record<string, number>>({});
   const [selected, setSelected] = useState<Person | null>(null);
   const [outbreak, setOutbreak] = useState<OutbreakPreset>(OUTBREAK_PRESETS[0]);
@@ -33,19 +32,22 @@ export function BioSystemicsLab() {
 
   const handleEnvChange = useCallback((_key: string, _val: number) => {}, []);
 
+  const shelfOpen = mobilePanel === 'controls';
+
   return (
-    <LabLayout
-      lab={LAB}
-      mobilePanel={mobilePanel}
-      onMobilePanelChange={setMobilePanel}
-      simArea={
+    <MobileShelf
+      accent={ACCENT}
+      shelfTitle="Controls"
+      shelfOpen={shelfOpen}
+      onShelfChange={open => setMobilePanel(open ? 'controls' : 'sim')}
+      main={
         <MECFSSimulator
           outbreak={outbreak}
           onStatsUpdate={setStats}
           onSelectionChange={handleSelectionChange}
         />
       }
-      sidebarContent={
+      shelf={
         <MECFSSidebar
           stats={stats}
           selected={selected}

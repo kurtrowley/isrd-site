@@ -1,7 +1,7 @@
 // MobileShelf — reusable split-panel layout.
 // Desktop: side-by-side (main content left, shelf right).
 // Mobile: main fills screen, shelf slides in from right as a drawer.
-// Used by LabLayout, Simulations, and any future split-panel page.
+// Used by the embedded research simulators, Simulations, and any future split-panel page.
 
 import { useState, useRef, type ReactNode } from 'react';
 

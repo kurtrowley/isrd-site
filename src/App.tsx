@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { GlobalNav } from './components/GlobalNav';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -6,12 +6,11 @@ import { Publications } from './pages/Publications';
 import { ArticleViewer } from './pages/ArticleViewer';
 import { ReportViewer } from './pages/ReportViewer';
 import { MediaViewer } from './pages/MediaViewer';
+import { CourseCatalog } from './pages/CourseCatalog';
+import { CourseViewer } from './pages/CourseViewer';
 import { Simulations } from './pages/Simulations';
 import { Research } from './pages/Research';
 import { ResearchProgram } from './pages/ResearchProgram';
-import { BioSystemicsLab } from './labs/Lab3BioSystemics';
-import { LiterarySysLab } from './labs/Lab4Literary';
-import { GlobalFuturismLab } from './labs/Lab5GlobalFuturism';
 
 export default function App() {
   return (
@@ -29,6 +28,10 @@ export default function App() {
         <Route path="/media"                    element={<Publications />} />
         <Route path="/media/:slug"              element={<MediaViewer />} />
 
+        {/* Courses */}
+        <Route path="/courses"                  element={<CourseCatalog />} />
+        <Route path="/courses/:slug"            element={<CourseViewer />} />
+
         {/* Simulations */}
         <Route path="/simulations"              element={<Simulations />} />
         <Route path="/simulations/:simId"       element={<Simulations />} />
@@ -37,13 +40,8 @@ export default function App() {
         <Route path="/research"                 element={<Research />} />
         <Route path="/research/:programId"      element={<ResearchProgram />} />
 
-        {/* Simulators */}
-        <Route path="/lab/bio-systemics"        element={<BioSystemicsLab />} />
-        <Route path="/lab/literary-systemics"   element={<LiterarySysLab />} />
-        <Route path="/lab/global-futurism"      element={<GlobalFuturismLab />} />
-
-        {/* Legacy redirects */}
-        <Route path="/lab/foundations"          element={<Publications />} />
+        {/* Legacy redirects — the old "Labs" section merged into Research */}
+        <Route path="/lab/*"                    element={<Navigate to="/research" replace />} />
 
         <Route path="*" element={
           <div style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--muted)' }}>

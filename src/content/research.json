@@ -18,7 +18,6 @@
         "How do social and environmental stressors interact with immune function to shape post-viral trajectory?"
       ],
       "tools": ["ME/CFS Population Outbreak Simulator", "Brainstem ANS Diagram", "Risk Factor Modelling"],
-      "simulator_path": "/lab/bio-systemics",
       "theme": "blue-pulse",
       "path": "/research/bio-systemics",
       "ai_use": "AI assists in interpreting multi-run simulation outputs, identifying non-linear risk interactions, and connecting simulation findings to published epidemiological literature."
@@ -34,7 +33,6 @@
         "What is the optimal tension-clarity trade-off for different reader objectives?"
       ],
       "tools": ["Writing Impact Simulator", "Narrative Feedback Loop Modeller", "Author Strategy Analyser"],
-      "simulator_path": "/lab/literary-systemics",
       "theme": "amber",
       "path": "/research/literary-systemics",
       "ai_use": "AI assists in generating structural critiques of narrative drafts, suggesting rebalancing interventions, and mapping text passages to feedback graph nodes."
@@ -50,7 +48,6 @@
         "What systemic interventions have the highest leverage for stabilising cooperative attractor states?"
       ],
       "tools": ["Macro-Systemic Trend Simulator", "Attractor Basin Visualiser", "Tipping Point Forecaster"],
-      "simulator_path": "/lab/global-futurism",
       "theme": "violet",
       "path": "/research/global-futurism",
       "ai_use": "AI assists in scenario generation, cross-domain pattern recognition, and connecting simulation states to current geopolitical and economic indicators."
@@ -66,7 +63,6 @@
         "Does a production system built on this model function as evidence that the underlying theory of the writing process is accurate?"
       ],
       "tools": ["Systemic Writer"],
-      "simulator_path": null,
       "theme": "amber",
       "path": "/research/writing-with-ai",
       "ai_use": "AI is the core process facilitator under study — not a novelty feature. The program investigates how language models can be structured to support, rather than replace, expert judgment throughout the writing process.",

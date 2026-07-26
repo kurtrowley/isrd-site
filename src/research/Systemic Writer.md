@@ -1,7 +1,7 @@
 # Designing Toward a Theory: An AI-Assisted Writing System as Design Experiment
 
 **Kurt Rowley**  
-Applied Systems Scientist | Integrated Systemics R&D
+Applied Systems Scientist | Independent Systems Research and Development
 
 ---
 
@@ -165,12 +165,12 @@ The next phase of the empirical research is user validation: whether the phase-g
 
 Readers familiar with ISRD's broader work will recognize the structure of this experiment as an instance of the six-phase cycle described in the ISRD methodology documentation: mapping (understanding the existing landscape of AI writing tools and their assumptions), analysis (diagnosing the attractor dynamics of the expert writing process), intervention design (the theoretical framework that emerged through the middle cycles), evolutionary development and testing (the thirty software iterations), deployment (the production implementation), and monitoring and evaluation (the user validation work ahead).
 
-The isomorphism between this experiment and ISRD's work in other domains is not coincidental. It is what systems science predicts: the same dynamics govern complex design problems regardless of domain, and the methodology that addresses those dynamics correctly will transfer across domains. The value of the case library that accumulates across ISRD projects is precisely this: each project confirms and refines the methodology that the others have tested. The AI-assisted writing experiment is one data point in that accumulation. The lessons it produced are available to every subsequent design experiment that Integrated Systemics R&D undertakes.
+The isomorphism between this experiment and ISRD's work in other domains is not coincidental. It is what systems science predicts: the same dynamics govern complex design problems regardless of domain, and the methodology that addresses those dynamics correctly will transfer across domains. The value of the case library that accumulates across ISRD projects is precisely this: each project confirms and refines the methodology that the others have tested. The AI-assisted writing experiment is one data point in that accumulation. The lessons it produced are available to every subsequent design experiment undertaken under the ISRD banner.
 
 *Inventory note: the project comprised approximately 22 distinct design-experiment cycles plus one extended framework-drafting episode (the ReaderFirst Writing System, April–May 2026), over 13 months. The framework-drafting episode is counted separately because it represents a different kind of activity — iterative authorship and prompt development with AI assistance — rather than the build-run-observe-revise cycle that characterizes a genuine design-experiment iteration. This distinction is itself a methodological finding.*
 
 ---
 
-*Kurt Rowley is the founder of Integrated Systemics R&D (ISRD), an applied complex systems science organization. His published research includes work in instructional design cycles and design experiments. This case study is part of a continuing series documenting ISRD's applied systems science projects.*
+*Kurt Rowley is an independent researcher working under the banner Independent Systems Research and Development (ISRD), applying complex systems science methodology across health, writing, and civilizational-scale domains. His published research includes work in instructional design cycles and design experiments. This case study is part of a continuing series of ISRD design-experiment write-ups.*
 
 *ISRD — [isrd.com](https://isrd.com)*

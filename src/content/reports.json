@@ -11,6 +11,90 @@
       "date": "2026",
       "file": "Systemic Writer.md",
       "program": "writing-with-ai"
+    },
+    {
+      "slug": "energy-envelopes",
+      "title": "Energy Envelopes and Feedback Loops",
+      "subtitle": "Why pacing works when rest doesn't",
+      "description": "A systems-level explanation of why rest alone fails ME/CFS patients, and what the feedback dynamics of post-exertional malaise actually suggest about pacing as intervention.",
+      "tag": "Research",
+      "starred": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "energy-envelopes.md",
+      "program": "bio-systemics"
+    },
+    {
+      "slug": "evolutionary-futurism-overview",
+      "title": "Evolutionary Futurism",
+      "subtitle": "Attractor mapping for long-range civilizational trajectories",
+      "description": "Applies evolutionary and complex systems science to long-range civilizational questions — not prediction, but attractor mapping of where the trajectory is heading and where the leverage points lie.",
+      "tag": "Research",
+      "starred": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "evolutionary-futurism-overview.md",
+      "program": "global-futurism"
+    },
+    {
+      "slug": "human-spiritual-systems-overview",
+      "title": "Human Spiritual Systems",
+      "subtitle": "Spiritual practice as a persistent complex-systems attractor",
+      "description": "Applies attractor analysis, feedback modeling, and network dynamics to why spiritual systems form, sustain themselves, and interact with health, governance, and knowledge systems — as structure, not theology.",
+      "tag": "Research",
+      "starred": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "human-spiritual-systems-overview.md",
+      "program": null
+    },
+    {
+      "slug": "attractor-engineering-framework",
+      "title": "The Attractor Engineering Framework",
+      "subtitle": "Applied complexity science organized for practice",
+      "description": "Synthesizes five interdisciplinary traditions — General Systems Theory, Cybernetics, Complexity Science, Systems Dynamics, and Information Systems Theory — into nine core concepts across three tiers, from the ontology of complex systems to the operators of effective intervention.",
+      "tag": "Methodology",
+      "starred": true,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "attractor-engineering-framework.md",
+      "program": null
+    },
+    {
+      "slug": "isrd-background-research",
+      "title": "ISRD Research Foundations",
+      "subtitle": "The theoretical lineages and prior work underlying ISRD",
+      "description": "Describes the research context underlying all ISRD work — five theoretical traditions in systems science, three domain research programs, and Kurt Rowley's two decades of prior published work in instructional design and educational technology.",
+      "tag": "Research",
+      "starred": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "isrd-background-research.md",
+      "program": null
+    },
+    {
+      "slug": "science-and-religion",
+      "title": "Science & Religion: The Philosophical Divide",
+      "subtitle": "A systems-theoretic examination of two epistemic systems",
+      "description": "A systems-theoretic examination of the structural conflict between scientific and religious epistemologies — identifying where the divide is genuine, where it is constructed, and where synthesis is possible.",
+      "tag": "Research",
+      "starred": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "science-and-religion.md",
+      "program": null
+    },
+    {
+      "slug": "are-we-alone",
+      "title": "Are We Alone? Systemic Evidence Synthesis",
+      "subtitle": "A cross-domain synthesis of evidence bearing on extraterrestrial life and intelligence",
+      "description": "Applies systems science methodology to evaluate empirical, theoretical, and anomalous evidence streams bearing on extraterrestrial life and intelligence with epistemic discipline, holding each stream to its own appropriate standard.",
+      "tag": "Research",
+      "starred": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "are-we-alone.md",
+      "program": null
     }
   ]
 }

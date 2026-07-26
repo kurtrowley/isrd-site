@@ -1,37 +1,20 @@
 {
   "nav": {
     "brand": "ISRD",
-    "brand_sub": "Labs",
+    "brand_sub": "Independent Research",
     "links": [
       { "label": "Home",  "path": "/" },
-      { "label": "Labs",  "path": "/lab" },
       { "label": "About", "path": "/about" }
     ]
   },
 
   "hero": {
-    "eyebrow": "Institute for Systemic Research & Development",
+    "eyebrow": "Independent Systems Research and Development",
     "headline_prefix": "Learning Laboratory for",
     "headline_accent": "Modeling Human Complexity",
     "body": "A systemic approach to understanding complex adaptive systems — from human health and cognition to civilizational dynamics. AI-integrated simulation and research tools for every domain.",
-    "cta_primary":   { "label": "Launch ME/CFS Simulator", "href": "/lab/bio-systemics" },
+    "cta_primary":   { "label": "Launch ME/CFS Simulator", "href": "/research/bio-systemics" },
     "cta_secondary": { "label": "Try a Simulation",        "href": "/simulations" }
-  },
-
-  "labs_section": {
-    "title": "The Lab Ecosystem",
-    "core_label": "ISRD Core",
-    "core_description": "Core capabilities powering every lab — philosophy, toolkit, and training."
-  },
-
-  "showcase": {
-    "title": "Client Labs",
-    "subtitle": "External labs built on ISRD methods, tools, and foundations",
-    "placeholder": {
-      "heading": "Your lab could be linked here",
-      "body": "We partner with researchers, writers, and organisations to build custom systemic simulators. Client labs inherit the full Sim-Toolkit and are listed here once published.",
-      "cta": { "label": "Get in touch", "href": "/about" }
-    }
   },
 
   "mission": {
@@ -40,10 +23,10 @@
   },
 
   "about": {
-    "eyebrow": "About ISRD",
-    "heading": "Institute for Systemic Research & Development",
-    "intro": "ISRD is the parent lab and publishing portal for <strong>Systemic Synthesis</strong> — a non-linear, holistic approach to understanding and designing complex systems.",
-    "body": "Our Sim-Toolkit allows users to model feedback loops, attractor basins, and bifurcations across diverse domains. We believe that every complex phenomenon — from ME/CFS to civilizational dynamics — can be better understood through the lens of systemic engineering.",
+    "eyebrow": "About",
+    "heading": "Independent Systems Research and Development",
+    "intro": "ISRD is the independent research practice of <strong>Kurt Rowley</strong> — a non-linear, holistic approach to understanding and designing complex systems, published as articles, research notes, courses, and interactive simulations.",
+    "body": "I'm not affiliated with any institution, company, or lab — ISRD is a personal research identity, not an organization. I build simulations to make feedback loops, attractor basins, and bifurcations tangible across domains from post-viral illness to civilizational dynamics to the craft of writing, and I'm open to collaborating with other researchers or organizations on specific projects where the fit is right.",
     "principles_heading": "Core Principles",
     "principles": [
       {
@@ -52,20 +35,24 @@
       },
       {
         "title": "Modular Architecture",
-        "desc": "Every lab is pluggable. New simulations are created by dropping in a new configuration file for the toolkit."
+        "desc": "Every simulation is pluggable. New models are created by dropping in a new configuration for the shared toolkit."
       },
       {
         "title": "AI Integration Hooks",
-        "desc": "Components expose hooks that allow AI services to ingest simulation state and suggest Systemic Adjustments."
+        "desc": "Components expose hooks that allow AI services to ingest simulation state and suggest systemic adjustments."
+      },
+      {
+        "title": "Design as Evidence",
+        "desc": "Every project runs the same cycle: map the system, form a testable hypothesis, build an intervention, and fold what happens back into the model. The working system is both the output and the evidence — if the model is wrong, the system built on it fails visibly, and that failure is itself the finding."
       }
     ],
-    "people_heading": "People",
-    "people_note": "ISRD is currently a one-person research operation. If the team doesn't grow organically, there is always the option of building a simulation to model the optimal growth strategy.",
+    "people_heading": "About the Researcher",
+    "people_note": "ISRD is a solo research practice. All of the writing, research, and simulations here are authored and built by one person, working openly and hoping the work itself is worth reading regardless of institutional affiliation.",
     "people": [
       {
         "name": "Kurt Rowley",
-        "title": "Founder & Principal Researcher",
-        "bio": "Systems thinker, writer, and simulation architect. Kurt founded ISRD to develop a rigorous, non-linear methodology for understanding complex adaptive systems — from post-viral illness to civilisational dynamics to the craft of writing. His work draws on general systems theory, complexity science, cybernetics, and AI-integrated modelling.",
+        "title": "Independent Researcher",
+        "bio": "Systems thinker, writer, and simulation architect. Kurt works independently to develop a rigorous, non-linear methodology for understanding complex adaptive systems — from post-viral illness to civilisational dynamics to the craft of writing. His work draws on general systems theory, complexity science, cybernetics, and AI-integrated modelling.",
         "areas": ["Systemic Synthesis", "Complex Adaptive Systems", "ME/CFS Research", "Literary Systemics", "AI Integration"],
         "links": []
       }

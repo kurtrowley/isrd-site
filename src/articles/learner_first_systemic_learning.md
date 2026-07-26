@@ -128,11 +128,11 @@ Each of these simulations is a Phase 4 instrument. Their pedagogical role become
 
 ## Who Needs This
 
-The framework has immediate applicability across a wide range of domains, each of which represents a client direction for ISRD:
+The framework has immediate applicability across a wide range of domains, each of which illustrates where the approach could be applied:
 
 **Health and medicine.** Clinicians, patients, and healthcare systems consistently fail to understand chronic and complex conditions because their mental models are built on linear causation. Feedback-based attractor models of conditions like ME/CFS, treatment-resistant depression, and metabolic dysfunction require exactly the kind of attractor-shifting that Learner-First Systemic Education is designed to produce.
 
-**Organizational development.** Leaders and change managers consistently apply interventions that trigger the policy resistance they are trying to overcome, because their mental models of organizations are linear. Shifting those models toward feedback-graph understanding is a training challenge that conventional L&D approaches cannot meet.
+**Organizational development.** Leaders and change managers consistently apply interventions that trigger the policy resistance they are trying to overcome, because their mental models of organizations are linear. Shifting those models toward feedback-graph understanding is a training challenge that conventional instructional-design approaches cannot meet.
 
 **Systems science education.** Teaching people to think systemically — to see feedback loops, attractors, and tipping points rather than causes and effects — is itself a major attractor-shifting challenge. The existing mental model (linear causation, isolated variables, reductionist analysis) is deeply stable and culturally reinforced.
 
@@ -146,7 +146,7 @@ In each case, the pattern is the same: a deeply stable wrong mental model, a dom
 
 ## Education as a System — and What That Means for Its Future
 
-Everything described so far has been framed in terms of training programs, corporate L&D, and course design. That framing is practical and immediate. But the deeper argument of Learner-First Systemic Education is about something larger: the nature of education itself, and what a genuinely systemic approach reveals about where it is going.
+Everything described so far has been framed in terms of training programs and course design. That framing is practical and immediate. But the deeper argument of Learner-First Systemic Education is about something larger: the nature of education itself, and what a genuinely systemic approach reveals about where it is going.
 
 Education, at every level, is a complex adaptive system — and it is currently stuck in an attractor. That attractor has a recognizable structure: content organized by discipline, delivered in fixed sequences, assessed by recall, credentialed by completion. It was designed for an era when knowledge was scarce, access to expertise was limited, and the primary educational challenge was transmission — getting information from the few who held it to the many who needed it.
 
@@ -194,7 +194,7 @@ The educational institutions that will matter in the next twenty years are not t
 
 ---
 
-## Who Needs This
+## Where This Goes
 
 Learner-First Systemic Education is both a framework and a research program. The framework is ready to be applied — the first courses are in design. The research program is beginning: ISRD intends to develop simulation-based attractor diagnostics, AI tutoring architectures calibrated to specific misconception patterns, and a formal model of the course-as-feedback-system.
 

@@ -1,12 +1,22 @@
+import { type ComponentType } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import researchData from '../content/research.json';
 import pubData from '../content/publications.json';
 import reportsData from '../content/reports.json';
+import { BioSystemicsPanel } from '../labs/Lab3BioSystemics';
+import { LiterarySystemicsPanel } from '../labs/Lab4Literary';
+import { GlobalFuturismPanel } from '../labs/Lab5GlobalFuturism';
 
 const THEME_ACCENT: Record<string, string> = {
   'blue-pulse': '#3a6fa8',
   amber:        '#c87832',
   violet:       '#7a5ac8',
+};
+
+const SIM_PANELS: Record<string, ComponentType> = {
+  'bio-systemics':      BioSystemicsPanel,
+  'literary-systemics': LiterarySystemicsPanel,
+  'global-futurism':    GlobalFuturismPanel,
 };
 
 export function ResearchProgram() {
@@ -27,6 +37,7 @@ export function ResearchProgram() {
   const programReports = reportsData.reports.filter(r => (r as any).program === prog.id);
   const productUrl = (prog as any).product_url as string | undefined;
   const productLabel = (prog as any).product_label as string | undefined;
+  const SimPanel = SIM_PANELS[prog.id];
 
   return (
     <div style={{ minHeight: 'calc(100vh - 3.5rem)', background: '#060f16' }}>
@@ -91,19 +102,15 @@ export function ResearchProgram() {
           </div>
         </div>
 
-        {/* CTA: open simulator */}
-        {prog.simulator_path && (
-          <div style={{ marginBottom: 24, padding: '20px 24px', borderRadius: 12, border: `1px solid ${accent}35`, background: `${accent}08`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
-            <div>
-              <div style={{ fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>Interactive Simulator</div>
-              <p style={{ fontSize: '.83rem', color: 'var(--muted)', margin: 0 }}>
-                Explore this research program's simulation environment — adjust parameters, run scenarios, and inspect individual outcomes.
-              </p>
+        {/* Embedded simulator */}
+        {SimPanel && (
+          <div style={{ marginBottom: 36 }}>
+            <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.1em', color: 'var(--muted)', margin: '0 0 12px', fontWeight: 700 }}>
+              Interactive Simulator
+            </h3>
+            <div style={{ height: 600, display: 'flex', flexDirection: 'column', borderRadius: 12, overflow: 'hidden', border: `1px solid ${accent}35` }}>
+              <SimPanel />
             </div>
-            <Link to={prog.simulator_path}
-              style={{ padding: '10px 22px', borderRadius: 10, background: accent, color: '#fff', textDecoration: 'none', fontWeight: 600, fontSize: '.88rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
-              Open Simulator →
-            </Link>
           </div>
         )}
 

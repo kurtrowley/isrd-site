@@ -90,7 +90,7 @@ The three steps are a structured perturbation of the practitioner's existing men
 
 ## Why This Matters Beyond the Tool
 
-ISRD's methodology is explicit about the relationship between tools and mission. The toolkit is not a product that exists to sustain the organization while the real work happens elsewhere. It is the mechanism by which the methodology reaches practitioners.
+ISRD's methodology is explicit about the relationship between tools and mission. The toolkit is not a product that exists for its own sake while the real work happens elsewhere. It is the mechanism by which the methodology reaches practitioners.
 
 The most valuable thing ISRD can produce is practitioners who think systemically about their domain's hardest problems. Not practitioners who know the vocabulary of systems science, but practitioners who have built working mental models of the dynamics they are working in — who can see the attractor, identify the maintaining feedback structure, locate the leverage point, and formulate an intervention hypothesis that the framework supports.
 
@@ -108,8 +108,8 @@ That is the argument. The tools are its execution.
 
 The practitioner who belongs in this toolkit is recognizable by one consistent feature: they are working on a problem that has resisted the best available intervention approaches applied by skilled, well-resourced people. Not because those people were wrong. Not because they lacked expertise. Because the problem's maintaining structure is at a level those approaches were not designed to address.
 
-That describes a significant portion of the hardest problems in medicine, organizational development, policy, and research methodology. It describes exactly the problems ISRD was organized to work on — and the tools are how that work becomes accessible to the practitioners who need it most.
+That describes a significant portion of the hardest problems in medicine, organizational development, policy, and research methodology. It describes exactly the problems this toolkit exists to work on — and the tools are how that work becomes accessible to the practitioners who need it most.
 
-*The Free `.md` Sim Creator is available now. The Expert `.html` Sim Creator is in development. The Sim-Toolkit SDK is active. [View the tools →](/tools)*
+*The Free `.md` Sim Creator is available now. The Sim-Toolkit SDK is active. [Explore the simulations →](/simulations)*
 
 ---

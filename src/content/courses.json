@@ -82,5 +82,138 @@
       "article_link": null,
       "tags": ["ME/CFS", "Post-Viral Syndrome", "Brainstem Dynamics", "Simulation"]
     }
+  ],
+
+  "lessons": [
+    {
+      "slug": "ss101-what-is-systems-science",
+      "series": "ss101",
+      "seriesLabel": "Systems Science 101",
+      "track": "foundations",
+      "title": "What Is Systems Science?",
+      "description": "Systems science is the study of pattern — the structures and principles that recur across every domain, from feedback loops to attractors to emergence.",
+      "tags": ["Overview", "Foundations"],
+      "order": 1,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "ss101-what-is-systems-science.md"
+    },
+    {
+      "slug": "ss101-feedback-loops",
+      "series": "ss101",
+      "seriesLabel": "Systems Science 101",
+      "track": "foundations",
+      "title": "Feedback Loops",
+      "description": "The circular causality that makes system behavior counterintuitive — reinforcing and balancing loops, delay, and why feedback is the engine of dynamic behavior.",
+      "tags": ["Feedback Loops", "Foundations"],
+      "order": 2,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "ss101-feedback-loops.md"
+    },
+    {
+      "slug": "ss101-emergence",
+      "series": "ss101",
+      "seriesLabel": "Systems Science 101",
+      "track": "foundations",
+      "title": "Emergence",
+      "description": "Why the whole exceeds the sum of its parts — attractors, hierarchy, and self-organization as the mechanisms behind emergent behavior.",
+      "tags": ["Emergence", "Foundations"],
+      "order": 3,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "ss101-emergence.md"
+    },
+    {
+      "slug": "gst-overview",
+      "series": "gst",
+      "seriesLabel": "General Systems Theory",
+      "track": "foundations",
+      "title": "General Systems Theory",
+      "description": "Bertalanffy's interdisciplinary study of systems in general — boundary, wholeness, hierarchy, isomorphism, and equifinality as the ontological foundation of systems science.",
+      "tags": ["General Systems Theory", "Foundations"],
+      "order": 1,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "gst-overview.md"
+    },
+    {
+      "slug": "gst-module-1-foundations",
+      "series": "gst",
+      "seriesLabel": "General Systems Theory",
+      "track": "foundations",
+      "title": "Module 1: Foundations and Core Concepts",
+      "description": "What is a system, boundary and environment, open versus closed systems, wholeness, and equifinality.",
+      "tags": ["General Systems Theory", "Foundations"],
+      "order": 2,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "gst-module-1-foundations.md"
+    },
+    {
+      "slug": "gst-module-2-properties",
+      "series": "gst",
+      "seriesLabel": "General Systems Theory",
+      "track": "foundations",
+      "title": "Module 2: System Properties and Behavior",
+      "description": "Hierarchy, feedback, nonlinearity, and isomorphism — the GST toolkit for analyzing system behavior.",
+      "tags": ["General Systems Theory", "Foundations"],
+      "order": 3,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "gst-module-2-properties.md"
+    },
+    {
+      "slug": "cybernetics-overview",
+      "series": "cybernetics",
+      "seriesLabel": "Cybernetics",
+      "track": "foundations",
+      "title": "Cybernetics",
+      "description": "The science of control and communication in systems — feedback control loops, first and second order cybernetics, and how systems regulate themselves.",
+      "tags": ["Cybernetics", "Foundations"],
+      "order": 1,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "cybernetics-overview.md"
+    },
+    {
+      "slug": "complexity-science-overview",
+      "series": "complexity-science",
+      "seriesLabel": "Complexity Science",
+      "track": "foundations",
+      "title": "Complexity Science",
+      "description": "Complex adaptive systems, emergence, self-organization, the edge of chaos, and attractor landscapes — from the Santa Fe Institute tradition.",
+      "tags": ["Complexity Science", "Foundations"],
+      "order": 1,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "complexity-science-overview.md"
+    },
+    {
+      "slug": "systems-dynamics-overview",
+      "series": "systems-dynamics",
+      "seriesLabel": "Systems Dynamics",
+      "track": "foundations",
+      "title": "Systems Dynamics",
+      "description": "Forrester's method for modeling dynamic systems — stocks, flows, causal loop diagrams, and the classic models that built the field.",
+      "tags": ["Systems Dynamics", "Foundations"],
+      "order": 1,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "systems-dynamics-overview.md"
+    },
+    {
+      "slug": "systems-practice-overview",
+      "series": "systems-practice",
+      "seriesLabel": "Systems Practice",
+      "track": "foundations",
+      "title": "Systems Practice",
+      "description": "An integrated toolkit — diagnose, model, intervene, evolve — for applying all four foundation theories together across any domain.",
+      "tags": ["Systems Practice", "Applied"],
+      "order": 1,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "systems-practice-overview.md"
+    }
   ]
 }

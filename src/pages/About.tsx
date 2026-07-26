@@ -44,6 +44,19 @@ export function About() {
           ))}
         </div>
 
+        {/* Core Principles */}
+        <h2 style={{ fontSize: '.8rem', textTransform: 'uppercase', letterSpacing: '.12em', color: 'var(--muted)', fontWeight: 700, margin: '0 0 16px' }}>
+          {about.principles_heading}
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 40 }}>
+          {about.principles.map(p => (
+            <div key={p.title} style={{ padding: '16px 20px', borderRadius: 10, border: '1px solid var(--line)', background: 'var(--panel)' }}>
+              <div style={{ fontSize: '.88rem', fontWeight: 600, color: 'var(--text)', marginBottom: 6 }}>{p.title}</div>
+              <p style={{ fontSize: '.83rem', color: 'var(--muted)', lineHeight: 1.6, margin: 0 }}>{p.desc}</p>
+            </div>
+          ))}
+        </div>
+
         {/* Divider */}
         <div style={{ height: 1, background: 'var(--line)', margin: '40px 0' }} />
 

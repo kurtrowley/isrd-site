@@ -3,6 +3,7 @@ import { NodeGraph } from '../components/NodeGraph';
 import articlesData from '../content/articles.json';
 import mediaData from '../content/media.json';
 import reportsData from '../content/reports.json';
+import coursesData from '../content/courses.json';
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -45,22 +46,7 @@ const allMediaItems = mediaData.sections.flatMap(s =>
   (s.items as any[]).map(item => ({ ...item, sectionTitle: s.title }))
 );
 
-// Books placeholder
-const BOOKS_PLACEHOLDER = {
-  note: "ISRD's first titles are in development — applying systems methodology to complex domains in health, organisation, and learning.",
-  upcoming: [
-    { title: 'The Attractor Approach', subtitle: 'Systems-based intervention design for treatment-resistant conditions', status: 'In Development' },
-    { title: 'Learner-First', subtitle: 'A practitioner guide to designing instruction that shifts mental models', status: 'In Development' },
-  ],
-};
-
-// Coming soon media types (from media.json + additions)
-const COMING_SOON = [
-  { title: 'Music', desc: 'Harmony, rhythm, and the feedback structures of musical form.' },
-  { title: 'Film', desc: 'Narrative systems, nonlinear storytelling, and emergent meaning.' },
-  { title: 'Literature', desc: 'Language as a complex adaptive system — and the novels that know it.' },
-  { title: 'Architecture', desc: 'Built environments as systemic interventions in human behavior.' },
-];
+const courses = coursesData.courses;
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -79,7 +65,7 @@ export function Publications() {
             Publications
           </h1>
           <p style={{ fontSize: '.95rem', color: 'var(--muted)', lineHeight: 1.7, maxWidth: 620, margin: 0 }}>
-            Articles, books, and media from ISRD — theoretical writing, applied methodology, and systemic approaches to understanding complexity in art, science, and human systems.
+            Articles, research notes, courses, and media from ISRD — theoretical writing, applied methodology, and systemic approaches to understanding complexity in art, science, and human systems.
           </p>
         </div>
       </div>
@@ -116,8 +102,8 @@ export function Publications() {
           })}
         </div>
 
-        {/* ── Research Reports ── */}
-        <Section label="Research Reports" color="#c87832" />
+        {/* ── Research Notes ── */}
+        <Section label="Research Notes" color="#c87832" />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 11, marginBottom: 52 }}>
           {reports.map(report => {
             const accent = REPORT_TAG_COLORS[report.tag] ?? 'var(--accent)';
@@ -145,21 +131,23 @@ export function Publications() {
           })}
         </div>
 
-        {/* ── Books ── */}
-        <Section label="Books" color="#7a5ac8" />
-        <p style={{ fontSize: '.88rem', color: 'var(--muted)', lineHeight: 1.65, maxWidth: 680, margin: '0 0 18px', fontStyle: 'italic' }}>
-          {BOOKS_PLACEHOLDER.note}
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12, marginBottom: 52 }}>
-          {BOOKS_PLACEHOLDER.upcoming.map(book => (
-            <div key={book.title} style={{ padding: '16px 18px', borderRadius: 10, border: '1px dashed rgba(122,90,200,0.4)', background: 'rgba(122,90,200,0.05)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, marginBottom: 6 }}>
-                <h3 style={{ fontSize: '.9rem', fontWeight: 700, color: 'var(--text)', margin: 0 }}>{book.title}</h3>
-                <span style={{ fontSize: '.62rem', color: '#7a5ac8', fontStyle: 'italic', flexShrink: 0 }}>{book.status}</span>
+        {/* ── Courses ── */}
+        <Section label="Courses" color="#7a5ac8" />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12, marginBottom: 24 }}>
+          {courses.map(course => (
+            <Link key={course.id} to="/courses" style={{ textDecoration: 'none' }}>
+              <div className="pub-card" style={{ padding: '16px 18px', borderRadius: 10, border: '1px solid var(--line)', background: 'var(--panel)', transition: 'all .18s' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, marginBottom: 6 }}>
+                  <h3 style={{ fontSize: '.9rem', fontWeight: 700, color: 'var(--text)', margin: 0 }}>{course.title}</h3>
+                  <span style={{ fontSize: '.62rem', color: '#7a5ac8', fontStyle: 'italic', flexShrink: 0 }}>{course.status}</span>
+                </div>
+                <p style={{ fontSize: '.78rem', color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>{course.subtitle}</p>
               </div>
-              <p style={{ fontSize: '.78rem', color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>{book.subtitle}</p>
-            </div>
+            </Link>
           ))}
+        </div>
+        <div style={{ marginBottom: 52 }}>
+          <Link to="/courses" style={{ fontSize: '.82rem', color: 'var(--accent)' }}>View full course catalog →</Link>
         </div>
 
         {/* ── Visual Arts ── */}
@@ -201,17 +189,6 @@ export function Publications() {
             </div>
           </div>
         ))}
-
-        {/* ── Coming Soon ── */}
-        <Section label="Coming Soon" color="var(--muted)" />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
-          {COMING_SOON.map(item => (
-            <div key={item.title} style={{ padding: '14px 16px', borderRadius: 10, border: '1px dashed var(--line)', background: 'rgba(255,255,255,0.01)', opacity: .7 }}>
-              <div style={{ fontSize: '.85rem', fontWeight: 600, color: 'var(--muted)', marginBottom: 4 }}>{item.title}</div>
-              <p style={{ fontSize: '.76rem', color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>{item.desc}</p>
-            </div>
-          ))}
-        </div>
 
       </div>
 

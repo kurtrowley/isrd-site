@@ -8,7 +8,7 @@
       "era": 3,
       "tier": "agent",
       "topology": "grid",
-      "path": "/lab/bio-systemics",
+      "path": "/research/bio-systemics",
       "type": "research",
       "status": "Expert Sim"
     },

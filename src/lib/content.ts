@@ -4,7 +4,7 @@
 // matching the isrd_legacy-site convention.
 
 const rawFiles = import.meta.glob(
-  '../{articles,media,research,publications}/**/*.md',
+  '../{articles,media,research,publications,courses}/**/*.md',
   { query: '?raw', import: 'default', eager: true },
 ) as Record<string, string>;
 

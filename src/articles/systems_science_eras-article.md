@@ -229,4 +229,4 @@ The pattern is real. The transfer is legitimate. The tools are finally here.
 
 ---
 
-*Kurt Rowley is the founder of ISRD — the Institute for Systemic Research & Development. ISRD builds simulation and modeling tools for problems with complex systemic structure.*
+*Kurt Rowley is an independent researcher working under the banner ISRD — Independent Systems Research and Development. ISRD builds simulation and modeling tools for problems with complex systemic structure.*

@@ -35,6 +35,54 @@
       "author": "Kurt Rowley",
       "date": "2025",
       "file": "learner_first_systemic_learning.md"
+    },
+    {
+      "slug": "capability-without-stewardship",
+      "title": "Capability Without Stewardship",
+      "subtitle": "Technology keeps reorganizing civilization faster than civilization can respond",
+      "description": "Technology keeps reorganizing civilization faster than civilization can respond. This is not a new problem — it is a systems problem, and it finally has a science. A look at the sixty-year gap between diagnosis and tools.",
+      "tag": "Research",
+      "starred": false,
+      "pinned": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "capability-without-stewardship.md"
+    },
+    {
+      "slug": "pattern-is-the-message",
+      "title": "Pattern Is the Message",
+      "subtitle": "On systems science as meta-discipline",
+      "description": "Systems science is not another discipline — it is a discipline about disciplines, a meta-level inquiry into the structural properties that repeat across every field of study, from feedback loops to networks of coupled systems.",
+      "tag": "Theory",
+      "starred": false,
+      "pinned": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "pattern-is-the-message.md"
+    },
+    {
+      "slug": "reader-first-intro",
+      "title": "Reader-First: Why Most Writing Begins at the Wrong End",
+      "subtitle": "Writer-first vs. reader-first document architecture",
+      "description": "Most writing advice starts from what the writer knows and works outward. Reader-first writing starts from what the reader already knows and builds toward what they need — and the difference is architectural, not stylistic.",
+      "tag": "Methodology",
+      "starred": false,
+      "pinned": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "reader-first-intro.md"
+    },
+    {
+      "slug": "for-creators",
+      "title": "ISRD for Digital Creators",
+      "subtitle": "Applying complex systems science to the design of digital products",
+      "description": "Most digital products fail not because they lack effort or expertise, but because they were built without a systems view of the audience, the offer, or the path to adoption. Attractor Engineering is the corrective.",
+      "tag": "Methodology",
+      "starred": false,
+      "pinned": false,
+      "author": "Kurt Rowley",
+      "date": "2026",
+      "file": "for-creators.md"
     }
   ]
 }

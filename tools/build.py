@@ -260,7 +260,9 @@ def build_about():
     pr = a["person"]
     contact = (f'<p><a class="btn primary" href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a></p>' if CONTACT_EMAIL
                else '<p class="muted">Contact details are coming soon.</p>')
-    body = (head("About", "A creative lab for systemic research and products", a["intro"]) +
+    top = head("About", "A creative lab for systemic research and products", a["intro"]).replace(
+        "</div></div>", f'<p class="lede">{e(a["aim"])}</p></div></div>', 1)
+    body = (top +
             f'<section><div class="wrap"><h2>What we do</h2><div class="grid">{what}</div></div></section>'
             f'<section class="alt"><div class="wrap"><h2>How we work</h2><p class="lede">{e(a["principles_intro"])}</p><ul class="principles">{princ}</ul></div></section>'
             f'<section><div class="wrap two"><div><p class="eyebrow">Mission</p><h2>{e(a["mission_title"])}</h2></div>'

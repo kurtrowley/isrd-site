@@ -1,13 +1,36 @@
-# ISRD website (rebuild)
+# ISRD website
 
-Interdisciplinary Systemics R&D. A static site: plain HTML, one stylesheet, one tiny script. No build step.
+Interdisciplinary Systemics R&D. A static site: plain HTML, one stylesheet, a little JavaScript. The text lives in files you can edit; GitHub rebuilds and publishes the site whenever you save a change.
 
-- `index.html`: the hub (mission, divisions, approach)
-- `style-guide.html`: the shared tokens and parts every division site should reuse
-- `style.css`, `theme.js`: design tokens, components, light/dark toggle
+## How to make an edit (no installs needed)
+1. Go to **github.com/kurtrowley/isrd-site** and sign in.
+2. Open the file you want (see the table below) and click the **pencil** icon (Edit this file).
+3. Make your change, then click **Commit changes**, then **Commit changes** again.
+4. Wait a minute or two. The live site at isrd.com updates by itself. Progress shows in the **Actions** tab.
 
-## Preview
-    python3 -m http.server 8080    # then open http://localhost:8080
+If the Actions tab shows a red X, the edit contained a mistake (the usual one is a missing comma or quote in a `.json` file). The live site stays as it was. Click the failed run to see the message, then fix the file and commit again. Any earlier version of a file can be restored from its **History** button.
+
+## Which file changes what
+| To change | Edit this file |
+|---|---|
+| Colors, fonts, spacing (light and dark) | `style.css`, the settings at the top under `:root` |
+| Home page words and layout | `index.html` |
+| About page words | `content/data/about.json` |
+| Contact address | `CONTACT_EMAIL` near the top of `tools/build.py` |
+| Article text | `content/articles/*.md` (titles and summaries: `content/data/articles.json`) |
+| Research reports | `content/research/*.md` (list: `content/data/reports.json`; programs: `content/data/programs.json`) |
+| Course readings | `content/courses/*.md` (list: `content/data/course_readings.json`) |
+| Simulation titles and descriptions | `content/data/simulations.json` |
+| Menu links, footer | `NAV` and the page template in `tools/build.py` (the home page keeps its own copy in `index.html`) |
+
+Do not edit the generated pages (`about/index.html`, everything inside `articles/`, `research/`, `courses/`, `media/`, `simulations/` except the `js` folders): they are rewritten from the files above on every publish.
+Markdown files use `#` for headings, `**bold**`, `*italic*`, `[text](link)` for links, and `-` for bullets.
+
+## Editing on your computer instead
+    pip install markdown
+    python3 tools/build.py            # rebuilds the pages from content/
+    python3 -m http.server 8080       # preview at http://localhost:8080
+then commit and push (GitHub Desktop works well for this).
 
 ## Publish (GitHub Pages, repo kurtrowley/isrd-site)
 This folder is a git repo on top of the old site's history. The old React site is kept on branch `archive/react-site-2026-10` (tag `react-site-final`). Pushing `main` runs `.github/workflows/deploy.yml`, which publishes the static files; `CNAME` keeps isrd.com, so the domain host needs no change.

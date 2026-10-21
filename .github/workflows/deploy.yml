@@ -1,7 +1,8 @@
 name: Deploy to GitHub Pages
 
-# The site is plain static files, so there is nothing to build: this copies the published files into one
-# folder and uploads it. Source (content/, tools/) stays in the repo but is not part of the published site.
+# Edit text under content/ (or style.css, index.html) on github.com and commit: this rebuilds the pages from
+# content/ with tools/build.py, then publishes. If the build fails (for example a typo in a .json file) nothing
+# is published and the live site stays as it was; open the failed run in the Actions tab to see why.
 on:
   push:
     branches: [main]
@@ -24,6 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Rebuild the pages from content/
+        run: |
+          pip install markdown
+          python3 tools/build.py
 
       - name: Assemble the site
         run: |

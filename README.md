@@ -9,9 +9,15 @@ Interdisciplinary Systemics R&D. A static site: plain HTML, one stylesheet, one 
 ## Preview
     python3 -m http.server 8080    # then open http://localhost:8080
 
-## Publish (pick one)
-- **Cloudflare Pages** (free, works with a private repo): connect the repo, no build command, output folder `/`.
-- **GitHub Pages**: needs the repo public, or GitHub Pro for a private one. Add a `CNAME` file containing `isrd.com`.
+## Publish (GitHub Pages, repo kurtrowley/isrd-site)
+This folder is a git repo on top of the old site's history. The old React site is kept on branch `archive/react-site-2026-10` (tag `react-site-final`). Pushing `main` runs `.github/workflows/deploy.yml`, which publishes the static files; `CNAME` keeps isrd.com, so the domain host needs no change.
+
+    git push origin archive/react-site-2026-10     # first: keep the old site safe on GitHub
+    git push origin main                           # then: publish (the site updates in a minute or two)
+
+To roll back, redeploy the old site: `git push origin react-site-final:refs/heads/main --force-with-lease` restores the old source and its workflow.
+After the first deploy, GitHub Settings > Pages should show source "GitHub Actions" (it already was).
+Later updates: edit `content/`, run `python3 tools/build.py`, commit, push.
 
 Keep real secrets out of this repo either way: a static site's files are public to anyone who visits.
 

@@ -1,22 +1,142 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ISRD — Independent Systems Research and Development</title>
-  <meta name="description" content="Independent research, writing, and simulation across bio-systemics, literary systemics, and global futurism." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script>
-    (function(){
-      const t = localStorage.getItem('isrd-theme') || 'dark';
-      document.documentElement.classList.toggle('dark', t === 'dark');
-    })();
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISRD: Interdisciplinary Systemics R&amp;D</title>
+<meta name="description" content="ISRD is a creative lab for systemic research and products: a systems approach, including complexity and the human organism, applied to the connected domains a sustainable civilization depends on.">
+<meta name="theme-color" content="#0f6b5c">
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script>
+// Old isrd.com links looked like /#/simulations/lorenz; send them to the matching page here.
+(function () {
+  var h = location.hash;
+  if (h.indexOf("#/") !== 0) return;
+  var m, to = "/";
+  if ((m = h.match(/^#\/(simulations|articles|courses)\/([\w-]+)/))) to = "/" + m[1] + "/" + m[2] + "/";
+  else if ((m = h.match(/^#\/research\/([\w-]+)/))) to = "/research/" + m[1] + "/";
+  else if ((m = h.match(/^#\/publications\/reports\/([\w-]+)/))) to = "/research/papers/" + m[1] + "/";
+  else if ((m = h.match(/^#\/(media|about|research|courses|simulations|articles)\b/))) to = "/" + m[1] + "/";
+  else if (/^#\/publications/.test(h)) to = "/articles/";
+  if (to !== "/") location.replace(to);
+})();
+</script>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/">IS<span>R</span>D</a>
+    <nav aria-label="Main">
+      <a href="/research/">Research</a>
+      <a href="/articles/">Articles</a>
+      <a href="/courses/">Courses</a>
+      <a href="/simulations/">Simulations</a>
+      <a href="/media/">Media</a>
+      <a href="https://writer.isrd.com">Writer</a>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Interdisciplinary Systemics R&amp;D</p>
+      <h1>A creative lab for the systems that hold a civilization together.</h1>
+      <p class="lede">ISRD builds research, tools and publications on one idea: take a systems approach, in the modern sense that includes complexity and the human organism, to every domain that has to connect for humanity to become sustainable.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://writer.isrd.com">Open Systemic Writer</a>
+        <a class="btn ghost" href="#divisions">Explore the divisions</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="divisions" aria-labelledby="div-h">
+    <div class="wrap">
+      <p class="eyebrow">Divisions</p>
+      <h2 id="div-h">One lab, many fields</h2>
+      <p class="lede">Each division works in its own field and shares the same method. Some are open today; the rest are on the way. Writer and Press are ISRD's pre-publication tools: they take a manuscript from idea to reader-tested draft, ready for publication anywhere.</p>
+      <div class="grid">
+        <a class="card" href="https://writer.isrd.com">
+          <span class="tag live">Live</span>
+          <h3>ISRD Writer</h3>
+          <p>Systemic Writer: a pre-publication writing environment built on the Reader-First method. It takes a manuscript from first idea to a developed, reader-tested draft, for fiction, nonfiction and instructional work.</p>
+          <span class="go">Open the app →</span>
+        </a>
+        <div class="card">
+          <span class="tag soon">Coming</span>
+          <h3>ISRD Press</h3>
+          <p>The pre-publication home for each author's work: a sharing page, beta and advance readers, and an ePub reader, so a manuscript meets real readers on its way to wider publishing.</p>
+        </div>
+        <a class="card" href="/simulations/">
+          <span class="tag live">Live</span>
+          <h3>ISRD Simulations</h3>
+          <p>Eight interactive models of feedback loops, attractors, emergence, network spread and regulatory capture, growing toward systemic gaming.</p>
+          <span class="go">Run the models →</span>
+        </a>
+        <a class="card" href="/research/">
+          <span class="tag live">Live</span>
+          <h3>ISRD Lab</h3>
+          <p>Research programs, reports, articles and courses: literary systemics, bio-systemics, global futurism and writing with AI.</p>
+          <span class="go">Read the research →</span>
+        </a>
+        <div class="card">
+          <span class="tag soon">Planned</span>
+          <h3>ISRD Technology</h3>
+          <p>Systemic design of digital products and AI-assisted tools that strengthen expert judgment.</p>
+        </div>
+        <div class="card">
+          <span class="tag soon">Planned</span>
+          <h3>ISRD Medical</h3>
+          <p>Complex-systems thinking applied to chronic and post-viral illness, for clinicians, patients and researchers.</p>
+        </div>
+        <div class="card">
+          <span class="tag soon">Planned</span>
+          <h3>Think tanks</h3>
+          <p>A geopolitical group, and a cultural literacy group that maps the world's belief systems and asks which are systemically healthy and by what criteria.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach" class="alt" aria-labelledby="ap-h">
+    <div class="wrap">
+      <p class="eyebrow">Approach</p>
+      <h2 id="ap-h">Systemic by design</h2>
+      <p class="lede">The same few ideas run through everything ISRD makes.</p>
+      <ul class="principles">
+        <li><strong>Start from the whole</strong><span>Map the system, its feedback loops and its edges before changing any part of it.</span></li>
+        <li><strong>Design for the person on the other end</strong><span>The reader, the learner, the patient or the citizen is the system's other half, and the design target.</span></li>
+        <li><strong>Test it</strong><span>Models you can run, drafts you can check, and results treated as data when they surprise us.</span></li>
+        <li><strong>Keep people in charge</strong><span>AI proposes and people decide. Tools scaffold judgment at every consequential step.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="mission" aria-labelledby="ms-h">
+    <div class="wrap two">
+      <div>
+        <p class="eyebrow">Mission</p>
+        <h2 id="ms-h">Everyone gets a voice</h2>
+      </div>
+      <div>
+        <blockquote class="mission">AI can give everybody a voice: a say in how Earth's resources are managed and where our civilization goes next.</blockquote>
+        <p class="muted" style="margin-top:1.2em">ISRD aims to help many producers, especially people who need AI support to be heard, and to keep the picture pluralistic: many perspectives, understood systemically.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>ISRD</strong><br>Interdisciplinary Systemics R&amp;D</div>
+    <div><a href="https://writer.isrd.com">Systemic Writer</a><br><a href="/about/">About</a> · <a href="style-guide.html">Design system</a></div>
+    <div>© <span id="yr">2026</span> ISRD. All rights reserved.</div>
+  </div>
+</footer>
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
 </body>
 </html>

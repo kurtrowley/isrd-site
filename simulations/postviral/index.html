@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Post-Viral Syndrome Outbreak | ISRD</title>
+<meta name="description" content="Agent-based population simulation tracking viral outbreak and post-viral ME/CFS conversion across 100 individuals. 25+ calibrated risk factors, brainstem ANS dynamics, YOU character.">
+<meta name="theme-color" content="#0f6b5c">
+<link rel="stylesheet" href="/style.css">
+<script src="/theme.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+  <a class="brand" href="/">IS<span>R</span>D</a>
+  <nav aria-label="Main"><a href="/research/">Research</a><a href="/articles/">Articles</a><a href="/courses/">Courses</a><a href="/simulations/" aria-current="page">Simulations</a><a href="/media/">Media</a><a href="https://writer.isrd.com">Writer</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+</div></header>
+<main id="main">
+<div class="pagehead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="/simulations/">Simulations</a></nav><p class="eyebrow">Simulation · Era 3: Complexity and chaos · Bio-Systemics</p><h1>Post-Viral Syndrome Outbreak</h1></div></div><style>
+    /* ── Layout ─────────────────────────────────────────────────── */
+    .sim-page { display:flex; flex-direction:column; height:100vh; overflow:hidden; }
+    .sim-topbar {
+      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+      padding:10px 20px; border-bottom:1px solid var(--line);
+      background:var(--panel); backdrop-filter:blur(10px); flex-shrink:0;
+    }
+    .sim-topbar .brand { font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      font-size:.82rem; color:var(--accent); }
+    .sim-topbar a { color:var(--muted); font-size:.88rem; text-decoration:none; }
+    .sim-topbar a:hover { color:var(--text); }
+    .sim-topbar .sep { color:var(--line); }
+
+    .sim-main { display:grid; grid-template-columns:1fr 320px; flex:1; overflow:hidden; }
+
+    /* ── Canvas side ─────────────────────────────────────────────── */
+    .sim-left { display:flex; flex-direction:column; border-right:1px solid var(--line); overflow:hidden; }
+    .sim-canvas-area { flex:1; background:#060f16; position:relative; overflow:hidden; }
+    #simCanvas { position:absolute; top:0; left:0; width:100%; height:100%; cursor:crosshair; display:block; }
+
+    .sim-toolbar {
+      display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+      padding:8px 14px; background:var(--panel); border-top:1px solid var(--line); flex-shrink:0;
+    }
+    .tb-btn { padding:6px 14px; border-radius:8px; border:1px solid var(--line);
+      background:var(--panel-b); color:var(--text); font-size:.82rem; font-weight:600;
+      cursor:pointer; transition:all .15s; }
+    .tb-btn:hover, .tb-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .tb-sep { width:1px; height:20px; background:var(--line); margin:0 2px; flex-shrink:0; }
+    .speed-wrap { display:flex; align-items:center; gap:6px; color:var(--muted); font-size:.8rem; }
+    .speed-wrap input { width:70px; accent-color:var(--accent); }
+
+    /* ── Panel side ──────────────────────────────────────────────── */
+    .sim-right { display:flex; flex-direction:column; overflow:hidden; }
+    .panel-tabs {
+      display:flex; border-bottom:1px solid var(--line); flex-shrink:0; overflow-x:auto;
+      scrollbar-width:none;
+    }
+    .panel-tabs::-webkit-scrollbar { display:none; }
+    .panel-tab {
+      flex:0 0 auto; padding:9px 10px; text-align:center; font-size:.72rem; font-weight:600;
+      color:var(--muted); cursor:pointer; border-bottom:2px solid transparent;
+      transition:all .15s; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap;
+    }
+    .panel-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+    .panel-body { flex:1; overflow-y:auto; padding:14px;
+      scrollbar-width:thin; scrollbar-color:var(--line) transparent; }
+
+    /* ── Population tab ──────────────────────────────────────────── */
+    .stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+    .stat-pill { display:flex; flex-direction:column; background:var(--panel-b);
+      border:1px solid var(--line); border-radius:10px; padding:9px 12px; }
+    .stat-pill span:first-child { font-size:.68rem; color:var(--muted);
+      text-transform:uppercase; letter-spacing:.06em; }
+    .stat-pill span:last-child { font-size:1.1rem; font-weight:700; color:var(--accent2); margin-top:2px; }
+
+    .legend-hdr { font-size:.7rem; text-transform:uppercase; letter-spacing:.08em;
+      color:var(--muted); margin-bottom:5px; }
+    .legend { display:flex; flex-direction:column; gap:5px; }
+    .legend-row { display:flex; align-items:center; gap:8px; font-size:.8rem; color:var(--muted); }
+    .legend-dot { width:11px; height:11px; border-radius:50%; flex-shrink:0; }
+
+    /* ── Outbreak selector ───────────────────────────────────────── */
+    .outbreak-grid {
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .outbreak-card {
+      padding:10px 12px; border-radius:12px; border:1px solid var(--line);
+      background:var(--panel-b); cursor:pointer; transition:all .15s;
+    }
+    .outbreak-card:hover { border-color:var(--accent2); }
+    .outbreak-card.active { border-color:var(--accent); background:rgba(58,143,168,0.10); }
+    .ob-label { font-size:.9rem; font-weight:700; color:var(--text); margin-bottom:3px; }
+    .ob-cat {
+      display:inline-block; font-size:.65rem; font-weight:600; letter-spacing:.06em;
+      text-transform:uppercase; color:#c0d8e0; padding:2px 7px;
+      border-radius:999px; margin-bottom:5px; opacity:.85;
+    }
+    .ob-desc { font-size:.76rem; color:var(--muted); line-height:1.45; }
+
+    /* ── Environment tab ─────────────────────────────────────────── */
+    .env-section h4 { margin:0 0 10px; font-size:.78rem; text-transform:uppercase;
+      letter-spacing:.08em; color:var(--muted); }
+    .env-row { margin-bottom:10px; }
+    .env-row label { display:flex; justify-content:space-between; font-size:.8rem;
+      color:var(--muted); margin-bottom:3px; }
+    .env-row label span { color:var(--accent2); font-weight:600; }
+    .env-row input[type=range] { width:100%; accent-color:var(--accent); cursor:pointer; }
+
+    /* ── You tab ─────────────────────────────────────────────────── */
+    .you-desc { font-size:.82rem; color:var(--muted); line-height:1.5; margin:0 0 14px; }
+    .you-section-hdr {
+      font-size:.7rem; text-transform:uppercase; letter-spacing:.09em;
+      color:var(--accent2); margin:14px 0 6px; font-weight:700;
+    }
+    .you-note {
+      font-size:.7rem; color:var(--muted); opacity:.75; line-height:1.4;
+      margin-top:3px; padding-left:2px;
+    }
+    .you-scale-labels {
+      display:grid;
+      grid-template-columns: 52px 1fr 52px;
+      align-items:center; gap:6px; margin-top:2px;
+    }
+    .you-scale-labels input[type=range] { width:100%; accent-color:var(--accent); cursor:pointer; }
+    .you-scale-min, .you-scale-max {
+      font-size:.68rem; color:var(--muted); line-height:1.2;
+    }
+    .you-scale-min { text-align:right; }
+    .you-scale-max { text-align:left; }
+
+    .you-toggle { display:flex; gap:6px; margin-top:4px; }
+    .you-opt {
+      flex:1; padding:5px 0; border-radius:8px; border:1px solid var(--line);
+      background:var(--panel-b); color:var(--muted); font-size:.8rem; font-weight:600;
+      cursor:pointer; transition:all .15s;
+    }
+    .you-opt.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+    /* ── Detail / Profile tab ────────────────────────────────────── */
+    .detail-hint { color:var(--muted); font-size:.86rem; line-height:1.5; margin:0; }
+    .detail-name { font-size:1.15rem; font-weight:700; margin-bottom:3px; }
+    .detail-name.vp { color:#ffd850; }
+    .detail-status { font-size:.86rem; font-weight:600; margin-bottom:9px; }
+    .detail-narrative { font-size:.82rem; color:var(--muted); line-height:1.5;
+      background:var(--panel-b); border:1px solid var(--line);
+      border-radius:10px; padding:9px 12px; margin-bottom:11px; }
+    .vp-narrative { border-color:rgba(255,216,80,0.3); background:rgba(255,216,80,0.04); }
+    .detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-bottom:12px; }
+    .detail-grid > div { background:var(--panel-b); border:1px solid var(--line);
+      border-radius:8px; padding:7px 10px; }
+    .detail-label { display:block; font-size:.68rem; color:var(--muted);
+      text-transform:uppercase; letter-spacing:.05em; margin-bottom:2px; }
+    .detail-sub { font-size:.7rem; text-transform:uppercase; letter-spacing:.08em;
+      color:var(--muted); margin-bottom:7px; margin-top:3px; }
+    .factor-row { display:flex; align-items:center; gap:7px; font-size:.76rem;
+      color:var(--muted); margin-bottom:5px; }
+    .factor-row > span { flex:0 0 130px; line-height:1.3; }
+    .factor-bar-wrap { flex:1; height:5px; background:var(--line); border-radius:3px; overflow:hidden; }
+    .factor-bar { height:100%; border-radius:3px; transition:width .4s; }
+    #brainstemCanvas { display:block; border-radius:8px; border:1px solid var(--line);
+      background:#060f16; margin-top:4px; width:100%; height:auto; }
+
+    /* ── About tab ───────────────────────────────────────────────── */
+    .about-body { font-size:.83rem; color:var(--muted); line-height:1.65; }
+    .about-body h3 { color:var(--text); font-size:.92rem; margin:14px 0 5px; }
+    .about-body p  { margin:0 0 9px; }
+    .about-body ul { padding-left:16px; margin:0 0 9px; }
+    .about-body li { margin-bottom:3px; }
+    .about-body .ref { font-size:.73rem; opacity:.7; }
+
+    @media (max-width:800px) {
+      .sim-page { height:auto; overflow:auto; }
+      .sim-main { grid-template-columns:1fr; height:auto; }
+      .sim-canvas-area { height:65vw; min-height:260px; }
+      #simCanvas { position:absolute; }
+    }
+  
+/* Colors for this page: the simulator's own palette, scoped so it does not touch the rest of the site. */
+.sim-page { --accent:#3a8fa8; --accent2:#5fb3c9; --panel:var(--surface); --panel-b:var(--soft); --text:var(--ink);
+  color:var(--ink); height:calc(100vh - 62px); min-height:560px; }
+.sim-main { border-top:1px solid var(--line); }
+</style>
+<div class="sim-page">
+
+  <div class="sim-main">
+    <!-- ── Left: canvas + toolbar ── -->
+    <div class="sim-left">
+      <div class="sim-canvas-area" id="canvasWrap">
+        <canvas id="simCanvas"></canvas>
+      </div>
+      <div class="sim-toolbar">
+        <button class="tb-btn active" id="playBtn">▶ Play</button>
+        <button class="tb-btn"        id="resetBtn">↺ Reset</button>
+        <div class="tb-sep"></div>
+        <div class="speed-wrap">
+          Speed
+          <input type="range" id="speedSlider" min="1" max="10" step="1" value="3" />
+          <span id="speedVal">3×</span>
+        </div>
+        <div class="tb-sep"></div>
+        <span id="toolbarHint" style="font-size:.76rem;color:var(--muted)">
+          Click any person to inspect · Yellow ring = You
+        </span>
+      </div>
+    </div>
+
+    <!-- ── Right: tabbed panel ── -->
+    <div class="sim-right">
+      <div class="panel-tabs">
+        <div class="panel-tab active" data-tab="stats">Population</div>
+        <div class="panel-tab"        data-tab="profile">Profile</div>
+        <div class="panel-tab"        data-tab="outbreak">Outbreak</div>
+        <div class="panel-tab"        data-tab="you">You</div>
+        <div class="panel-tab"        data-tab="env">Environment</div>
+        <div class="panel-tab"        data-tab="about">About</div>
+      </div>
+
+      <!-- Population tab -->
+      <div class="panel-body" id="tab-stats">
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="legend" id="legendEl">
+          <div class="legend-hdr">Status key</div>
+        </div>
+      </div>
+
+      <!-- Profile tab -->
+      <div class="panel-body" id="tab-profile" style="display:none">
+        <div id="detailPanel">
+          <p class="detail-hint">Click any person in the simulation to see their profile.</p>
+        </div>
+      </div>
+
+      <!-- Outbreak selector tab -->
+      <div class="panel-body" id="tab-outbreak" style="display:none">
+        <p style="font-size:.8rem;color:var(--muted);margin:0 0 12px;line-height:1.5">
+          Select an outbreak or exposure type. Each sets transmissibility and base post-illness rates
+          from published research. Environmental triggers expose the community directly rather than
+          spreading person-to-person. Changes take effect on next Reset.
+        </p>
+        <div class="outbreak-grid" id="outbreakGrid"></div>
+      </div>
+
+      <!-- You tab -->
+      <div class="panel-body" id="tab-you" style="display:none">
+        <div id="youProfileBody"></div>
+      </div>
+
+      <!-- Environment tab -->
+      <div class="panel-body" id="tab-env" style="display:none">
+        <div id="envControls"></div>
+      </div>
+
+      <!-- About tab -->
+      <div class="panel-body" id="tab-about" style="display:none">
+        <div class="about-body" id="aboutBody"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+
+  import { loadSimContent, renderSimPage, renderYouProfile } from './render-mecfs.js';
+  import { MECFSPopulationSim } from './mecfs-population.js';
+
+  // ── Load content ───────────────────────────────────────────────
+  const content = await loadSimContent();
+
+  // Shared reference so render functions can call sim methods
+  const simRef = { current: null };
+
+  renderSimPage(content, simRef);
+
+  // ── Canvas — use ResizeObserver for reliable sizing ────────────
+  const canvas    = document.getElementById('simCanvas');
+  const canvasWrap = document.getElementById('canvasWrap');
+
+  function sizeCanvas() {
+    const w = canvasWrap.clientWidth;
+    const h = canvasWrap.clientHeight;
+    if (w > 0 && h > 0 && (canvas.width !== w || canvas.height !== h)) {
+      canvas.width  = w;
+      canvas.height = h;
+      if (simRef.current) simRef.current.resize(w, h);
+    }
+  }
+
+  // ── Init sim ───────────────────────────────────────────────────
+  const detailEl = document.getElementById('detailPanel');
+  const statsEl  = document.getElementById('statsGrid');
+
+  function loop() {
+    if (!simRef.current) { requestAnimationFrame(loop); return; }
+    if (simRef.current.isRunning) simRef.current.step();
+    simRef.current.draw();
+    requestAnimationFrame(loop);
+  }
+
+  // Init after first layout frame
+  requestAnimationFrame(() => {
+    sizeCanvas();
+    simRef.current = new MECFSPopulationSim(canvas, detailEl, statsEl, content);
+
+    // ResizeObserver keeps canvas in sync with container at all times
+    const ro = new ResizeObserver(sizeCanvas);
+    ro.observe(canvasWrap);
+
+    // Canvas click → switch to profile tab after sim sets selection
+    canvas.addEventListener('click', () => {
+      if (simRef.current?.selected !== null) switchTab('profile');
+    });
+
+    requestAnimationFrame(loop);
+  });
+
+  // ── Play / pause ───────────────────────────────────────────────
+  const playBtn = document.getElementById('playBtn');
+  playBtn.addEventListener('click', () => {
+    if (!simRef.current) return;
+    if (simRef.current.isRunning) {
+      simRef.current.pause(); playBtn.textContent = '▶ Play'; playBtn.classList.remove('active');
+    } else {
+      simRef.current.play();  playBtn.textContent = '⏸ Pause'; playBtn.classList.add('active');
+    }
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    if (!simRef.current) return;
+    simRef.current.reset();
+    playBtn.textContent = '▶ Play';
+    playBtn.classList.remove('active');
+  });
+
+  // ── Speed ──────────────────────────────────────────────────────
+  document.getElementById('speedSlider').addEventListener('input', e => {
+    if (simRef.current) simRef.current.speed = +e.target.value;
+    document.getElementById('speedVal').textContent = e.target.value + '×';
+  });
+
+  // ── Tabs ───────────────────────────────────────────────────────
+  const tabs = document.querySelectorAll('.panel-tab');
+  function switchTab(id) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+    document.querySelectorAll('.panel-body').forEach(b => b.style.display = 'none');
+    document.getElementById('tab-' + id).style.display = 'block';
+    if (id === 'profile' && simRef.current) simRef.current._updateDetail();
+  }
+  tabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
+
+  // ── Environment sliders ────────────────────────────────────────
+  document.getElementById('envControls').addEventListener('input', e => {
+    const inp = e.target;
+    if (!inp.dataset.env || !simRef.current) return;
+    simRef.current.setEnv(inp.dataset.env, inp.value);
+    const valEl = document.getElementById('v-' + inp.dataset.env);
+    if (valEl) valEl.textContent = (+inp.value).toFixed(
+      inp.step.includes('.') ? inp.step.split('.')[1].length : 0
+    );
+  });
+</script>
+
+</main>
+<footer><div class="wrap">
+  <div><strong>ISRD</strong><br>Interdisciplinary Systemics R&amp;D</div>
+  <div><a href="/research/">Research</a> · <a href="/articles/">Articles</a><br><a href="/courses/">Courses</a> · <a href="/simulations/">Simulations</a><br><a href="/about/">About</a></div>
+  <div>© ISRD. All rights reserved.</div>
+</div></footer>
+
+</body>
+</html>

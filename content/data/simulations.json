@@ -1,0 +1,87 @@
+[
+ {
+  "id": "postviral",
+  "title": "Post-Viral Syndrome Outbreak",
+  "description": "Agent-based population simulation tracking viral outbreak and post-viral ME/CFS conversion across 100 individuals. 25+ calibrated risk factors, brainstem ANS dynamics, YOU character.",
+  "concept": "Bio-Systemics",
+  "era": 3,
+  "tier": "demo",
+  "topology": "grid",
+  "path": "/simulations/postviral"
+ },
+ {
+  "id": "regulatory-capture",
+  "title": "The Latched Loop",
+  "description": "A closed feedback loop can settle into two different stable states \u2014 and the pressure needed to enter the unhealthy one is lower than the pressure needed to leave it. Models the bistable regulatory-capture mechanism proposed in an ME/CFS hypothesis.",
+  "concept": "Regulatory Capture",
+  "collection": "rpnd",
+  "collectionLabel": "RPND: Regulatory Capture Model",
+  "era": 3,
+  "tier": "demo",
+  "topology": "continuous",
+  "path": "/simulations/regulatory-capture"
+ },
+ {
+  "id": "privileged-node",
+  "title": "The Privileged Node",
+  "description": "Four biological pacemakers keep the body's rhythms in sync. Three are entrained peers \u2014 one has a voluntary override door, a body-wide diffusible output, and a direct limbic connection the others lack. Why that structural asymmetry matters.",
+  "concept": "Regulatory Capture",
+  "collection": "rpnd",
+  "collectionLabel": "RPND: Regulatory Capture Model",
+  "era": 3,
+  "tier": "demo",
+  "topology": "network",
+  "path": "/simulations/privileged-node",
+  "status": "In Development"
+ },
+ {
+  "id": "boids",
+  "title": "Emergence / Flocking",
+  "description": "Each agent follows three simple local rules \u2014 avoid, align, cohere. No agent sees the global pattern. The flock emerges from purely local interactions.",
+  "concept": "Emergence",
+  "era": 3,
+  "tier": "demo",
+  "topology": "continuous",
+  "path": "/simulations/boids"
+ },
+ {
+  "id": "feedback",
+  "title": "Feedback Loops",
+  "description": "Reinforcing loops amplify change. Balancing loops resist change and seek equilibrium. Most complex systems are networks of both.",
+  "concept": "Systems Dynamics",
+  "era": 3,
+  "tier": "demo",
+  "topology": "continuous",
+  "path": "/simulations/feedback"
+ },
+ {
+  "id": "lorenz",
+  "title": "Lorenz Attractor",
+  "description": "Three linked differential equations produce a trajectory that never repeats yet stays bounded. Tiny differences in starting position lead to completely different futures.",
+  "concept": "Chaos Theory",
+  "era": 3,
+  "tier": "demo",
+  "topology": "continuous",
+  "path": "/simulations/lorenz"
+ },
+ {
+  "id": "era4-network",
+  "title": "Network Diffusion",
+  "description": "A contagion spreads through a small-world network. Hubs drive early cascades; local clusters slow saturation. Network topology \u2014 not transmission rate alone \u2014 determines the shape of spread.",
+  "concept": "Networked Complexity",
+  "era": 4,
+  "tier": "demo",
+  "topology": "network",
+  "path": "/simulations/era4-network"
+ },
+ {
+  "id": "era5-entanglement",
+  "title": "Backroom Dynamics",
+  "description": "Two networks overlay the same population: the formal hierarchy and the informal relationship layer. A decision cascades through both \u2014 the informal network redistributes influence in ways the org chart cannot predict.",
+  "concept": "Entanglement",
+  "era": 5,
+  "tier": "demo",
+  "topology": "multilayer",
+  "path": "/simulations/era5-entanglement"
+ }
+]

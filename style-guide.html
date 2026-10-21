@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISRD design system</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="/">IS<span>R</span>D</a>
+  <nav aria-label="Main"><a href="/">Home</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+</div></header>
+<main>
+<section><div class="wrap">
+  <p class="eyebrow">Design system</p>
+  <h1>Tokens and parts</h1>
+  <p class="lede">Every division site (Writer, Press, Simulations, Lab) uses the same <code>style.css</code> tokens, so a new page inherits the look and both themes.</p>
+
+  <h2>Color tokens</h2>
+  <div class="swatches">
+    <div class="sw"><i style="background:var(--bg)"></i><b>Background</b><code>--bg</code></div>
+    <div class="sw"><i style="background:var(--surface)"></i><b>Surface</b><code>--surface</code></div>
+    <div class="sw"><i style="background:var(--soft)"></i><b>Soft band</b><code>--soft</code></div>
+    <div class="sw"><i style="background:var(--ink)"></i><b>Ink</b><code>--ink</code></div>
+    <div class="sw"><i style="background:var(--muted)"></i><b>Muted</b><code>--muted</code></div>
+    <div class="sw"><i style="background:var(--brand)"></i><b>Brand</b><code>--brand</code></div>
+    <div class="sw"><i style="background:var(--accent)"></i><b>Accent</b><code>--accent</code></div>
+    <div class="sw"><i style="background:var(--line)"></i><b>Line</b><code>--line</code></div>
+  </div>
+
+  <h2 style="margin-top:1.6em">Type</h2>
+  <h1>Heading one, serif</h1><h2>Heading two</h2><h3>Heading three</h3>
+  <p>Body text is the system sans at 1.05rem with a 1.65 line height, so it reads well on a phone. <a href="#">A link</a> sits in the brand color.</p>
+
+  <h2>Parts</h2>
+  <div class="cta"><a class="btn primary" href="#">Primary</a><a class="btn ghost" href="#">Ghost</a></div>
+  <div class="grid">
+    <div class="card"><span class="tag live">Live</span><h3>Card</h3><p>A division or item, with a status tag.</p></div>
+    <div class="card"><span class="tag soon">Coming</span><h3>Card, not yet open</h3><p>Not a link until the division is live.</p></div>
+  </div>
+</div></section>
+</main>
+</body>
+</html>

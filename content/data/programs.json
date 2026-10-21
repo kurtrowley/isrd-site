@@ -1,0 +1,131 @@
+[
+ {
+  "id": "bio-systemics",
+  "title": "Bio-Systemics",
+  "subtitle": "Post-viral illness and brainstem attractor dynamics",
+  "description": "Investigates ME/CFS and post-viral syndromes as emergent attractor states — conditions where the nervous system settles into a dysfunctional stable basin following viral insult. We model the population epidemiology of ME/CFS conversion, the role of brainstem-HPA axis dysregulation, and intervention pathways that might shift the system toward recovery basins.",
+  "research_questions": [
+   "What combination of pre-existing risk factors most reliably predicts ME/CFS conversion post-infection?",
+   "Can brainstem mechanical load (Chiari, CCI) be modelled as a structural attractor modifier?",
+   "How do social and environmental stressors interact with immune function to shape post-viral trajectory?",
+   "Does a bistable regulatory-capture model (sustained cortical/limbic override of the respiratory pacemaker) account for why the illness state outlasts its trigger?"
+  ],
+  "tools": [
+   "Post-Viral Syndrome Outbreak Simulator",
+   "The Latched Loop",
+   "Brainstem ANS Diagram",
+   "Risk Factor Modelling"
+  ],
+  "related_simulators": [
+   {
+    "label": "Post-Viral Syndrome Outbreak",
+    "path": "/simulations/postviral"
+   },
+   {
+    "label": "The Latched Loop",
+    "path": "/simulations/regulatory-capture"
+   },
+   {
+    "label": "The Privileged Node",
+    "path": "/simulations/privileged-node",
+    "status": "In Development"
+   }
+  ],
+  "theme": "blue-pulse",
+  "path": "/research/bio-systemics",
+  "ai_use": "AI assists in interpreting multi-run simulation outputs, identifying non-linear risk interactions, and connecting simulation findings to published epidemiological literature."
+ },
+ {
+  "id": "literary-systemics",
+  "title": "Literary Systemics",
+  "subtitle": "Narrative structure as a feedback system",
+  "description": "Applies systemic synthesis to the craft and impact of writing. Narrative is modelled as a feedback network: reader clarity, tension, and engagement are interdependent nodes. We develop a Reader-First framework that helps authors understand how structural choices propagate through the reading experience — and where interventions have the highest leverage.",
+  "research_questions": [
+   "How do reinforcing and balancing feedback loops manifest in effective narrative structure?",
+   "Can systemic analysis predict reader drop-off, confusion, or emotional disengagement?",
+   "What is the optimal tension-clarity trade-off for different reader objectives?"
+  ],
+  "tools": [
+   "Writing Impact Simulator",
+   "Narrative Feedback Loop Modeller",
+   "Author Strategy Analyser"
+  ],
+  "theme": "amber",
+  "path": "/research/literary-systemics",
+  "ai_use": "AI assists in generating structural critiques of narrative drafts, suggesting rebalancing interventions, and mapping text passages to feedback graph nodes."
+ },
+ {
+  "id": "global-futurism",
+  "title": "Global Futurism",
+  "subtitle": "Civilisational tipping points and macro-systemic attractors",
+  "description": "Models the macro-dynamics of civilisation as a complex adaptive system — one with multiple potential attractor basins ranging from stable cooperation to systemic collapse. We investigate how inequality, technological acceleration, climate stress, and social infrastructure interact to push societies toward or away from tipping points.",
+  "research_questions": [
+   "Which combinations of stressors most reliably push civilisational systems past bifurcation thresholds?",
+   "Do socio-economic tipping points follow the same attractor geometry as physical systems?",
+   "What systemic interventions have the highest leverage for stabilising cooperative attractor states?"
+  ],
+  "tools": [
+   "Macro-Systemic Trend Simulator",
+   "Attractor Basin Visualiser",
+   "Tipping Point Forecaster"
+  ],
+  "theme": "violet",
+  "path": "/research/global-futurism",
+  "ai_use": "AI assists in scenario generation, cross-domain pattern recognition, and connecting simulation states to current geopolitical and economic indicators."
+ },
+ {
+  "id": "writing-with-ai",
+  "title": "Writing With AI",
+  "subtitle": "Designing AI-assisted systems that scaffold expert writing practice",
+  "description": "Investigates expert long-form writing as a complex cognitive system, and asks what a software environment looks like when it is built around the structure of that process — clarity, tension, structural revision, voice — rather than around the easier-to-automate task of generating text. This program produced Systemic Writer, an AI-assisted writing environment built as a design experiment: software as both output and evidence that the underlying model of the writing process holds up under real-world use.",
+  "research_questions": [
+   "What is the cognitive structure of expert long-form writing, and where are its highest-leverage intervention points?",
+   "Can an AI-assisted environment scaffold that structure — preserving human judgment at every consequential decision — without collapsing into pure text generation?",
+   "Does a production system built on this model function as evidence that the underlying theory of the writing process is accurate?"
+  ],
+  "tools": [
+   "Systemic Writer"
+  ],
+  "theme": "amber",
+  "path": "/research/writing-with-ai",
+  "ai_use": "AI is the core process facilitator under study — not a novelty feature. The program investigates how language models can be structured to support, rather than replace, expert judgment throughout the writing process.",
+  "report_slug": "designing-toward-a-theory",
+  "product_url": "https://systemicwriter.com",
+  "product_label": "Visit Systemic Writer →"
+ },
+ {
+  "id": "reader-first-writing-system",
+  "title": "Reader-First Writing System",
+  "subtitle": "The cognitive and systems basis for reader-centered writing",
+  "description": "The cognitive and systems basis for reader-centered instructional writing: designing documents that transfer understanding. The program treats the reader as the system being designed for, and builds a method for long-form writing around the reader's evolving state, expectations and motivation.",
+  "research_questions": [],
+  "tools": [],
+  "theme": "amber",
+  "path": "/research/reader-first-writing-system",
+  "ai_use": "",
+  "product_url": "https://writer.isrd.com",
+  "product_label": "Open Systemic Writer",
+  "related": [
+   {
+    "label": "Reader-First: Why Most Writing Begins at the Wrong End",
+    "href": "/articles/reader-first-intro/"
+   },
+   {
+    "label": "Learner-First Systemic Education",
+    "href": "/articles/learner-first-systemic-learning/"
+   },
+   {
+    "label": "The Attractor Engineering Framework",
+    "href": "/research/papers/attractor-engineering-framework/"
+   },
+   {
+    "label": "Writing With AI: the research program behind Systemic Writer",
+    "href": "/research/writing-with-ai/"
+   },
+   {
+    "label": "Research methodology and publications",
+    "href": "/research/methodology-and-publications/"
+   }
+  ]
+ }
+]

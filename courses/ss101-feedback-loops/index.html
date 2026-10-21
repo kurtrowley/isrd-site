@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feedback Loops | ISRD</title>
+<meta name="description" content="The circular causality that makes system behavior counterintuitive — reinforcing and balancing loops, delay, and why feedback is the engine of dynamic behavior.">
+<meta name="theme-color" content="#0f6b5c">
+<link rel="stylesheet" href="/style.css">
+<script src="/theme.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+  <a class="brand" href="/">IS<span>R</span>D</a>
+  <nav aria-label="Main"><a href="/research/">Research</a><a href="/articles/">Articles</a><a href="/courses/" aria-current="page">Courses</a><a href="/simulations/">Simulations</a><a href="/media/">Media</a><a href="https://writer.isrd.com">Writer</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+</div></header>
+<main id="main">
+<div class="pagehead"><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="/courses/">Courses</a></nav><p class="eyebrow">Reading · Systems Science 101</p><h1>Feedback Loops</h1><p class=lede>The circular causality that makes system behavior counterintuitive — reinforcing and balancing loops, delay, and why feedback is the engine of dynamic behavior.</p></div></div><div class="wrap"><article class="prose"><p><em>Systems Science 101 — Core Concepts</em></p>
+<hr />
+<p>A <strong>feedback loop</strong> exists when the output of a system influences its own input. This circular causality is the defining feature of dynamic systems and the primary reason system behavior is so often counterintuitive.</p>
+<p>Most human reasoning is linear: A causes B, B causes C, C causes D. Feedback thinking is circular: A causes B, which loops back and changes A. The loop changes everything.</p>
+<h2 id="two-types-of-feedback">Two Types of Feedback</h2>
+<p>All feedback loops are either <strong>reinforcing</strong> or <strong>balancing</strong>.</p>
+<h3 id="reinforcing-loops-positive-feedback">Reinforcing Loops (Positive Feedback)</h3>
+<p>A reinforcing loop amplifies change in the same direction. More produces more; less produces less. The name "positive feedback" refers to the direction of effect, not its value — positive feedback can drive a system toward catastrophe just as easily as toward growth.</p>
+<p>Classic reinforcing loops:</p>
+<ul>
+<li><strong>Compound interest</strong> — money earns interest, which adds to principal, which earns more interest</li>
+<li><strong>Population growth</strong> — more people → more births → more people</li>
+<li><strong>Word of mouth</strong> — more users → more referrals → more users</li>
+<li><strong>Erosion</strong> — soil loss → less vegetation → more erosion</li>
+<li><strong>Panic selling</strong> — falling prices → fear → more selling → lower prices</li>
+</ul>
+<p>Reinforcing loops always produce exponential change — growth curves or collapse curves. Left unchecked, they run to limits.</p>
+<p><strong>Notation:</strong> Reinforcing loops are labeled <strong>R</strong> in causal diagrams. Every link in the loop has a consistent direction: all positive (same direction as cause), or an even number of negative links.</p>
+<h3 id="balancing-loops-negative-feedback">Balancing Loops (Negative Feedback)</h3>
+<p>A balancing loop resists change and seeks equilibrium. It compares a current state to a goal and acts to close the gap. All goal-seeking behavior is driven by balancing loops.</p>
+<p>Classic balancing loops:</p>
+<ul>
+<li><strong>Thermostat</strong> — actual temperature → gap from setpoint → heating/cooling → actual temperature</li>
+<li><strong>Homeostasis</strong> — blood glucose → insulin response → blood glucose</li>
+<li><strong>Inventory management</strong> — stock level → reorder trigger → deliveries → stock level</li>
+<li><strong>Predator-prey</strong> — prey population → predator reproduction → predation → prey population</li>
+<li><strong>Interest rate policy</strong> — inflation → rate adjustment → borrowing costs → economic activity → inflation</li>
+</ul>
+<p>Balancing loops produce stability — or oscillation, if there is significant delay between sensing the gap and acting on it.</p>
+<p><strong>Notation:</strong> Balancing loops are labeled <strong>B</strong> in causal diagrams. They contain an odd number of negative links (links where the effect moves opposite to the cause).</p>
+<h2 id="reading-the-arrows">Reading the Arrows</h2>
+<p>In a causal loop diagram, each arrow is labeled <strong>+</strong> or <strong>−</strong>:</p>
+<ul>
+<li><strong>+</strong> (same direction): when the cause increases, the effect increases; when the cause decreases, the effect decreases</li>
+<li><strong>−</strong> (opposite direction): when the cause increases, the effect decreases; when the cause decreases, the effect increases</li>
+</ul>
+<p><em>Example: predator-prey</em></p>
+<pre><code>Prey population →(+)→ Predator births →(+)→ Predator population
+Predator population →(+)→ Predation rate →(−)→ Prey population
+</code></pre>
+<p>Count the negative links around the loop: one (the predation rate → prey link). Odd number → balancing loop. This loop produces oscillation — classic predator-prey cycles.</p>
+<h2 id="why-feedback-matters">Why Feedback Matters</h2>
+<p><strong>Systems don't behave the way we push them.</strong> In a linear world, more effort produces more result. In a feedback world, the system responds to your intervention in ways that can amplify, dampen, or reverse your intended effect.</p>
+<p><strong>Delays make feedback dangerous.</strong> If there is a long lag between cause and effect, actors respond to outdated information. They overshoot and then overcorrect. The result is oscillation — and sometimes collapse.</p>
+<p><strong>High-leverage points are often in the feedback structure.</strong> Changing a parameter (a price, a rate, a quantity) rarely changes system behavior fundamentally. Changing the feedback structure — adding a new loop, removing a delay, shifting a goal — can change everything.</p>
+<h2 id="feedback-and-information">Feedback and Information</h2>
+<p>From an information systems perspective, feedback loops are <strong>signal processing architectures</strong>. Every loop carries information about a system's state and uses that information to modulate its own behavior.</p>
+<p>This framing reveals several things that the standard control-systems view underemphasizes:</p>
+<ul>
+<li><strong>What the system measures</strong> is as important as what it does with the measurement. A sensor that measures the wrong variable — or measures the right variable with too much delay — produces a feedback loop that regulates the wrong thing, or regulates too slowly to be effective.</li>
+<li><strong>What the system ignores</strong> is equally important. Every feedback loop is selective. It responds to some signals and filters out others. The design of this selectivity determines what the system is actually managing.</li>
+<li><strong>Attractor states</strong> are defined by feedback structure. A balancing loop with a fixed goal defines a fixed-point attractor — the system will return to that point after perturbation. Multiple interacting loops define a richer attractor landscape: stable points, cycles, and in complex cases, strange attractors. The feedback structure <em>is</em> the attractor structure.</li>
+</ul>
+<p>This is why understanding feedback loops is not just about tracing causal arrows — it is about understanding what information the system is using, what it is optimizing for, and where it will naturally settle.</p>
+<h2 id="feedback-in-practice">Feedback in Practice</h2>
+<p>Recognizing feedback loops in real systems:</p>
+<ol>
+<li><strong>Identify the key stocks</strong> — what is accumulating or depleting?</li>
+<li><strong>Ask what drives the flows</strong> — what controls how fast the stock changes?</li>
+<li><strong>Trace the influence back</strong> — does the stock itself influence the flows? Through what path?</li>
+<li><strong>Identify the goal</strong> (for balancing loops) — what state is the loop trying to achieve?</li>
+<li><strong>Find the delays</strong> — how much lag separates cause from effect?</li>
+</ol>
+<p>A system with multiple interacting feedback loops — some reinforcing, some balancing, with varying delays — can produce any behavior: growth, oscillation, collapse, S-curves, or chaotic fluctuation. The behavior is in the structure.</p>
+<hr />
+<p><em>Part of the <a href="/courses/ss101-what-is-systems-science/">Systems Science 101</a> reference.</em>
+<em>See also: <a href="/courses/ss101-emergence/">Emergence</a> · <a href="/courses/ss101-what-is-systems-science/">What Is Systems Science?</a></em>
+<em>Deep dive: <a href="/courses/systems-dynamics-overview/">Systems Dynamics course</a></em></p></article></div>
+</main>
+<footer><div class="wrap">
+  <div><strong>ISRD</strong><br>Interdisciplinary Systemics R&amp;D</div>
+  <div><a href="/research/">Research</a> · <a href="/articles/">Articles</a><br><a href="/courses/">Courses</a> · <a href="/simulations/">Simulations</a><br><a href="/about/">About</a></div>
+  <div>© ISRD. All rights reserved.</div>
+</div></footer>
+
+</body>
+</html>

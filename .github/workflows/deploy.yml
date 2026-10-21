@@ -1,5 +1,7 @@
 name: Deploy to GitHub Pages
 
+# The site is plain static files, so there is nothing to build: this copies the published files into one
+# folder and uploads it. Source (content/, tools/) stays in the repo but is not part of the published site.
 on:
   push:
     branches: [main]
@@ -15,30 +17,23 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
-
-      - run: npm ci
-
-      - run: npm run build
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble the site
+        run: |
+          mkdir _site
+          cp -R index.html 404.html style.css theme.js style-guide.html CNAME \
+                about articles courses media research simulations _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
       - id: deployment
         uses: actions/deploy-pages@v4

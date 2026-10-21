@@ -1,0 +1,25 @@
+{
+  "intro": "ISRD, Interdisciplinary Systemics R&D, is a creative lab for systemic research and products. We apply a systems approach, in the modern sense that includes complexity and the human organism, to the connected domains humanity needs in order to become a sustainable civilization.",
+  "what": [
+    {"title": "Research", "text": "Programs in bio-systemics, literary systemics, global futurism and writing with AI, published as articles, reports and courses.", "href": "/research/"},
+    {"title": "Simulations", "text": "Interactive models that make feedback loops, attractors and emergence tangible, growing toward systemic gaming.", "href": "/simulations/"},
+    {"title": "Writing tools", "text": "Systemic Writer and ISRD Press: pre-publication tools that take a manuscript from first idea to a reader-tested draft.", "href": "https://writer.isrd.com"},
+    {"title": "Education", "text": "Learner-First Systemic Education: a framework for designing instruction that shifts mental models for good.", "href": "/courses/"}
+  ],
+  "principles_intro": "The same few commitments shape every project.",
+  "principles": [
+    {"title": "Design as evidence", "text": "Every project runs one cycle: map the system, form a testable hypothesis, build an intervention, and fold what happens back into the model. The working system is both the output and the evidence, and a visible failure is itself a finding."},
+    {"title": "Systemic synthesis first", "text": "The parts of a system are nodes in a directed graph, linked by feedback. We model the connections before the components."},
+    {"title": "Modular by design", "text": "Every simulation is pluggable. A new model is a new configuration for the shared toolkit."},
+    {"title": "AI that supports expert judgment", "text": "Components expose their state to AI services that interpret runs and suggest adjustments, while people make the consequential decisions."}
+  ],
+  "mission_title": "Everyone gets a voice",
+  "mission": "AI can give everybody a voice: a say in how Earth's resources are managed and where our civilization goes next. ISRD aims to help many producers, especially people who need AI support to be heard, and to keep the picture pluralistic: many perspectives, understood systemically.",
+  "person": {
+    "name": "Kurt Rowley, PhD",
+    "title": "Systems scientist · Medical researcher · Instructional designer",
+    "bio": "Kurt develops a rigorous, non-linear methodology for understanding complex adaptive systems, from post-viral illness to civilizational dynamics to the craft of writing. The work draws on general systems theory, cybernetics, complexity science and design-based research, and builds on decades of research in instructional design and learning technology.",
+    "areas": ["Systemic Synthesis", "Complex Adaptive Systems", "ME/CFS Research", "Literary Systemics", "Instructional Design", "AI Integration"],
+    "collab": "ISRD welcomes collaboration with researchers and organizations on specific projects where the fit is right."
+  }
+}

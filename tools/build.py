@@ -25,6 +25,7 @@ def data(name):
 
 ARTICLES, READINGS, PROGRAMS = data("articles"), data("course_readings"), data("programs")
 COURSES, MEDIA, REPORTS, SIMS = data("courses"), data("media"), data("reports"), data("simulations")
+PROGRAM_TITLE = {p["id"]: p["title"] for p in PROGRAMS}
 READING_BY_SLUG = {r["slug"]: r for r in READINGS}
 
 # ---- shared page frame -------------------------------------------------------------------------------
@@ -48,13 +49,13 @@ def page(path, title, body, desc="", mermaid=False, section=""):
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
   <a class="brand" href="/">IS<span>R</span>D</a>
-  <nav aria-label="Main">{nav}<a href="{WRITER_URL}">Writer</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+  <nav aria-label="Main">{nav}<a href="{WRITER_URL}">Writing Studio</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
 </div></header>
 <main id="main">
 {body}
 </main>
 <footer><div class="wrap">
-  <div><strong>ISRD</strong><br>Interdisciplinary Systemics R&amp;D</div>
+  <div><strong>ISRD</strong><br>Interdisciplinary Systems R&amp;D</div>
   <div><a href="/research/">Research</a> · <a href="/articles/">Articles</a><br><a href="/courses/">Courses</a> · <a href="/simulations/">Simulations</a><br><a href="/about/">About</a></div>
   <div>© ISRD. All rights reserved.</div>
 </div></footer>
@@ -134,9 +135,9 @@ def build_research():
     papers = "".join(
         f'<li><a href="/research/papers/{r["slug"]}/"><strong>{e(r["title"])}</strong></a>'
         f'{f"<br><span class=muted>{e(r.get("description", ""))}</span>" if r.get("description") else ""}</li>' for r in REPORTS)
-    intro = ("ISRD investigates complex adaptive systems through Systemic Synthesis, a non-linear, attractor-based methodology. "
+    intro = ("ISRD investigates complex adaptive systems through Cross-System Synthesis, a non-linear, attractor-based methodology. "
              "Each program uses interactive simulators, feedback-graph modeling and AI-assisted interpretation to generate and test hypotheses.")
-    page("/research/", "Research", head("ISRD Research", "Complex systemics research", intro) +
+    page("/research/", "Research", head("ISRD Research", "Complex systems research", intro) +
          f'<section><div class="wrap"><h2>Programs</h2><div class="grid">{progs}</div></div></section>'
          f'<section class="alt"><div class="wrap"><h2>Research reports</h2><ul class="rows">{papers}</ul>'
          '<p style="margin-top:1.4em"><a href="/research/methodology-and-publications/">Research methodology and publications →</a></p>'
@@ -150,7 +151,7 @@ def build_research():
         rel = "".join(f'<li><a href="/research/papers/{r["slug"]}/">{e(r["title"])}</a></li>' for r in REPORTS if r.get("program") == p["id"])
         if p.get("report_slug") and not rel:
             rel = f'<li><a href="/research/papers/{p["report_slug"]}/">Read the report</a></li>'
-        product = f'<p><a class="btn primary" href="{WRITER_URL}">{e(p.get("product_label") or "Visit Systemic Writer →")}</a></p>' if p.get("product_url") else ""
+        product = f'<p><a class="btn primary" href="{WRITER_URL}">{e(p.get("product_label") or "Visit ISRD Writing Studio →")}</a></p>' if p.get("product_url") else ""
         related = "".join(f'<li><a href="{r["href"]}">{e(r["label"])}</a></li>' for r in p.get("related", []))
         body = (head("Research program", p["title"], p["subtitle"], crumbs(("Research", "/research/"))) +
                 f'<section><div class="wrap two"><div class="prose"><p>{e(p["description"])}</p>'
@@ -168,7 +169,7 @@ def build_research():
          "ISRD's design-based research methodology, with publications and papers.", section="research")
     for r in REPORTS:
         body, m = render(f"research/{r['file']}")
-        top = head("Research report · " + (r.get("program") or "").replace("-", " ").title(), r["title"], r.get("description", ""), crumbs(("Research", "/research/")))
+        top = head("Research report" + (" · " + PROGRAM_TITLE.get(r.get("program"), r.get("program").replace("-", " ").title()) if r.get("program") else ""), r["title"], r.get("description", ""), crumbs(("Research", "/research/")))
         page(f"/research/papers/{r['slug']}/", r["title"], top + prose(body), r.get("description", ""), m, "research")
 
 
@@ -221,7 +222,7 @@ def build_simulations():
     page("/simulations/", "Simulations", head("ISRD Simulations", "Systems you can run",
          "Interactive models of feedback, emergence, chaos, network spread and regulatory capture. Change a parameter and watch the system respond.") +
          f'<section><div class="wrap"><div class="grid">{cards}</div>'
-         '<p class="muted" style="margin-top:1.6em">Systemic gaming is the next step: these models grow into scenarios you play.</p></div></section>',
+         '<p class="muted" style="margin-top:1.6em">Systems games are the next step: these models grow into scenarios you play.</p></div></section>',
          "Interactive systems-science simulations.", section="simulations")
 
 
@@ -260,7 +261,7 @@ def build_about():
     pr = a["person"]
     contact = (f'<p><a class="btn primary" href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a></p>' if CONTACT_EMAIL
                else '<p class="muted">Contact details are coming soon.</p>')
-    top = head("About", "A creative lab for systemic research and products", a["intro"]).replace(
+    top = head("About", "A creative lab for research and tools that help people shape the future", a["intro"]).replace(
         "</div></div>", f'<p class="lede">{e(a["aim"])}</p></div></div>', 1)
     body = (top +
             f'<section><div class="wrap"><h2>What we do</h2><div class="grid">{what}</div></div></section>'

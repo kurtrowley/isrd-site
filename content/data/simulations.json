@@ -3,7 +3,7 @@
   "id": "postviral",
   "title": "Post-Viral Syndrome Outbreak",
   "description": "Agent-based population simulation tracking viral outbreak and post-viral ME/CFS conversion across 100 individuals. 25+ calibrated risk factors, brainstem ANS dynamics, YOU character.",
-  "concept": "Bio-Systemics",
+  "concept": "Health Systems",
   "era": 3,
   "tier": "demo",
   "topology": "grid",

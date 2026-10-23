@@ -1,10 +1,10 @@
-# Learner-First Systemic Education
+# Learner-First Education
 
 *A new framework for designing instruction in complex domains*
 
 ---
 
-![Learner-First Systemic Education](/articles/learner_first_header.png)
+![Learner-First Education](/articles/learner_first_header.png)
 
 There is a persistent gap between how people are taught and how people actually learn. Most online instruction closes this gap by adding more content — more videos, more reading, more slides. The content is better organized, better produced, more accessible than ever. And yet transfer fails. Skills don't stick. Behavior doesn't change. The training is completed, the box is checked, and six months later the problem the training was supposed to solve is still there.
 
@@ -20,7 +20,7 @@ Learning, properly understood, is an attractor-shifting process. When a learner 
 
 Traditional instruction does not address this. It delivers content, measures retention at the end of the lesson, and reports completion. The lesson may be pedagogically excellent and still fail to shift the attractor, because attractor-shifting requires something different from content delivery. It requires first identifying the current attractor, then applying a carefully sequenced set of perturbations that destabilize the wrong model, provide an alternative structural explanation, and establish the conditions under which the new model becomes self-sustaining.
 
-This is what Learner-First Systemic Education is designed to do.
+This is what Learner-First Education is designed to do.
 
 ---
 
@@ -44,13 +44,13 @@ graph TD
   TR -->|yes| EM[Expert Attractor]
 ```
 
-Systemic means that the learning design treats the learner, the content, the instructor, and the learning environment as nodes in a feedback system — each influencing the others in ways that determine whether the attractor shift succeeds. It means that the design of a course is as much about the feedback structure connecting the elements as about the content of those elements. And it means that the learner's trajectory through the learning system is modeled explicitly, rather than assumed to follow the course outline.
+Learner-First means that the learning design treats the learner, the content, the instructor, and the learning environment as nodes in a feedback system — each influencing the others in ways that determine whether the attractor shift succeeds. It means that the design of a course is as much about the feedback structure connecting the elements as about the content of those elements. And it means that the learner's trajectory through the learning system is modeled explicitly, rather than assumed to follow the course outline.
 
 ---
 
 ## The Framework: Seven Phases
 
-Learner-First Systemic Education organizes each instructional module into seven phases. These are not linear steps — they are nodes in a feedback cycle that may be revisited as the learner's understanding develops.
+Learner-First Education organizes each instructional module into seven phases. These are not linear steps — they are nodes in a feedback cycle that may be revisited as the learner's understanding develops.
 
 ### Phase 1: Surface the Attractor
 
@@ -92,7 +92,7 @@ This is the modern equivalent of the intelligent tutoring system: adaptive, resp
 
 The learner applies the concept to a new domain. The challenge is deliberately chosen to make the structural correspondence non-obvious — not "here is another feedback loop example" but "here is a situation from a completely different field; identify the attractor dynamics." This is where the isomorphism principle becomes a learning tool. Transfer that requires identifying structural correspondence across domains is more durable and more flexible than near-transfer to similar situations.
 
-### Phase 7: Systemic Integration
+### Phase 7: Whole-System Integration
 
 The final phase explicitly connects the new concept to the broader course graph. What other concepts depend on this one? What does this concept enable that was not available before? The learner sees the feedback structure of the course itself — the dependency network connecting concepts — and updates their map of the domain. This is metacognitive by design: the learner is learning to model their own knowledge as a system.
 
@@ -100,7 +100,7 @@ The final phase explicitly connects the new concept to the broader course graph.
 
 ## AI as Pedagogical Infrastructure
 
-The AI layer in a Learner-First Systemic Education course is not a chatbot. It is a pedagogical instrument with a defined role at each phase.
+The AI layer in a Learner-First Education course is not a chatbot. It is a pedagogical instrument with a defined role at each phase.
 
 In Phase 1, AI analyzes the learner's pre-task response and classifies the attractor — which of the known misconception patterns is this learner operating from? This determines which version of the perturbation in Phase 2 will be most effective.
 
@@ -116,11 +116,11 @@ This is not science fiction. It is a carefully designed prompt architecture, a p
 
 ## Simulation as Epistemological Tool
 
-The role of simulation in Learner-First Systemic Education is distinct from its conventional use in training. Simulation is not used to practice a procedure, demonstrate a concept, or provide an engaging alternative to reading. It is used because direct manipulation of a model is the most effective way to shift an attractor.
+The role of simulation in Learner-First Education is distinct from its conventional use in training. Simulation is not used to practice a procedure, demonstrate a concept, or provide an engaging alternative to reading. It is used because direct manipulation of a model is the most effective way to shift an attractor.
 
 When a learner adjusts the balancing gain in a feedback loop simulation and watches the stock overshoot, oscillate, and settle — or fail to settle — they are building a mental model from their own hypothesis-testing, not from passive reception. The model they build is verified against their direct experience of the dynamics, not against a description of those dynamics. It is more accurate, more robust to challenge, and more likely to generalize.
 
-ISRD's simulation toolkit is designed specifically for this purpose. The Feedback Loops, Lorenz Attractor, and Emergence simulations in the Foundry Simulations are not demonstrations — they are explorable model spaces. The ME/CFS Population Outbreak Simulator is an agent-based environment in which a learner can directly observe how systemic risk factors interact to produce an outcome that cannot be predicted from any individual factor. The macro-systemic simulations allow a learner to directly observe civilizational tipping points that resist any purely linear causal account.
+ISRD's simulation toolkit is designed specifically for this purpose. The Feedback Loops, Lorenz Attractor, and Emergence simulations in the Foundry Simulations are not demonstrations — they are explorable model spaces. The ME/CFS Population Outbreak Simulator is an agent-based environment in which a learner can directly observe how system-level risk factors interact to produce an outcome that cannot be predicted from any individual factor. The macro-scale simulations allow a learner to directly observe civilizational tipping points that resist any purely linear causal account.
 
 Each of these simulations is a Phase 4 instrument. Their pedagogical role becomes clear when they are embedded in a course design that includes Phases 1-3 (establishing the attractor, perturbing it, providing structural exposition) and Phases 5-7 (reflection, transfer, integration). Without that context, they are interesting experiences. With it, they become attractor-shifting tools.
 
@@ -130,15 +130,15 @@ Each of these simulations is a Phase 4 instrument. Their pedagogical role become
 
 The framework has immediate applicability across a wide range of domains, each of which illustrates where the approach could be applied:
 
-**Health and medicine.** Clinicians, patients, and healthcare systems consistently fail to understand chronic and complex conditions because their mental models are built on linear causation. Feedback-based attractor models of conditions like ME/CFS, treatment-resistant depression, and metabolic dysfunction require exactly the kind of attractor-shifting that Learner-First Systemic Education is designed to produce.
+**Health and medicine.** Clinicians, patients, and healthcare systems consistently fail to understand chronic and complex conditions because their mental models are built on linear causation. Feedback-based attractor models of conditions like ME/CFS, treatment-resistant depression, and metabolic dysfunction require exactly the kind of attractor-shifting that Learner-First Education is designed to produce.
 
 **Organizational development.** Leaders and change managers consistently apply interventions that trigger the policy resistance they are trying to overcome, because their mental models of organizations are linear. Shifting those models toward feedback-graph understanding is a training challenge that conventional instructional-design approaches cannot meet.
 
-**Systems science education.** Teaching people to think systemically — to see feedback loops, attractors, and tipping points rather than causes and effects — is itself a major attractor-shifting challenge. The existing mental model (linear causation, isolated variables, reductionist analysis) is deeply stable and culturally reinforced.
+**Systems science education.** Teaching people to think in systems — to see feedback loops, attractors, and tipping points rather than causes and effects — is itself a major attractor-shifting challenge. The existing mental model (linear causation, isolated variables, reductionist analysis) is deeply stable and culturally reinforced.
 
 **AI and technology literacy.** The most important misconceptions about AI are structural: people model language models as retrieval systems, as reasoning agents, as oracles. Understanding LLMs as networked complexity systems — the Era Four framing — requires the same kind of attractor-shifting as understanding any other complex system.
 
-**Research methodology.** Complex systems require research approaches that are not based on controlled variable isolation. Teaching researchers to design for complexity — to work with attractor states, to use agent-based modeling, to interpret emergence — is a pedagogy challenge that Learner-First Systemic Education is positioned to address.
+**Research methodology.** Complex systems require research approaches that are not based on controlled variable isolation. Teaching researchers to design for complexity — to work with attractor states, to use agent-based modeling, to interpret emergence — is a pedagogy challenge that Learner-First Education is positioned to address.
 
 In each case, the pattern is the same: a deeply stable wrong mental model, a domain of knowledge that requires a fundamentally different structural understanding, and a conventional training approach that delivers correct information without addressing the attractor maintaining the wrong model.
 
@@ -146,7 +146,7 @@ In each case, the pattern is the same: a deeply stable wrong mental model, a dom
 
 ## Education as a System — and What That Means for Its Future
 
-Everything described so far has been framed in terms of training programs and course design. That framing is practical and immediate. But the deeper argument of Learner-First Systemic Education is about something larger: the nature of education itself, and what a genuinely systemic approach reveals about where it is going.
+Everything described so far has been framed in terms of training programs and course design. That framing is practical and immediate. But the deeper argument of Learner-First Education is about something larger: the nature of education itself, and what a genuinely whole-system approach reveals about where it is going.
 
 Education, at every level, is a complex adaptive system — and it is currently stuck in an attractor. That attractor has a recognizable structure: content organized by discipline, delivered in fixed sequences, assessed by recall, credentialed by completion. It was designed for an era when knowledge was scarce, access to expertise was limited, and the primary educational challenge was transmission — getting information from the few who held it to the many who needed it.
 
@@ -170,11 +170,11 @@ This is not a new observation. Systems thinkers from Forrester to Meadows have i
 
 What is new is that the technological conditions maintaining the old attractor are being removed faster than the institutional response can compensate. AI is not improving the transmission model — it is making the transmission model obsolete. When a learner can ask Claude or GPT to explain any concept at any level, with infinite patience and adaptive scaffolding, the value proposition of content delivery collapses. What remains is the value of learning design: knowing which attractor the learner is currently in, which sequence of perturbations will destabilize it, and which experiences will allow the new model to become self-sustaining.
 
-That is irreducibly a design problem. It is not something AI can do for the learner. It is something that must be done *for* the learning system as a whole — and it is exactly what Learner-First Systemic Education is designed to address.
+That is irreducibly a design problem. It is not something AI can do for the learner. It is something that must be done *for* the learning system as a whole — and it is exactly what Learner-First Education is designed to address.
 
 ### What an Educational System Could Look Like
 
-The implications extend well beyond individual courses. At the level of curriculum design, a systemic approach asks different questions than the traditional discipline-based model:
+The implications extend well beyond individual courses. At the level of curriculum design, a whole-system approach asks different questions than the traditional discipline-based model:
 
 Not "what subjects should students study?" but "what attractor landscapes does the student need to navigate — and in what sequence does one attractor shift enable the next?"
 
@@ -182,7 +182,7 @@ Not "how much content should each course cover?" but "what is the minimal struct
 
 Not "how should students be assessed?" but "what diagnostic task would reveal which attractor the student is currently in, and whether the intended shift has actually occurred?"
 
-These are not just questions for online course designers. They are questions for every level of educational architecture — from the design of a single lesson to the design of an institution's entire learning trajectory. And they are questions that cannot be answered without a systemic framework. The feedback loops connecting early learning to later learning, the attractor landscape of expert understanding in any domain, the tipping points at which a learner's mental model shifts qualitatively rather than incrementally — these are not visible from within a content-first design paradigm.
+These are not just questions for online course designers. They are questions for every level of educational architecture — from the design of a single lesson to the design of an institution's entire learning trajectory. And they are questions that cannot be answered without a whole-system framework. The feedback loops connecting early learning to later learning, the attractor landscape of expert understanding in any domain, the tipping points at which a learner's mental model shifts qualitatively rather than incrementally — these are not visible from within a content-first design paradigm.
 
 ### AI and the Personalization of Attractor-Shifting
 
@@ -196,11 +196,11 @@ The educational institutions that will matter in the next twenty years are not t
 
 ## Where This Goes
 
-Learner-First Systemic Education is both a framework and a research program. The framework is ready to be applied — the first courses are in design. The research program is beginning: ISRD intends to develop simulation-based attractor diagnostics, AI tutoring architectures calibrated to specific misconception patterns, and a formal model of the course-as-feedback-system.
+Learner-First Education is both a framework and a research program. The framework is ready to be applied — the first courses are in design. The research program is beginning: ISRD intends to develop simulation-based attractor diagnostics, AI tutoring architectures calibrated to specific misconception patterns, and a formal model of the course-as-feedback-system.
 
-The eventual goal is a toolkit for Learner-First Systemic Education — an ISRD equivalent of the Sim-Toolkit, but for instructional design — that allows practitioners in any complex domain to design and deliver attractor-shifting instruction without requiring a large team, a significant budget, or deep expertise in learning technology. This is a direct extension of the ISRD mission: to build tools that work with complexity at the level complexity actually operates.
+The eventual goal is a toolkit for Learner-First Education — an ISRD equivalent of the Sim-Toolkit, but for instructional design — that allows practitioners in any complex domain to design and deliver attractor-shifting instruction without requiring a large team, a significant budget, or deep expertise in learning technology. This is a direct extension of the ISRD mission: to build tools that work with complexity at the level complexity actually operates.
 
-The course that follows — *SS 201: Introduction to Learner-First Systemic Education* — is the first instantiation. It is itself designed using the framework it teaches.
+The course that follows — *SS 201: Introduction to Learner-First Education* — is the first instantiation. It is itself designed using the framework it teaches.
 
 ---
 

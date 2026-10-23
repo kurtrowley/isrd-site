@@ -1,6 +1,6 @@
 # ISRD website
 
-Interdisciplinary Systemics R&D. A static site: plain HTML, one stylesheet, a little JavaScript. The text lives in files you can edit; GitHub rebuilds and publishes the site whenever you save a change.
+Interdisciplinary Systems R&D. A static site: plain HTML, one stylesheet, a little JavaScript. The text lives in files you can edit; GitHub rebuilds and publishes the site whenever you save a change.
 
 ## How to make an edit (no installs needed)
 1. Go to **github.com/kurtrowley/isrd-site** and sign in.

@@ -1,7 +1,7 @@
 [
  {
   "id": "bio-systemics",
-  "title": "Bio-Systemics",
+  "title": "Health Systems",
   "subtitle": "Post-viral illness and brainstem attractor dynamics",
   "description": "Investigates ME/CFS and post-viral syndromes as emergent attractor states — conditions where the nervous system settles into a dysfunctional stable basin following viral insult. We model the population epidemiology of ME/CFS conversion, the role of brainstem-HPA axis dysregulation, and intervention pathways that might shift the system toward recovery basins.",
   "research_questions": [
@@ -37,12 +37,12 @@
  },
  {
   "id": "literary-systemics",
-  "title": "Literary Systemics",
+  "title": "Literary Systems",
   "subtitle": "Narrative structure as a feedback system",
-  "description": "Applies systemic synthesis to the craft and impact of writing. Narrative is modelled as a feedback network: reader clarity, tension, and engagement are interdependent nodes. We develop a Reader-First framework that helps authors understand how structural choices propagate through the reading experience — and where interventions have the highest leverage.",
+  "description": "Applies cross-system synthesis to the craft and impact of writing. Narrative is modelled as a feedback network: reader clarity, tension, and engagement are interdependent nodes. We develop a Reader-First framework that helps authors understand how structural choices propagate through the reading experience — and where interventions have the highest leverage.",
   "research_questions": [
    "How do reinforcing and balancing feedback loops manifest in effective narrative structure?",
-   "Can systemic analysis predict reader drop-off, confusion, or emotional disengagement?",
+   "Can system-level analysis predict reader drop-off, confusion, or emotional disengagement?",
    "What is the optimal tension-clarity trade-off for different reader objectives?"
   ],
   "tools": [
@@ -57,15 +57,15 @@
  {
   "id": "global-futurism",
   "title": "Global Futurism",
-  "subtitle": "Civilisational tipping points and macro-systemic attractors",
-  "description": "Models the macro-dynamics of civilisation as a complex adaptive system — one with multiple potential attractor basins ranging from stable cooperation to systemic collapse. We investigate how inequality, technological acceleration, climate stress, and social infrastructure interact to push societies toward or away from tipping points.",
+  "subtitle": "Civilisational tipping points and macro-scale attractors",
+  "description": "Models the macro-dynamics of civilisation as a complex adaptive system — one with multiple potential attractor basins ranging from stable cooperation to system-wide collapse. We investigate how inequality, technological acceleration, climate stress, and social infrastructure interact to push societies toward or away from tipping points.",
   "research_questions": [
    "Which combinations of stressors most reliably push civilisational systems past bifurcation thresholds?",
    "Do socio-economic tipping points follow the same attractor geometry as physical systems?",
-   "What systemic interventions have the highest leverage for stabilising cooperative attractor states?"
+   "What interventions at the system level have the highest leverage for stabilising cooperative attractor states?"
   ],
   "tools": [
-   "Macro-Systemic Trend Simulator",
+   "Macro-Scale Trend Simulator",
    "Attractor Basin Visualiser",
    "Tipping Point Forecaster"
   ],
@@ -77,21 +77,21 @@
   "id": "writing-with-ai",
   "title": "Writing With AI",
   "subtitle": "Designing AI-assisted systems that scaffold expert writing practice",
-  "description": "Investigates expert long-form writing as a complex cognitive system, and asks what a software environment looks like when it is built around the structure of that process — clarity, tension, structural revision, voice — rather than around the easier-to-automate task of generating text. This program produced Systemic Writer, an AI-assisted writing environment built as a design experiment: software as both output and evidence that the underlying model of the writing process holds up under real-world use.",
+  "description": "Investigates expert long-form writing as a complex cognitive system, and asks what a software environment looks like when it is built around the structure of that process — clarity, tension, structural revision, voice — rather than around the easier-to-automate task of generating text. This program produced ISRD Writing Studio (formerly Systemic Writer), an AI-assisted writing environment built as a design experiment: software as both output and evidence that the underlying model of the writing process holds up under real-world use.",
   "research_questions": [
    "What is the cognitive structure of expert long-form writing, and where are its highest-leverage intervention points?",
    "Can an AI-assisted environment scaffold that structure — preserving human judgment at every consequential decision — without collapsing into pure text generation?",
    "Does a production system built on this model function as evidence that the underlying theory of the writing process is accurate?"
   ],
   "tools": [
-   "Systemic Writer"
+   "ISRD Writing Studio"
   ],
   "theme": "amber",
   "path": "/research/writing-with-ai",
   "ai_use": "AI is the core process facilitator under study — not a novelty feature. The program investigates how language models can be structured to support, rather than replace, expert judgment throughout the writing process.",
   "report_slug": "designing-toward-a-theory",
-  "product_url": "https://systemicwriter.com",
-  "product_label": "Visit Systemic Writer →"
+  "product_url": "https://writer.isrd.com",
+  "product_label": "Visit ISRD Writing Studio →"
  },
  {
   "id": "reader-first-writing-system",
@@ -104,14 +104,14 @@
   "path": "/research/reader-first-writing-system",
   "ai_use": "",
   "product_url": "https://writer.isrd.com",
-  "product_label": "Open Systemic Writer",
+  "product_label": "Open ISRD Writing Studio",
   "related": [
    {
     "label": "Reader-First: Why Most Writing Begins at the Wrong End",
     "href": "/articles/reader-first-intro/"
    },
    {
-    "label": "Learner-First Systemic Education",
+    "label": "Learner-First Education",
     "href": "/articles/learner-first-systemic-learning/"
    },
    {
@@ -119,7 +119,7 @@
     "href": "/research/papers/attractor-engineering-framework/"
    },
    {
-    "label": "Writing With AI: the research program behind Systemic Writer",
+    "label": "Writing With AI: the research program behind ISRD Writing Studio",
     "href": "/research/writing-with-ai/"
    },
    {

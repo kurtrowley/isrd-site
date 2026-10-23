@@ -92,7 +92,7 @@ The three steps are a structured perturbation of the practitioner's existing men
 
 ISRD's methodology is explicit about the relationship between tools and mission. The toolkit is not a product that exists for its own sake while the real work happens elsewhere. It is the mechanism by which the methodology reaches practitioners.
 
-The most valuable thing ISRD can produce is practitioners who think systemically about their domain's hardest problems. Not practitioners who know the vocabulary of systems science, but practitioners who have built working mental models of the dynamics they are working in — who can see the attractor, identify the maintaining feedback structure, locate the leverage point, and formulate an intervention hypothesis that the framework supports.
+The most valuable thing ISRD can produce is practitioners who think in systems about their domain's hardest problems. Not practitioners who know the vocabulary of systems science, but practitioners who have built working mental models of the dynamics they are working in — who can see the attractor, identify the maintaining feedback structure, locate the leverage point, and formulate an intervention hypothesis that the framework supports.
 
 That does not happen through reading. It happens through practice with models that actually run — models that respond to intervention hypotheses, that show what the system does when the leverage point is found and what it does when it is not, that make the dynamics visible in a way that description alone cannot achieve.
 

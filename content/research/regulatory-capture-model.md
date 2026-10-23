@@ -1,7 +1,7 @@
 # Regulatory Capture: How Closed Feedback Loops Get Stuck
 
 **Kurt Rowley**
-Methodology | Bio-Systemics · Complex Disease Modeling
+Methodology | Health Systems · Complex Disease Modeling
 
 ---
 

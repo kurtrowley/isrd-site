@@ -1,7 +1,7 @@
 # Energy Envelopes and Feedback Loops: Why Pacing Works When Rest Doesn't
 
 **Kurt Rowley**
-Bio-Systemics | ME/CFS · Systems Theory
+Health Systems | ME/CFS · Systems Theory
 
 ---
 
@@ -48,4 +48,4 @@ Breathing interventions, pacing protocols, and nervous system regulation techniq
 
 ---
 
-*This note is part of an evolving series on the systems theory of ME/CFS. See also: [Bio-Systemics](/research/bio-systemics).*
+*This note is part of an evolving series on the systems theory of ME/CFS. See also: [Health Systems](/research/bio-systemics).*

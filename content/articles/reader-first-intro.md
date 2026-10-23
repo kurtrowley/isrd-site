@@ -54,4 +54,4 @@ The method is most powerful for:
 
 ---
 
-*The Reader-First framework underlies [Systemic Writer](/research/writing-with-ai), an AI-assisted writing environment built as a design experiment testing this method directly.*
+*The Reader-First framework underlies [ISRD Writing Studio](/research/writing-with-ai), an AI-assisted writing environment built as a design experiment testing this method directly.*

@@ -77,4 +77,4 @@ The method is format-agnostic. What matters is whether there is an audience, a b
 
 ---
 
-*Attractor Engineering is the same six-phase methodology behind [Systemic Writer](/research/writing-with-ai) — a working system built as evidence that the underlying model of the writing process holds up under real use.*
+*Attractor Engineering is the same six-phase methodology behind [ISRD Writing Studio](/research/writing-with-ai) — a working system built as evidence that the underlying model of the writing process holds up under real use.*

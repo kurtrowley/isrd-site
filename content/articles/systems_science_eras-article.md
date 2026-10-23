@@ -229,4 +229,4 @@ The pattern is real. The transfer is legitimate. The tools are finally here.
 
 ---
 
-*Kurt Rowley is a systems scientist at Interdisciplinary Systemics R&D (ISRD). ISRD builds simulation and modeling tools for problems with complex systemic structure.*
+*Kurt Rowley is a systems scientist at Interdisciplinary Systems R&D (ISRD). ISRD builds simulation and modeling tools for problems with complex, interconnected structure.*

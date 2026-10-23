@@ -2,10 +2,10 @@
  {
   "id": "lfsl-101",
   "track": "learner-first",
-  "title": "Introduction to Learner-First Systemic Education",
+  "title": "Introduction to Learner-First Education",
   "code": "SS 201",
   "subtitle": "How to design instruction that actually shifts mental models",
-  "description": "An introduction to the Learner-First Systemic Education framework \u2014 the ISRD approach to instructional design for complex domains. Covers attractor theory applied to learning, the seven-phase module structure, AI tutoring architecture, and simulation as an epistemological tool. Includes hands-on design exercises using ISRD simulation tools.",
+  "description": "An introduction to the Learner-First Education framework \u2014 the ISRD approach to instructional design for complex domains. Covers attractor theory applied to learning, the seven-phase module structure, AI tutoring architecture, and simulation as an epistemological tool. Includes hands-on design exercises using ISRD simulation tools.",
   "status": "In Design",
   "level": "Intermediate",
   "modules": 7,
@@ -52,7 +52,7 @@
    {
     "n": 7,
     "title": "Applied Design Project",
-    "desc": "Design a complete Learner-First Systemic Education module for a complex domain of your choice."
+    "desc": "Design a complete Learner-First Education module for a complex domain of your choice."
    }
   ]
  },
@@ -82,12 +82,12 @@
   "title": "Post-Viral Illness as a Complex System",
   "code": "BIO 301",
   "subtitle": "Understanding ME/CFS and chronic conditions through attractor dynamics",
-  "description": "A systems-based course for clinicians, patients, and researchers working with post-viral and treatment-resistant conditions. Uses the ME/CFS Population Outbreak Simulator and brainstem ANS model as learning instruments. Applies Learner-First Systemic Education design throughout.",
+  "description": "A systems-based course for clinicians, patients, and researchers working with post-viral and treatment-resistant conditions. Uses the ME/CFS Population Outbreak Simulator and brainstem ANS model as learning instruments. Applies Learner-First Education design throughout.",
   "status": "Planned",
   "level": "Intermediate",
   "modules": 5,
   "estimated_hours": 5,
-  "track_label": "Bio-Systemics",
+  "track_label": "Health Systems",
   "article_link": null,
   "tags": [
    "ME/CFS",

@@ -15,6 +15,7 @@ CONTENT = ROOT / "content"
 SIM_BASE = os.environ.get("SIM_BASE", "https://sim.isrd.com").rstrip("/")
 CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "kurt@isrd.com")        # set when decided; the About page shows a mailto link once it is
 WRITER_URL = "https://writer.isrd.com"
+WORKSPACE_URL = WRITER_URL + "/workspace/"
 MERMAID = "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"
 e = html.escape
 
@@ -49,7 +50,7 @@ def page(path, title, body, desc="", mermaid=False, section=""):
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
   <a class="brand" href="/">IS<span>R</span>D</a>
-  <nav aria-label="Main">{nav}<a href="{WRITER_URL}">Writing Studio</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+  <nav aria-label="Main">{nav}<a href="{WRITER_URL}">Writing Studio</a><a href="{WORKSPACE_URL}">Workspace (beta)</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
 </div></header>
 <main id="main">
 {body}

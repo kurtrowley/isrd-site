@@ -30,7 +30,7 @@ PROGRAM_TITLE = {p["id"]: p["title"] for p in PROGRAMS}
 READING_BY_SLUG = {r["slug"]: r for r in READINGS}
 
 # ---- shared page frame -------------------------------------------------------------------------------
-NAV = [("Research", "/research/"), ("Articles", "/articles/"), ("Courses", "/courses/"), ("Simulations", "/simulations/"), ("Media", "/media/")]
+NAV = [("Start here", "/start/"), ("Tools", "/tools/"), ("Simulations", "/simulations/"), ("Projects", "/projects/"), ("Community", "/community/"), ("Research", "/research/"), ("Articles", "/articles/"), ("About", "/about/")]
 
 
 def page(path, title, body, desc="", mermaid=False, section=""):
@@ -50,15 +50,15 @@ def page(path, title, body, desc="", mermaid=False, section=""):
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
   <a class="brand" href="/">IS<span>R</span>D</a>
-  <nav aria-label="Main">{nav}<a href="{WRITER_URL}">Writing Studio</a><a href="{WORKSPACE_URL}">Workspace (beta)</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+  <nav aria-label="Main">{nav}<a href="{WRITER_URL}">Writing Studio</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
 </div></header>
 <main id="main">
 {body}
 </main>
 <footer><div class="wrap">
   <div><strong>ISRD</strong><br>Interdisciplinary Systems R&amp;D</div>
-  <div><a href="/research/">Research</a> · <a href="/articles/">Articles</a><br><a href="/courses/">Courses</a> · <a href="/simulations/">Simulations</a><br><a href="/about/">About</a></div>
-  <div>© ISRD. All rights reserved.</div>
+  <div><a href="/start/">Start here</a> · <a href="/idea/">The idea</a> · <a href="/tools/">Tools</a><br><a href="/research/">Research</a> · <a href="/articles/">Articles</a> · <a href="/courses/">Courses</a> · <a href="/media/">Media</a><br><a href="/work-with/">Work with ISRD</a> · <a href="/about/">About</a></div>
+  <div>We stand on the shoulders of the many people who came before us and made systems thinking something anyone can understand. Their work is why this site can start from everyday examples.<br>© ISRD. All rights reserved.</div>
 </div></footer>
 {f'<script src="{MERMAID}"></script><script>mermaid.initialize({{startOnLoad:true,theme:matchMedia("(prefers-color-scheme: dark)").matches?"dark":"default"}});</script>' if mermaid else ""}
 </body>
@@ -138,9 +138,11 @@ def build_research():
         f'{f"<br><span class=muted>{e(r.get("description", ""))}</span>" if r.get("description") else ""}</li>' for r in REPORTS)
     intro = ("ISRD investigates complex adaptive systems through Cross-System Synthesis, a non-linear, attractor-based methodology. "
              "Each program uses interactive simulators, feedback-graph modeling and AI-assisted interpretation to generate and test hypotheses.")
-    page("/research/", "Research", head("ISRD Research", "Complex systems research", intro) +
-         f'<section><div class="wrap"><h2>Programs</h2><div class="grid">{progs}</div></div></section>'
-         f'<section class="alt"><div class="wrap"><h2>Research reports</h2><ul class="rows">{papers}</ul>'
+    lead, _m = render("pages/research-intro.md")
+    page("/research/", "Research", head("ISRD Research", "Do tools for systemic change work?", "Applied systems research and design, tested in the open.") +
+         f'<section>{prose(lead)}</section>'
+         f'<section class="alt"><div class="wrap"><h2>Programs</h2><div class="grid">{progs}</div></div></section>'
+         f'<section><div class="wrap"><h2>Research reports</h2><ul class="rows">{papers}</ul>'
          '<p style="margin-top:1.4em"><a href="/research/methodology-and-publications/">Research methodology and publications →</a></p>'
          '<p class="muted">All programs are AI-integrated: language models help interpret simulation runs and surface non-obvious relationships. AI is a standard analytical tool here.</p></div></section>',
          intro, section="research")
@@ -262,17 +264,38 @@ def build_about():
     pr = a["person"]
     contact = (f'<p><a class="btn primary" href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a></p>' if CONTACT_EMAIL
                else '<p class="muted">Contact details are coming soon.</p>')
-    top = head("About", "A creative lab for research and tools that help people shape the future", a["intro"]).replace(
+    top = head("About", "Applied systems research and design, for people who change things", a["intro"]).replace(
         "</div></div>", f'<p class="lede">{e(a["aim"])}</p></div></div>', 1)
     body = (top +
-            f'<section><div class="wrap"><h2>What we do</h2><div class="grid">{what}</div></div></section>'
-            f'<section class="alt"><div class="wrap"><h2>How we work</h2><p class="lede">{e(a["principles_intro"])}</p><ul class="principles">{princ}</ul></div></section>'
+            f'<section><div class="wrap"><h2>Where to start</h2><div class="grid">{what}</div></div></section>'
+            f'<section class="alt"><div class="wrap"><h2>Our commitments</h2><p class="lede">{e(a["principles_intro"])}</p><ul class="principles">{princ}</ul></div></section>'
             f'<section><div class="wrap two"><div><p class="eyebrow">Mission</p><h2>{e(a["mission_title"])}</h2></div>'
             f'<div><blockquote class="mission">{e(a["mission"].split(". ", 1)[0])}.</blockquote><p class="muted" style="margin-top:1.2em">{e(a["mission"].split(". ", 1)[1])}</p></div></div></section>'
             f'<section class="alt"><div class="wrap two"><div><p class="eyebrow">The researcher</p><h2>{e(pr["name"])}</h2><p class="muted">{e(pr["title"])}</p></div>'
             f'<div class="prose"><p>{e(pr["bio"])}</p><div>{tags(pr["areas"])}</div><p style="margin-top:1.2em">{e(pr["collab"])}</p></div></div></section>'
             f'<section><div class="wrap"><h2>Contact</h2>{contact}</div></section>')
     page("/about/", "About", body, a["intro"][:200], section="about")
+
+
+# ---- pages from content/pages --------------------------------------------------------------------------
+PAGES = [
+    # (path, markdown file, eyebrow, title, lede, section, crumb)
+    ("/start/", "start.md", "Start here", "How things fit together, and what you can do about it", "A short, plain guide to how systems work. No background needed.", "start", None),
+    ("/start/piles-and-flows/", "piles-and-flows.md", "Start here", "Piles and flows", "", "start", ("Start here", "/start/")),
+    ("/start/waiting/", "waiting.md", "Start here", "Waiting", "", "start", ("Start here", "/start/")),
+    ("/idea/", "idea.md", "The idea", "The idea", "Tools that organize, simulate and train, with you in charge.", "idea", None),
+    ("/tools/", "tools.md", "Tools", "Tools for systemic change", "A suite for people who help others change a system.", "tools", None),
+    ("/examples/", "examples.md", "Tools in use", "What it looks like in use", "Four illustrations.", "tools", ("Tools", "/tools/")),
+    ("/projects/", "projects.md", "Projects", "Projects", "One issue, led by the people closest to it.", "projects", None),
+    ("/community/", "community.md", "Community", "Community", "Planned.", "community", None),
+    ("/work-with/", "work-with.md", "Work with ISRD", "Work with ISRD", "", "about", None),
+]
+
+
+def build_pages():
+    for path, md, eyebrow, title, lede, section, crumb in PAGES:
+        body, m = render(f"pages/{md}")
+        page(path, title, head(eyebrow, title, lede, crumbs(crumb) if crumb else "") + prose(body), lede or title, m, section)
 
 
 def build_404():
@@ -286,6 +309,6 @@ def build_404():
 
 
 if __name__ == "__main__":
-    for fn in (build_articles, build_research, build_courses, build_media, build_simulations, build_sim_pages, build_postviral, build_about, build_404):
+    for fn in (build_pages, build_articles, build_research, build_courses, build_media, build_simulations, build_sim_pages, build_postviral, build_about, build_404):
         fn()
     print("built; simulation links use", SIM_BASE)

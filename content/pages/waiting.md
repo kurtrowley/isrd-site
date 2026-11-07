@@ -1,10 +1,10 @@
 # Waiting
 
-You set the heat in a house with a slow furnace. The room is cold, so you turn it up. Nothing happens. You turn it up more. Twenty minutes later the room is far too hot, and you have no idea which turn did it.
+You set the heat in a house with a slow furnace. The room is cold, so you turn it up. Nothing happens. You turn it up more. Twenty minutes later the room is far too hot, and it is hard to say which turn did it.
 
-The furnace was never broken. The *wait* was the trouble. You kept acting on what you saw, and what you saw was old.
+The furnace worked fine. The *wait* was the trouble. You kept acting on what you saw, and what you saw was already old.
 
-Delays are everywhere: between a new rule and what it changes, between training and skill, between what a town builds and who moves in. When you cannot see a delay, you tend to push too hard. When you can see it, you can be patient on purpose.
+Delays are everywhere: between a new rule and what it changes, between training and skill, between what a town builds and who moves in. When a delay is hidden, we tend to push too hard. When it is visible, we can be patient on purpose.
 
 ## Try it
 

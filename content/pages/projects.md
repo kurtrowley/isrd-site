@@ -16,8 +16,8 @@ If you lead an effort on an issue and want this for your community, [tell us abo
 
 ## What we ask of a project
 
-Models that carry a project's name are checked by someone who knows the field. They state their assumptions and how sure we are. ISRD provides tools and does not endorse a project's views.
+Models that carry a project's name are checked by someone who knows the field. They state their assumptions and how sure we are. Each project speaks for itself, and ISRD provides the tools.
 
 ## Current projects
 
-There are none yet. This page will list each project when it exists: its issue, who leads it, and a link.
+The first projects are being set up. This page will list each one with its issue, who leads it, and a link.

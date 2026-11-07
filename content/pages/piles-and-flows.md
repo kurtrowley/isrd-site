@@ -4,9 +4,9 @@ Think about your notes. Every day some come in: an idea in the shower, a line fr
 
 The pile you have right now is a **stock**. What comes in and what goes out are **flows**.
 
-If more comes in than goes out, the pile grows. Nobody has to be doing anything wrong. That is just how piles work. Many people have a pile that only ever grows, and they feel worse about it each year.
+If more comes in than goes out, the pile grows. That is simply how piles work, and many people have a pile that only ever grows.
 
-Here is the odd part. The pile is not the problem. The flows are. So the fix is not to try harder to ignore the pile. It is to change how things leave it.
+Here is the useful part. The flows shape the pile, so the way to change the pile is to change the flows: what comes in, and how things leave.
 
 ## Try it, on paper
 

@@ -8,7 +8,7 @@ The suite is built for the person who helps a group change a system: a change ag
 
 ## How the tools connect
 
-The tools are designed to work as one system and not as separate products.
+The tools are designed to work together as one system.
 
 - **A common format.** Models, maps, plans, sources and drafts are kept in a shared form. A result made in one tool can be opened in another, and passed to another person. *(Planned)*
 - **A shared library.** A public shelf of parts that people can borrow and add to: models, maps, templates and practice cases. It saves starting from nothing, shows the real differences between approaches, and helps a field settle on common terms. *(Planned)*
@@ -21,7 +21,7 @@ This follows the founder's 1995 design study of a connected system of tools for 
 
 ## The work, and the tool for each part
 
-The suite is arranged in the order the work usually goes. A designer moves back and forth between these; the order is not a march.
+The suite is arranged in the order the work usually goes. A designer moves back and forth between these; the order is flexible.
 
 | The work | What you need | The tool | Status |
 |---|---|---|---|
@@ -33,7 +33,7 @@ The suite is arranged in the order the work usually goes. A designer moves back 
 | **6. Explain it to others** | Briefs, stories, proposals, a primer for the issue | Writing Studio | Live |
 | **7. Build the skills of the people who carry it on** | Practise the method on a small invented case | Practice games | **Planned** |
 | **8. Share and keep it going** | A library of the works and models, links to other projects | Library; [projects](/projects/) | **Planned** |
-| **9. Find out whether it worked** | Record what changed and learn from it | A way to record expectations and results | **Not yet designed** |
+| **9. Find out whether it worked** | Record what changed and learn from it | A way to record expectations and results | **Planned** |
 
 ## The tools
 
@@ -53,13 +53,13 @@ It is a place to learn to write well, and to do big, complicated pieces of writi
 
 ### Make a model of your own situation (planned)
 
-A guided way to build a simple model of your own community, team or problem, without writing code. It is not built yet. We will say here when it is.
+A guided way to build a simple model of your own community, team or problem, in plain steps. It is planned, and we will say here when it is ready.
 
 ### One studio for many kinds of expert work (planned)
 
 The Writing Studio is the first of what we call a **core studio**: a general tool that takes an expert process, breaks it into small steps, helps with each, and adds a working canvas and models for applying systems thinking to the work. A journalist, a city planner, a fiction writer, an engineer and a biologist do different work. The tool is the same; the setup is theirs, chosen from a short set of questions at the start.
 
-It is not a tool that does everything, and not a tool that makes software on demand. It is one tool, set up for your work.
+It is one tool, set up for your work.
 
 ### Templates (planned)
 
@@ -69,13 +69,13 @@ A few ready-made setups for commonly requested uses, such as research synthesis 
 
 Practice games let you try an expert skill on a small invented case before the real one. The library lets you gather and share your finished works and models, with your readers and with other projects.
 
-## Honest edges
+## What we are building next
 
-- Step 9 is a gap. Nobody can know a change worked without recording what was expected and what happened. We want to build it, and until it exists we do not claim it does.
-- Steps 4 and 8 depend on sharing between people, and so does the community. Today the tools are used one person at a time, and the common format, the library and the role views are designs, not features.
-- The hand-offs between tools ("take this result into a note", "test this idea in a model") are not built. Models and the Studio are separate places today.
-- Pricing is not settled yet. We will say plainly what is free and what is paid before we ask anyone to pay.
+- **A way to record what happened.** Step 9 lets you record what you expected and what happened, so you can see whether a change worked and adjust. It is being designed.
+- **Sharing between people.** Steps 4 and 8, the common format, the library and the role views make the tools work for many people at once.
+- **Hand-offs between tools.** "Take this result into a note" and "test this idea in a model" will come first as a plain link and a copyable result.
+- **Pricing.** We will say plainly what is free and what is paid before we ask anyone to pay.
 
-## What the suite is not
+## What the suite does
 
-It is not an application that does the systems work for you. Your judgment, the community's knowledge and the field's experts decide what is true and what to do. The tools organize, simulate and train.
+The suite organizes, simulates and trains. Your judgment, the community's knowledge and the field's experts decide what is true and what to do, and the tools help every step of the way.

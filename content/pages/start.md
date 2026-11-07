@@ -1,6 +1,6 @@
 # Start here
 
-A short, plain guide to how systems work. No background needed. Each page has one idea, starts from an everyday example, and ends with something to try and a note on how sure we are.
+A short, plain guide to how systems work. Every background is welcome. Each page has one idea, starts from an everyday example, and ends with something to try and a note on how sure we are.
 
 ## The pages
 
@@ -14,8 +14,8 @@ A short, plain guide to how systems work. No background needed. Each page has on
 8. Where a small push goes a long way *(coming)*
 9. Rules, goals and who gets to know what *(coming)*
 10. How sure are we? *(coming)*
-11. Models: what they are good for, and what they are not *(coming)*
-12. Working with a system, not against it *(coming)*
+11. Models: what they are good for, and where they stop *(coming)*
+12. Working with a system *(coming)*
 13. Build a little, look at the whole: [hard things get built in loops](/idea/#loops)
 
 ## How sure are we?
@@ -24,7 +24,7 @@ Every page says how sure we are, in three plain labels:
 
 - **A known pattern**: well tested in many places.
 - **A likely parallel**: it looks the same in a new place, and we think it carries over.
-- **A guess worth testing**: an idea we are curious about and cannot yet support.
+- **A guess worth testing**: an idea we are curious about and want to test.
 
 ## Want to try something now?
 

@@ -4,4 +4,4 @@ We build with a small number of customers: a person or an organization that lead
 
 Every project begins with a conversation about the problem you are trying to hold together. [Write to start one](mailto:kurt@isrd.com).
 
-Each project is also a chance to learn whether the tools work, and we ask permission to include it in our research. You can say no, and it changes nothing about the work.
+Each project is also a chance to learn whether the tools work, and we ask permission to include it in our research. Taking part in the research is your choice, and the work goes ahead either way.

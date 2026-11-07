@@ -1,6 +1,6 @@
 # What it looks like in use
 
-Four short walk-throughs. Each is an **illustration**: an imagined case built from how the tools work. None is a result, and none comes from a real client. Each says which parts exist today and which are planned.
+Four short walk-throughs. Each is an **illustration**: an imagined case built from how the tools work, and real cases will follow. Each says which parts exist today and which are planned.
 
 ## A. The clinic waiting list
 
@@ -34,7 +34,7 @@ Four short walk-throughs. Each is an **illustration**: an imagined case built fr
 
 *Tools used: Model builder, Writing Studio, Library.*
 
-**The situation.** You lead a group trying to reduce street flooding. People are willing to help and don't know how.
+**The situation.** You lead a group trying to reduce street flooding. People are willing to help and are looking for a way in.
 
 **What you do.** Build a simple model of the local system with the people who live in it *(planned)*. Each person works out what they can do *(a guided note, live; a tutor to help, planned)*. Write up the plan, a short story for neighbours, and a proposal for the council *(live)*. Put the model and the plan on a page of your own, linked to other projects *(planned)*.
 

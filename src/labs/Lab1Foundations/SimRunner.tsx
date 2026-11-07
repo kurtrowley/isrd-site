@@ -100,12 +100,22 @@ export function SimRunner({ sim, eraColor, eraLabel }: Props) {
     drawOnce(); // Immediate visual feedback on param change while paused
   }, [drawOnce]);
 
+  const handleCanvasClick = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas || !simRef.current.onClick) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+    const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+    simRef.current.onClick(x, y);
+    drawOnce(); // Reflect the resulting selection immediately, even while paused
+  }, [drawOnce]);
+
   return (
     <div style={{ display:'flex', flexDirection:'column', height:'100%' }}>
       {/* Canvas */}
       <div style={{ flex:1, position:'relative', background:'#040e14', overflow:'hidden', minHeight:0 }}>
-        <canvas ref={canvasRef}
-          style={{ position:'absolute', inset:0, width:'100%', height:'100%', display:'block' }} />
+        <canvas ref={canvasRef} onClick={handleCanvasClick}
+          style={{ position:'absolute', inset:0, width:'100%', height:'100%', display:'block', cursor: sim.onClick ? 'pointer' : 'default' }} />
 
         {/* Era badge */}
         {eraLabel && (

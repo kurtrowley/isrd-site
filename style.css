@@ -1,8 +1,8 @@
-/* ISRD design system: tokens first, then base, then components. Light by default, dark follows the system or the toggle. */
+/* ISRD design system: tokens first, then base, then components. Light by default (a warm medium gray, easier on the eyes than white), dark follows the system or the toggle. */
 :root {
-  --bg: #fafaf7; --surface: #ffffff; --ink: #16221f; --muted: #5a6b66; --line: #dfe5e1;
-  --brand: #0f6b5c; --brand-ink: #ffffff; --accent: #b4761a; --soft: #e8f1ee;
-  --live: #0f6b5c; --soon: #8a6d1f;
+  --bg: #dad7cd; --surface: #e8e5db; --ink: #1a221f; --muted: #444f4b; --line: #b8b4a6;
+  --brand: #0b5a4d; --brand-ink: #ffffff; --accent: #82500a; --soft: #cdd5cf;
+  --live: #0b5a4d; --soon: #6e5a16;
   --radius: 14px; --max: 1080px;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;

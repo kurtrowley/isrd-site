@@ -15,7 +15,9 @@ The tools are designed to work as one system and not as separate products.
 - **A view for each role.** The same information, shown to each person as their part of the work needs it: the analyst, the project lead, the neighbour, the funder. The views change as the work changes. *(Planned)*
 - **A community.** People and projects linked through the tools, so that many people can pull in the same direction. See [Community](/community/). *(Planned)*
 
-This follows the founder's 1995 design study of a connected system of tools for education. The present work extends the idea beyond education, to systemic change in any field.
+Think of a music studio where instruments from many makers play together because they share a common connection. Each does its own job well, and nobody has to rebuild the connection. That is the aim here too.
+
+This follows the founder's 1995 design study of a connected system of tools for education, and a 1995 article on software interoperability. The present work extends the idea beyond education, to systemic change in any field.
 
 ## The work, and the tool for each part
 

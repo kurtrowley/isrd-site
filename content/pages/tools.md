@@ -6,6 +6,17 @@ A suite of tools for people who help others change a system. A model shows what 
 
 The suite is built for the person who helps a group change a system: a change agent, consultant, analyst, project leader, planner, researcher, entrepreneur, inventor or opinion leader, working with the people who live inside the problem. The [Start here](/start/) guide is the front door for everyone else.
 
+## How the tools connect
+
+The tools are designed to work as one system and not as separate products.
+
+- **A common format.** Models, maps, plans, sources and drafts are kept in a shared form. A result made in one tool can be opened in another, and passed to another person. *(Planned)*
+- **A shared library.** A public shelf of parts that people can borrow and add to: models, maps, templates and practice cases. It saves starting from nothing, shows the real differences between approaches, and helps a field settle on common terms. *(Planned)*
+- **A view for each role.** The same information, shown to each person as their part of the work needs it: the analyst, the project lead, the neighbour, the funder. The views change as the work changes. *(Planned)*
+- **A community.** People and projects linked through the tools, so that many people can pull in the same direction. See [Community](/community/). *(Planned)*
+
+This follows the founder's 1995 design study of a connected system of tools for education. The present work extends the idea beyond education, to systemic change in any field.
+
 ## The work, and the tool for each part
 
 The suite is arranged in the order the work usually goes. A designer moves back and forth between these; the order is not a march.
@@ -59,7 +70,7 @@ Practice games let you try an expert skill on a small invented case before the r
 ## Honest edges
 
 - Step 9 is a gap. Nobody can know a change worked without recording what was expected and what happened. We want to build it, and until it exists we do not claim it does.
-- Steps 4 and 8 depend on sharing between people. Today the tools are used one person at a time.
+- Steps 4 and 8 depend on sharing between people, and so does the community. Today the tools are used one person at a time, and the common format, the library and the role views are designs, not features.
 - The hand-offs between tools ("take this result into a note", "test this idea in a model") are not built. Models and the Studio are separate places today.
 - Pricing is not settled yet. We will say plainly what is free and what is paid before we ask anyone to pay.
 

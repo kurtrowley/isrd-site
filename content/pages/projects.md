@@ -4,6 +4,8 @@ Climate has tools that let anyone try the options and see where they lead. Most 
 
 A **project** here is one issue, led by the people closest to it, using ISRD's tools. The public part is free to use. It links back to the tools, and across to other projects.
 
+Projects connect to one another and to the shared library, so that what is learned on one issue can help on another. See [Community](/community/).
+
 ## What a project gets
 
 A model or set of models for the topic; a home page of its own; short primer pages in plain words for that issue; a path for a visitor (understand, explore your own situation, decide what you can contribute, act and write it up, share back); writing templates; and links to the other projects.

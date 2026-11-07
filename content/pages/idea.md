@@ -22,6 +22,10 @@ A good tool follows the steps an expert takes, keeps the whole project in one pl
 
 When an AI drafts words, we call them a **sketch**. It is labelled, set apart from your writing, and meant to be tested and rewritten. When we run a **model**, we mean a runnable picture of a situation, with its assumptions in plain sight.
 
+## Tools that connect people, too
+
+Hard changes are made by many people, not one. So the tools are designed to connect. What one person makes (a model, a map, a plan, a piece of research) can be picked up, tested and built on by someone else, and each person sees it in the way their role needs. A public library of shared parts, and a community of people who use and improve them, are part of the design. They are **planned**, and we are working out the details. See [Tools](/tools/#how-the-tools-connect) and [Community](/community/).
+
 ## How sure are we?
 
 - **A known pattern**: well tested in many places.

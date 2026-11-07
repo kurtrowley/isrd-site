@@ -36,7 +36,7 @@ These are proposed measures, each something we can observe:
 
 ### Where this comes from
 
-The approach has a long lineage in the founder's work. A 1995 doctoral study at Florida State University built an electronic tool for designing education systems and tested it over four rounds with educators. The educators found it useful, wanted a simple start, did not want a factory metaphor, and asked for shared parts that people could borrow and contribute to. Later work includes a study of a computer tutor for writers (Rowley and Meyer, 2003) and the long design experiment behind the Writing Studio, described in [Designing Toward a Theory](/research/papers/designing-toward-a-theory/). See also the [research methodology and publications](/research/methodology-and-publications/).
+The approach has a long lineage in the founder's work. A 1995 doctoral study at Florida State University built an electronic tool for designing education systems and tested it over four rounds with educators. The educators found it useful, wanted a simple start, did not want a factory metaphor, and asked for shared parts that people could borrow and contribute to. The present work carries that idea, a connected system of tools with a shared library, beyond education to systemic change in any field. Later work includes a study of a computer tutor for writers (Rowley and Meyer, 2003) and the long design experiment behind the Writing Studio, described in [Designing Toward a Theory](/research/papers/designing-toward-a-theory/). See also the [research methodology and publications](/research/methodology-and-publications/).
 
 ### What we have found, and what we have not
 

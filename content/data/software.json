@@ -4,13 +4,17 @@
   "title": "ISRD Writing Studio",
   "url": "https://writer.isrd.com",
   "description": "A writing studio built on the Reader-First method. It takes a manuscript from first idea to a developed, reader-tested draft.",
-  "live": true
+  "live": true,
+  "tagline": "A studio for learning to write well, and for big, complicated pieces of writing.",
+  "file": "writer.md"
  },
  {
   "id": "games",
   "title": "Bison Island Studios",
   "url": "https://games.isrd.com",
-  "description": "The Bison Island Studios game, moved out of the Writing Studio onto its own site.",
-  "live": false
+  "description": "A subsidiary of ISRD and the home of its games. The first, a writing game, is in development.",
+  "live": false,
+  "tagline": "A writing game: practise a skill on a small invented case before the real one.",
+  "file": "games.md"
  }
 ]

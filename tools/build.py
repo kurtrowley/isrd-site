@@ -15,6 +15,9 @@ CONTENT = ROOT / "content"
 CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "kurt@isrd.com")
 NAME = "Interdisciplinary Systems Research and Development"
 TAGLINE = "We develop tools to support systems thinking and systemic change."
+PURPOSE = ("ISRD is a research and development firm. We support the people who work on systemic change: writers and other creatives, "
+           "researchers and scientists, educators, consultants and thought leaders, and anyone who wants to understand how systems change. "
+           "We also provide end-user products consistent with our mission, including games.")
 CATEGORY = "Article"       # every publication has this category unless its record sets "category"
 MERMAID = "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"
 e = html.escape
@@ -37,8 +40,11 @@ def pub(slug, title, kind, desc="", year="", detail="", rec=None):
 
 
 def soft_href(s):
-    """An app that is not live yet links to its card on the Software page instead of to a dead address."""
-    return s["url"] if s.get("live") else f'/software/#{s["id"]}'
+    return f'/software/{s["id"]}/'
+
+
+def contact_line():
+    return (f'For information about software or access to the beta, contact <a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>.')
 
 
 # Old addresses (the previous section layout) are sent to their new home. Used by the 404 page.
@@ -88,7 +94,7 @@ def page(path, title, body, desc="", mermaid=False, section="", full_title="", h
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
   <a class="brand" href="/">IS<span>R</span>D</a>
-  <nav aria-label="Main"><a href="/publications/"{cur("publications")}>Publications</a><details class="menu{" current" if section == "software" else ""}"><summary>Software</summary><div class="drop">{drop}</div></details><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+  <nav aria-label="Main"><a href="/publications/"{cur("publications")}>Publications</a><a href="/simulations/"{cur("simulations")}>Simulations</a><details class="menu{" current" if section == "software" else ""}"><summary>Software</summary><div class="drop">{drop}</div></details><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
 </div></header>
 <main id="main">
 {body}
@@ -256,24 +262,39 @@ def build_publications():
 def soft_cards():
     out = ""
     for s in SOFTWARE:
-        host = s["url"].split("//", 1)[-1]
-        if s.get("live"):
-            out += (f'<a class="card" id="{s["id"]}" href="{s["url"]}"><span class="tag live">Live</span><span class="meta">{e(host)}</span>'
-                    f'<h3>{e(s["title"])}</h3><p>{e(s["description"])}</p><span class="go">Open →</span></a>')
-        else:       # the stub: shown until the app is being served at its address
-            out += (f'<div class="card" id="{s["id"]}"><span class="tag soon">Moving to a new server</span><span class="meta">{e(host)}</span>'
-                    f'<h3>{e(s["title"])}</h3><p>{e(s["description"])}</p><p>It will open at {e(host)} once the move is finished.</p></div>')
+        tag = '<span class="tag live">Live</span>' if s.get("live") else '<span class="tag soon">Moving to a new server</span>'
+        out += (f'<a class="card" id="{s["id"]}" href="{soft_href(s)}">{tag}<span class="meta">{e(s["url"].split("//", 1)[-1])}</span>'
+                f'<h3>{e(s["title"])}</h3><p>{e(s["description"])}</p><span class="go">About it →</span></a>')
     return f'<div class="grid">{out}</div>'
 
 
 def build_software():
+    crumb = crumbs(("Software", "/software/"))
     page("/software/", "Software", head("ISRD", "Software", "The apps we build, each on its own site.") +
-         f'<section><div class="wrap">{soft_cards()}</div></section>', "ISRD software: the Writing Studio and Bison Island Studios.", section="software")
+         f'<section><div class="wrap">{soft_cards()}<p class="muted" style="margin-top:1.6em">{contact_line()}</p></div></section>',
+         "ISRD software: the Writing Studio and Bison Island Studios.", section="software")
+    for s in SOFTWARE:
+        host = s["url"].split("//", 1)[-1]
+        body, m = render(f"software/{s['file']}")
+        if s.get("live"):
+            access = f'<p><a class="btn primary" href="{s["url"]}">Open {e(s["title"])} →</a></p><p class="muted">{contact_line()}</p>'
+        else:       # the stub: shown until the app is being served at its address
+            access = (f'<p><span class="tag soon">Moving to a new server</span></p><p>It will open at {e(host)} once the move is finished.</p>'
+                      f'<p class="muted">{contact_line()}</p>')
+        page(soft_href(s), s["title"], head("Software · " + host, s["title"], s.get("tagline", ""), crumb) +
+             prose(body + f'<h2>Access</h2>{access}'), s["description"], m, "software")
+
+
+def game_cta():
+    """The home page button for the game. It opens the game itself once it is live; until then, its landing page."""
+    g = next(s for s in SOFTWARE if s["id"] == "games")
+    return (f'<div class="cta"><a class="btn primary" href="{g["url"] if g.get("live") else soft_href(g)}">Writing game at {e(g["title"])} →</a></div>'
+            f'<p class="purpose contact">{e(g["title"])} is a subsidiary of ISRD.</p>')
 
 
 # ---- home ---------------------------------------------------------------------------------------------
 def build_home():
-    body = (f'<div class="hero"><div class="wrap"><p class="eyebrow">ISRD</p><h1>{e(NAME)}</h1><p class="lede">{e(TAGLINE)}</p></div></div>'
+    body = (f'<div class="hero"><div class="wrap"><p class="eyebrow">ISRD</p><h1 class="name">{e(NAME)}</h1><p class="lede">{e(TAGLINE)}</p><p class="purpose">{e(PURPOSE)}</p><p class="purpose contact">{contact_line()}</p>{game_cta()}</div></div>'
             f'<section class="alt"><div class="wrap"><h2>{e(CATEGORY)}s</h2>{pub_rows(pubs_sorted()[:8])}'
             f'<p style="margin-top:1.4em"><a href="/publications/">All {len(PUBS)} publications →</a></p></div></section>'
             f'<section><div class="wrap"><h2>Software</h2>{soft_cards()}</div></section>')

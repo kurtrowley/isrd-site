@@ -14,12 +14,12 @@ If the Actions tab shows a red X, the edit contained a mistake (the usual one is
 | To change | Edit this file |
 |---|---|
 | Colors, fonts, spacing (light and dark) | `style.css`, the settings at the top under `:root` |
-| Home page name and one-line description | `NAME` and `TAGLINE` near the top of `tools/build.py` |
+| Home page name, one-line description and purpose statement | `NAME`, `TAGLINE` and `PURPOSE` near the top of `tools/build.py` |
 | Contact address (footer) | `CONTACT_EMAIL` near the top of `tools/build.py` |
 | Article text | `content/articles/*.md` (titles and summaries: `content/data/articles.json`) |
 | Research reports and summaries | `content/research/*.md` (list: `content/data/reports.json`; summaries: `content/data/programs.json`) |
 | Course readings | `content/courses/*.md` (list: `content/data/course_readings.json`) |
-| Software menu and Software page | `content/data/software.json` |
+| Software menu, Software page and each app's landing page | `content/data/software.json`; landing page text: `content/software/*.md` |
 | Simulation titles and descriptions | `content/data/simulations.json` |
 | Menu, footer | the page template in `tools/build.py` |
 

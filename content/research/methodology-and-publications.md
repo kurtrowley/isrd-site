@@ -16,8 +16,6 @@ For a brief summary of selected studies below, check out the [Research White Pap
 
 ## Publications
 
-- Rowley, K. (1995). Understanding software interoperability in a technology-supported system of education. *CAUSE/EFFECT*, 18(3), 20-26. Why software from many makers needs shared standards for data, with the Internet and MIDI as examples.
-
 - Rowley, K. (2005). [Inquiry into practices of expert courseware designers](https://journals.sagepub.com/doi/10.2190/9MLR-ARTQ-BD1P-KETN). *Journal of Educational Computing Research*, 33(4), 419-449.
 
 - Rowley, K. & Meyer, N. (2003). [The effect of a computer tutor for writers on student writing achievement.](https://journals.sagepub.com/doi/10.2190/3WVD-BKEY-PK0D-TTR7?icid=int.sj-abstract.similar-articles.2) *Journal of Educational Computing Research*, 29(2), 169-187.

@@ -15,3 +15,11 @@
     });
   });
 })();
+
+// The Software menu closes when you click elsewhere or press Escape.
+document.addEventListener("click", function (ev) {
+  document.querySelectorAll("details.menu[open]").forEach(function (d) { if (!d.contains(ev.target)) d.open = false; });
+});
+document.addEventListener("keydown", function (ev) {
+  if (ev.key === "Escape") document.querySelectorAll("details.menu[open]").forEach(function (d) { d.open = false; });
+});

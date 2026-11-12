@@ -1,48 +1,44 @@
 {
-  "intro": "ISRD, Interdisciplinary Systems R&D, does applied interdisciplinary systems research and design. We take what the systems sciences and the sciences of each field already know, apply it to real problems, build tools for the people doing the changing, and find out in public whether the tools work.",
+  "intro": "ISRD, Interdisciplinary Systems R&D, brings science, design, education and AI together around the connected challenges humanity faces, so that healthier, fairer and more resilient ways of living can be understood, tested and shared.",
   "what": [
     {
-      "title": "Tools for systemic change",
-      "text": "A suite of tools for people who help others change a system: models to run, a studio to think and write in, and more to come.",
-      "href": "/tools/"
-    },
-    {
-      "title": "Start here",
-      "text": "A plain guide to how systems work, from everyday examples, with no background needed.",
-      "href": "/start/"
-    },
-    {
       "title": "Research",
-      "text": "Do tools for systemic change work? Our questions, methods and commitments, with the papers behind them.",
+      "text": "Programs in health systems, literary systems, global futurism and writing with AI, published as articles, reports and courses.",
       "href": "/research/"
     },
     {
-      "title": "Projects and community",
-      "text": "Issue projects led by the people closest to each issue, and a community of people who use and improve the tools.",
-      "href": "/projects/"
+      "title": "Simulations",
+      "text": "Interactive models that make feedback loops, attractors and emergence tangible, growing toward systems games.",
+      "href": "/simulations/"
+    },
+    {
+      "title": "Writing tools",
+      "text": "ISRD Writing Studio and ISRD Press: pre-publication tools that take a manuscript from first idea to a reader-tested draft.",
+      "href": "https://writer.isrd.com"
+    },
+    {
+      "title": "Education",
+      "text": "Learner-First Education: a framework for designing instruction that shifts mental models for good.",
+      "href": "/courses/"
     }
   ],
-  "principles_intro": "What we promise, and what we do not do.",
+  "principles_intro": "The same few commitments shape every project.",
   "principles": [
     {
-      "title": "People stay in charge",
-      "text": "The AI proposes and you decide. Consequential decisions stay with the people making them."
+      "title": "Design as evidence",
+      "text": "Every project runs one cycle: map the system, form a testable hypothesis, build an intervention, and fold what happens back into the model. The working system is both the output and the evidence, and a visible failure is itself a finding."
     },
     {
-      "title": "Sketches are labelled",
-      "text": "AI text meant for the page is called a sketch, kept apart from yours, and meant to be tested and rewritten."
+      "title": "Connections first",
+      "text": "The parts of a system are nodes in a directed graph, linked by feedback. We model the connections before the components."
     },
     {
-      "title": "We say how sure we are",
-      "text": "Every claim is a known pattern, a likely parallel, or a guess worth testing."
+      "title": "Modular by design",
+      "text": "Every simulation is pluggable. A new model is a new configuration for the shared toolkit."
     },
     {
-      "title": "We publish what we find",
-      "text": "Whatever it shows. We build on existing systems science and put it to work."
-    },
-    {
-      "title": "Customers publish their own work",
-      "text": "Customers publish under their own names, and ISRD provides the tools."
+      "title": "AI that supports expert judgment",
+      "text": "Components expose their state to AI services that interpret runs and suggest adjustments, while people make the consequential decisions."
     }
   ],
   "mission_title": "Everyone gets a voice",

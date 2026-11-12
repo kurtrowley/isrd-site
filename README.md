@@ -14,16 +14,18 @@ If the Actions tab shows a red X, the edit contained a mistake (the usual one is
 | To change | Edit this file |
 |---|---|
 | Colors, fonts, spacing (light and dark) | `style.css`, the settings at the top under `:root` |
-| Home page words and layout | `index.html` |
-| About page words | `content/data/about.json` |
-| Contact address | `CONTACT_EMAIL` near the top of `tools/build.py` |
+| Home page name and one-line description | `NAME` and `TAGLINE` near the top of `tools/build.py` |
+| Contact address (footer) | `CONTACT_EMAIL` near the top of `tools/build.py` |
 | Article text | `content/articles/*.md` (titles and summaries: `content/data/articles.json`) |
-| Research reports | `content/research/*.md` (list: `content/data/reports.json`; programs: `content/data/programs.json`) |
+| Research reports and summaries | `content/research/*.md` (list: `content/data/reports.json`; summaries: `content/data/programs.json`) |
 | Course readings | `content/courses/*.md` (list: `content/data/course_readings.json`) |
+| Software menu and Software page | `content/data/software.json` |
 | Simulation titles and descriptions | `content/data/simulations.json` |
-| Menu links, footer | `NAV` and the page template in `tools/build.py` (the home page keeps its own copy in `index.html`) |
+| Menu, footer | the page template in `tools/build.py` |
 
-Do not edit the generated pages (`about/index.html`, everything inside `articles/`, `research/`, `courses/`, `media/`, `simulations/` except the `js` folders): they are rewritten from the files above on every publish.
+Every piece of writing appears in one list at `/publications/`, each on its own page at `/publications/<slug>/`. All are categorized "Article" (the list heading reads "Articles"); to give one a different category later, add `"category": "..."` to its record in the `.json` list.
+
+Do not edit the generated pages (`index.html`, `404.html`, everything inside `publications/`, `software/`, and `simulations/` except the `js` folders): they are rewritten from the files above on every publish.
 Markdown files use `#` for headings, `**bold**`, `*italic*`, `[text](link)` for links, and `-` for bullets.
 
 ## Editing on your computer instead
@@ -44,16 +46,32 @@ Later updates: edit `content/`, run `python3 tools/build.py`, commit, push.
 
 Keep real secrets out of this repo either way: a static site's files are public to anyone who visits.
 
-## Content (brought over from the old sites)
-Source lives in `content/` (Markdown plus JSON records); `python3 tools/build.py` turns it into the pages below. Edit the source, rebuild, commit.
+## Software and hosting
+The website itself is served by GitHub Pages. The two apps are separate sites on their own subdomains, listed in `content/data/software.json`:
+
+| App | Address |
+|---|---|
+| ISRD Writing Studio | writer.isrd.com |
+| Bison Island Studios | games.isrd.com |
+
+The apps are moving off DigitalOcean to a Lubuntu server at home, reached through a Cloudflare Tunnel. This is a stub until the server's local IP is known:
+
+    tunnel origin (local IP and ports): TO BE FILLED IN
+    writer.isrd.com -> http://<local-ip>:<port>
+    games.isrd.com  -> http://<local-ip>:<port>
+
+The local IP belongs in the tunnel's own config on the server (`cloudflared`), not in this website: the site only links to the two addresses above, which stay the same after the move. In `software.json`, an app with `"live": false` shows as a "Moving to a new server" card with no link; set it to `"live": true` once the app answers at its address.
+
+## Content
+Source lives in `content/` (Markdown plus JSON records); `python3 tools/build.py` turns it into the pages. Edit the source, rebuild, commit.
 
 | Section | Pages | Source |
 |---|---|---|
-| Research | 4 programs, 9 reports | `content/data/programs.json`, `reports.json`, `content/research/` |
-| Articles | 7 | `content/data/articles.json`, `content/articles/` |
-| Courses | 3 course descriptions, 10 readings | `content/data/courses.json`, `course_readings.json`, `content/courses/` |
-| Media | 2 artworks with analysis | `content/data/media.json`, `media/` |
-| Simulations | index and 8 pages | `content/data/simulations.json`, `simulations/` |
+| Publications | 33: 7 articles, 9 research reports, 6 research summaries, 10 course readings, 1 visual essay | `content/data/*.json`, `content/articles/`, `content/research/`, `content/courses/`, `media/` |
+| Software | 1 page, 2 apps | `content/data/software.json` |
+| Simulations | index and 8 pages (linked from the footer and from publications) | `content/data/simulations.json`, `simulations/` |
+
+Old addresses (`/articles/...`, `/research/...`, `/courses/...`, `/media/`, `/about/`) are redirected by a small script in the 404 page. `content/data/about.json` and `courses.json` are kept as source but no page is built from them now.
 
 `pip install markdown` is needed to rebuild. Articles with diagrams load Mermaid from jsDelivr.
 
@@ -72,6 +90,5 @@ The TypeScript was converted with a small script, then checked in a browser: eve
 - One image (`learner_first_header.png`) is missing on the old site too, so it is omitted.
 
 ## Open decisions
-- Contact address is kurt@isrd.com (set in `tools/build.py`; override with `CONTACT_EMAIL=... python3 tools/build.py`)
-- Which old articles and simulations move first
-- Subdomain list and launch order (writer is live; press and sim next)
+- Local IP and ports for the Cloudflare Tunnel (see Software and hosting)
+- Whether the simulations stay on this site, move under Software, or go

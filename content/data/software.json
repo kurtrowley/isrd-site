@@ -1,0 +1,16 @@
+[
+ {
+  "id": "writer",
+  "title": "ISRD Writing Studio",
+  "url": "https://writer.isrd.com",
+  "description": "A writing studio built on the Reader-First method. It takes a manuscript from first idea to a developed, reader-tested draft.",
+  "live": true
+ },
+ {
+  "id": "games",
+  "title": "Bison Island Studios",
+  "url": "https://games.isrd.com",
+  "description": "The Bison Island Studios game, moved out of the Writing Studio onto its own site.",
+  "live": false
+ }
+]

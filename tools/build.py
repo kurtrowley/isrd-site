@@ -354,9 +354,52 @@ def build_404():
     shutil.rmtree(ROOT / "__404__")
 
 
+# The page a Cloudflare Worker sends visitors to when the studio's server (writer/games/mcp.isrd.com, at home) cannot be reached.
+# It lives here, on GitHub Pages, so it stays up when that server is down. ?from=<address> is where they were going: the page
+# checks that address's /api/health every 20 seconds (the Worker allows this one cross-site check) and goes back as soon as it answers.
+# The Worker: ISRD-writing-studio/deploy/home-server/cloudflare/.
+OFFLINE_HEAD = '<meta name="robots" content="noindex">'
+OFFLINE_JS = r"""<script>
+(function () {
+  var from = null, st = document.getElementById("offline-status"), back = document.getElementById("offline-back");
+  try {
+    var u = new URL(new URLSearchParams(location.search).get("from") || "");
+    if (u.protocol === "https:" && /^(writer|games|mcp|home)\.isrd\.com$/.test(u.hostname)) from = u;   // only our own addresses
+  } catch (e) {}
+  if (!from) { st.textContent = "Try the link you followed again in a few minutes."; return; }
+  back.href = from.href; back.style.display = "";
+  var tries = 0;
+  function check() {
+    tries++;
+    fetch(from.origin + "/api/health", { mode: "cors", cache: "no-store" })
+      .then(function (r) { if (r.ok) { st.textContent = "It's back. Taking you there…"; location.replace(from.href); } else wait(); })
+      .catch(wait);
+  }
+  function wait() {
+    st.textContent = "Still offline. Checked " + new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) +
+      "; checking again every 20 seconds. You can leave this page open.";
+    setTimeout(check, tries < 90 ? 20000 : 120000);
+  }
+  check();
+})();
+</script>"""
+
+
+def build_offline():
+    body = (head("Back soon", "The server is offline for a moment",
+                 "The ISRD Writing Studio and Bison Island run on ISRD's own server, which is restarting or being updated. "
+                 "Your work is saved on it and will be there when it returns.") +
+            '<section><div class="wrap"><p id="offline-status" class="muted" role="status" aria-live="polite">Checking…</p>'
+            '<div class="cta"><a class="btn primary" id="offline-back" href="/" style="display:none">Try again now</a>'
+            '<a class="btn ghost" href="/">ISRD home</a></div>'
+            f'<p class="muted" style="margin-top:2em">If it stays offline for long, write to <a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>.</p>'
+            '</div></section>' + OFFLINE_JS)
+    page("/offline/", "Back soon", body, "The ISRD server is offline for a moment", head_extra=OFFLINE_HEAD)
+
+
 if __name__ == "__main__":
     shutil.rmtree(ROOT / "publications", ignore_errors=True)      # so a removed publication does not leave its page behind
     for fn in (build_articles, build_reports, build_programs, build_readings, build_media, build_publications, build_software,
-               build_home, build_simulations, build_sim_pages, build_postviral, build_404):
+               build_home, build_simulations, build_sim_pages, build_postviral, build_404, build_offline):
         fn()
     print(f"built {len(PUBS)} publications, {len(SOFTWARE)} software entries, {len(SIMS)} simulations")

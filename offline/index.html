@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Back soon | ISRD</title>
+<meta name="description" content="The ISRD server is offline for a moment">
+<meta name="theme-color" content="#0f6b5c">
+<link rel="stylesheet" href="/style.css">
+<script src="/theme.js"></script>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+  <a class="brand" href="/">IS<span>R</span>D</a>
+  <nav aria-label="Main"><a href="/publications/">Publications</a><a href="/simulations/">Simulations</a><details class="menu"><summary>Software</summary><div class="drop"><a href="/software/writer/">ISRD Writing Studio</a><a href="/software/games/">Bison Island Studios</a></div></details><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+</div></header>
+<main id="main">
+<div class="pagehead"><div class="wrap"><p class="eyebrow">Back soon</p><h1>The server is offline for a moment</h1><p class=lede>The ISRD Writing Studio and Bison Island run on ISRD&#x27;s own server, which is restarting or being updated. Your work is saved on it and will be there when it returns.</p></div></div><section><div class="wrap"><p id="offline-status" class="muted" role="status" aria-live="polite">Checking…</p><div class="cta"><a class="btn primary" id="offline-back" href="/" style="display:none">Try again now</a><a class="btn ghost" href="/">ISRD home</a></div><p class="muted" style="margin-top:2em">If it stays offline for long, write to <a href="mailto:kurt@isrd.com">kurt@isrd.com</a>.</p></div></section><script>
+(function () {
+  var from = null, st = document.getElementById("offline-status"), back = document.getElementById("offline-back");
+  try {
+    var u = new URL(new URLSearchParams(location.search).get("from") || "");
+    if (u.protocol === "https:" && /^(writer|games|mcp|home)\.isrd\.com$/.test(u.hostname)) from = u;   // only our own addresses
+  } catch (e) {}
+  if (!from) { st.textContent = "Try the link you followed again in a few minutes."; return; }
+  back.href = from.href; back.style.display = "";
+  var tries = 0;
+  function check() {
+    tries++;
+    fetch(from.origin + "/api/health", { mode: "cors", cache: "no-store" })
+      .then(function (r) { if (r.ok) { st.textContent = "It's back. Taking you there…"; location.replace(from.href); } else wait(); })
+      .catch(wait);
+  }
+  function wait() {
+    st.textContent = "Still offline. Checked " + new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) +
+      "; checking again every 20 seconds. You can leave this page open.";
+    setTimeout(check, tries < 90 ? 20000 : 120000);
+  }
+  check();
+})();
+</script>
+</main>
+<footer><div class="wrap">
+  <div><strong>ISRD</strong><br>Interdisciplinary Systems Research and Development</div>
+  <div><a href="/publications/">Publications</a> · <a href="/software/">Software</a> · <a href="/simulations/">Simulations</a><br><a href="mailto:kurt@isrd.com">kurt@isrd.com</a></div>
+  <div>© ISRD. All rights reserved.</div>
+</div></footer>
+
+</body>
+</html>

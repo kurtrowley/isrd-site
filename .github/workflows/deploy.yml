@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir _site
           cp -R index.html 404.html style.css theme.js style-guide.html CNAME \
-                              media publications software simulations offline _site/
+                              media articles press software simulations offline _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

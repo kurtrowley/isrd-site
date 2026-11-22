@@ -259,9 +259,13 @@ def build_publications():
 
 
 # ---- ISRD Press ---------------------------------------------------------------------------------------
+def flush_prose(inner):
+    return f'<div class="wrap"><article class="prose flush">{inner}</article></div>'
+
+
 def build_press():
     body = head("ISRD Press", "Stories and books, free to read",
-                "ISRD Press is the publishing house of ISRD. Its authors write with the ISRD Writing Studio, and every work is free to read.") + prose(
+                "ISRD Press is the publishing house of ISRD. Its authors write with the ISRD Writing Studio, and every work is free to read.") + flush_prose(
         "<h2>Authors</h2>"
         "<p>Every author has a page of their own. It holds their biography, the works they have published, and the work in progress that they would like readers to see. "
         "An author can write under their own name or under a pen name.</p>"

@@ -116,6 +116,7 @@ footer a { color: var(--muted); }
 .crumbs a { color: var(--muted); }
 .prose { max-width: 44rem; margin: 0 auto; padding: 8px 0 40px; font-size: 1.08rem; line-height: 1.75; overflow-wrap: anywhere; }
 .two .prose { margin: 0; max-width: none; }
+.prose.flush { margin: 0; }
 .prose h2 { margin-top: 1.8em; } .prose h3 { margin-top: 1.5em; } .prose h4 { margin: 1.2em 0 .3em; }
 .prose img { max-width: 100%; height: auto; border-radius: var(--radius); }
 .prose blockquote { margin: 1.2em 0; padding: .1em 0 .1em 18px; border-left: 4px solid var(--accent); color: var(--muted); }

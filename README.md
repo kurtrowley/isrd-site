@@ -23,9 +23,9 @@ If the Actions tab shows a red X, the edit contained a mistake (the usual one is
 | Simulation titles and descriptions | `content/data/simulations.json` |
 | Menu, footer | the page template in `tools/build.py` |
 
-Every piece of writing appears in one list at `/publications/`, each on its own page at `/publications/<slug>/`. All are categorized "Article" (the list heading reads "Articles"); to give one a different category later, add `"category": "..."` to its record in the `.json` list.
+Every piece of writing appears in one list at `/articles/`, each on its own page at `/articles/<slug>/`. All are categorized "Article" (the list heading reads "Articles"); to give one a different category later, add `"category": "..."` to its record in the `.json` list.
 
-Do not edit the generated pages (`index.html`, `404.html`, everything inside `publications/`, `software/`, and `simulations/` except the `js` folders): they are rewritten from the files above on every publish.
+Do not edit the generated pages (`index.html`, `404.html`, everything inside `articles/`, `press/`, `software/`, and `simulations/` except the `js` folders): they are rewritten from the files above on every publish.
 Markdown files use `#` for headings, `**bold**`, `*italic*`, `[text](link)` for links, and `-` for bullets.
 
 ## Editing on your computer instead
@@ -67,7 +67,7 @@ Source lives in `content/` (Markdown plus JSON records); `python3 tools/build.py
 
 | Section | Pages | Source |
 |---|---|---|
-| Publications | 33: 7 articles, 9 research reports, 6 research summaries, 10 course readings, 1 visual essay | `content/data/*.json`, `content/articles/`, `content/research/`, `content/courses/`, `media/` |
+| Articles | 33: 7 articles, 9 research reports, 6 research summaries, 10 course readings, 1 visual essay | `content/data/*.json`, `content/articles/`, `content/research/`, `content/courses/`, `media/` |
 | Software | 1 page, 2 apps | `content/data/software.json` |
 | Simulations | index and 8 pages (linked from the footer and from publications) | `content/data/simulations.json`, `simulations/` |
 

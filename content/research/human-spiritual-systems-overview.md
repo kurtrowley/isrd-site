@@ -37,7 +37,7 @@ Second, the current period is anomalous. The dominant institutional spiritual sy
 
 ## Methods
 
-This program applies the [Attractor Engineering Framework](/publications/reports/attractor-engineering-framework) to spiritual phenomena:
+This program applies the [Attractor Engineering Framework](/articles/reports/attractor-engineering-framework) to spiritual phenomena:
 
 - **Attractor analysis** — Identifying the stable states spiritual systems create and maintain in individuals and communities
 - **Feedback modeling** — Mapping the reinforcing and balancing loops that sustain practice over time

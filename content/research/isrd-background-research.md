@@ -100,4 +100,4 @@ Kurt's first use of a design-experiment methodology was an application of genera
 
 ---
 
-*Related reading: [Pattern Is the Message](/articles/pattern-is-the-message) · [Energy Envelopes and Feedback Loops](/publications/reports/energy-envelopes) · [What Is Systems Science?](/courses/ss101-what-is-systems-science)*
+*Related reading: [Pattern Is the Message](/articles/pattern-is-the-message) · [Energy Envelopes and Feedback Loops](/articles/reports/energy-envelopes) · [What Is Systems Science?](/courses/ss101-what-is-systems-science)*

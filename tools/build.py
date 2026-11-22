@@ -51,9 +51,9 @@ def contact_line():
 REDIRECT = r"""<script>
 (function () {
   var p = location.pathname, m, to = "";
-  if ((m = p.match(/^\/(?:articles|courses|research\/papers|research)\/([\w-]+)\/?$/))) to = "/publications/" + m[1] + "/";
-  else if (/^\/(articles|courses|research)\/?$/.test(p)) to = "/publications/";
-  else if (/^\/media\/?$/.test(p)) to = "/publications/visual-arts/";
+  if ((m = p.match(/^\/(?:publications|courses|research\/papers|research)\/([\w-]+)\/?$/))) to = "/articles/" + m[1] + "/";
+  else if (/^\/(publications|courses|research)\/?$/.test(p)) to = "/articles/";
+  else if (/^\/media\/?$/.test(p)) to = "/articles/visual-arts/";
   else if (/^\/about\/?$/.test(p)) to = "/";
   if (to && !/[?&]moved=1/.test(location.search)) location.replace(to + "?moved=1");
 })();
@@ -65,10 +65,10 @@ HASH_REDIRECT = r"""<script>
   var h = location.hash, m, to = "";
   if (h.indexOf("#/") !== 0) return;
   if ((m = h.match(/^#\/simulations\/([\w-]+)/))) to = "/simulations/" + m[1] + "/";
-  else if ((m = h.match(/^#\/(?:articles|courses|research|publications\/reports)\/([\w-]+)/))) to = "/publications/" + m[1] + "/";
+  else if ((m = h.match(/^#\/(?:articles|courses|research|publications\/reports)\/([\w-]+)/))) to = "/articles/" + m[1] + "/";
   else if (/^#\/simulations\b/.test(h)) to = "/simulations/";
-  else if (/^#\/media\b/.test(h)) to = "/publications/visual-arts/";
-  else if (/^#\/(publications|articles|courses|research)\b/.test(h)) to = "/publications/";
+  else if (/^#\/media\b/.test(h)) to = "/articles/visual-arts/";
+  else if (/^#\/(publications|articles|courses|research)\b/.test(h)) to = "/articles/";
   if (to) location.replace(to);
 })();
 </script>"""
@@ -94,14 +94,14 @@ def page(path, title, body, desc="", mermaid=False, section="", full_title="", h
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
   <a class="brand" href="/">IS<span>R</span>D</a>
-  <nav aria-label="Main"><a href="/publications/"{cur("publications")}>Publications</a><a href="/simulations/"{cur("simulations")}>Simulations</a><details class="menu{" current" if section == "software" else ""}"><summary>Software</summary><div class="drop">{drop}</div></details><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+  <nav aria-label="Main"><a href="/articles/"{cur("articles")}>Articles</a><a href="/press/"{cur("press")}>ISRD Press</a><a href="/simulations/"{cur("simulations")}>Simulations</a><details class="menu{" current" if section == "software" else ""}"><summary>Software</summary><div class="drop">{drop}</div></details><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
 </div></header>
 <main id="main">
 {body}
 </main>
 <footer><div class="wrap">
   <div><strong>ISRD</strong><br>{e(NAME)}</div>
-  <div><a href="/publications/">Publications</a> · <a href="/software/">Software</a> · <a href="/simulations/">Simulations</a>{f'<br><a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>' if CONTACT_EMAIL else ""}</div>
+  <div><a href="/articles/">Articles</a> · <a href="/press/">ISRD Press</a> · <a href="/software/">Software</a> · <a href="/simulations/">Simulations</a>{f'<br><a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>' if CONTACT_EMAIL else ""}</div>
   <div>© ISRD. All rights reserved.</div>
 </div></footer>
 {f'<script src="{MERMAID}"></script><script>mermaid.initialize({{startOnLoad:true,theme:matchMedia("(prefers-color-scheme: dark)").matches?"dark":"default"}});</script>' if mermaid else ""}
@@ -126,18 +126,18 @@ def tags(ts):
 
 
 # ---- markdown ---------------------------------------------------------------------------------------
-PUBS_CRUMB = ("Publications", "/publications/")
+PUBS_CRUMB = ("Articles", "/articles/")
 
 
 def href(h):
-    """Turns an address from the old section layout into its place under /publications/."""
+    """Turns an address from the old section layout into its place under /articles/."""
     h = h.rstrip("/")
     m = re.fullmatch(r"/(?:publications/reports|research/papers|articles|courses|research)/([A-Za-z0-9_-]+)", h)
     if m:
-        return f"/publications/{m.group(1)}/"
+        return f"/articles/{m.group(1)}/"
     m = re.fullmatch(r"/media/([a-z0-9-]+)", h)
     if m:
-        return f"/publications/visual-arts/#{m.group(1)}"
+        return f"/articles/visual-arts/#{m.group(1)}"
     return h + "/" if h.startswith("/") and "." not in h.rsplit("/", 1)[-1] else h
 
 
@@ -170,12 +170,12 @@ def byline(top, rec):
     return top.replace("</div></div>", f'<p class="muted byline">{e(rec.get("author", ""))} · {e(str(rec.get("date", "")))}</p></div></div>', 1)
 
 
-# ---- publications: every kind of writing becomes one page under /publications/ ---------------------------
+# ---- publications: every kind of writing becomes one page under /articles/ ---------------------------
 def build_articles():
     for a in ARTICLES:
         body, m = render(f"articles/{a['file']}", subtitle=a.get("subtitle", ""))
         top = byline(head(f"Article", a["title"], a.get("subtitle", ""), crumbs(PUBS_CRUMB)), a)
-        page(f"/publications/{a['slug']}/", a["title"], top + prose(body), a["description"], m, "publications")
+        page(f"/articles/{a['slug']}/", a["title"], top + prose(body), a["description"], m, "articles")
         pub(a["slug"], a["title"], "Article", a["description"], a.get("date"), a.get("tag", ""), a)
 
 
@@ -184,11 +184,11 @@ def build_reports():
         body, m = render(f"research/{r['file']}")
         prog = PROGRAM_TITLE.get(r.get("program"), "")
         top = byline(head(f"Research report" + (f" · {prog}" if prog else ""), r["title"], r.get("description", ""), crumbs(PUBS_CRUMB)), r)
-        page(f"/publications/{r['slug']}/", r["title"], top + prose(body), r.get("description", ""), m, "publications")
+        page(f"/articles/{r['slug']}/", r["title"], top + prose(body), r.get("description", ""), m, "articles")
         pub(r["slug"], r["title"], "Research report", r.get("description", ""), r.get("date"), prog, r)
     body, m = render("research/methodology-and-publications.md")
     title, desc = "Research methodology and publications", "Design-based research, and the studies and papers behind it."
-    page("/publications/methodology-and-publications/", title, head(f"Research summary", title, desc, crumbs(PUBS_CRUMB)) + prose(body), desc, m, "publications")
+    page("/articles/methodology-and-publications/", title, head(f"Research summary", title, desc, crumbs(PUBS_CRUMB)) + prose(body), desc, m, "articles")
     pub("methodology-and-publications", title, "Research summary", desc)
 
 
@@ -198,9 +198,9 @@ def build_programs():
         tools = "".join(f"<li>{e(t)}</li>" for t in p["tools"])
         sims = "".join(f'<li><a href="/simulations/{s["path"].rsplit("/", 1)[-1]}/">{e(s["label"])}</a>{" <span class=chip>In development</span>" if s.get("status") else ""}</li>'
                        for s in p.get("related_simulators", []))
-        rel = "".join(f'<li><a href="/publications/{r["slug"]}/">{e(r["title"])}</a></li>' for r in REPORTS if r.get("program") == p["id"])
+        rel = "".join(f'<li><a href="/articles/{r["slug"]}/">{e(r["title"])}</a></li>' for r in REPORTS if r.get("program") == p["id"])
         if p.get("report_slug") and not rel:
-            rel = f'<li><a href="/publications/{p["report_slug"]}/">Read the report</a></li>'
+            rel = f'<li><a href="/articles/{p["report_slug"]}/">Read the report</a></li>'
         product = f'<p><a class="btn primary" href="{WRITER_URL}">{e(p.get("product_label") or "Visit ISRD Writing Studio →")}</a></p>' if p.get("product_url") else ""
         related = "".join(f'<li><a href="{href(r["href"])}">{e(r["label"])}</a></li>' for r in p.get("related", []))
         body = (head(f"Research summary", p["title"], p["subtitle"], crumbs(PUBS_CRUMB)) +
@@ -211,7 +211,7 @@ def build_programs():
                 f'{f"<div class=card><h3>Read next</h3><ul>{related}</ul></div>" if related else ""}'
                 f'{f"<div class=card><h3>Simulations</h3><ul>{sims}</ul></div>" if sims else ""}'
                 f'{f"<div class=card><h3>Reports</h3><ul>{rel}</ul></div>" if rel else ""}</aside></div></section>')
-        page(f"/publications/{p['id']}/", p["title"], body, p["description"][:200], section="publications")
+        page(f"/articles/{p['id']}/", p["title"], body, p["description"][:200], section="articles")
         pub(p["id"], p["title"], "Research summary", p["subtitle"], rec=p)
 
 
@@ -219,7 +219,7 @@ def build_readings():
     for r in sorted(READINGS, key=lambda r: (r["seriesLabel"], r["order"])):
         body, m = render(f"courses/{r['file']}")
         top = byline(head(f"Course reading · {r['seriesLabel']}", r["title"], r["description"], crumbs(PUBS_CRUMB)), r)
-        page(f"/publications/{r['slug']}/", r["title"], top + prose(body), r["description"], m, "publications")
+        page(f"/articles/{r['slug']}/", r["title"], top + prose(body), r["description"], m, "articles")
         pub(r["slug"], r["title"], "Course reading", r["description"], r.get("date"), r["seriesLabel"], r)
 
 
@@ -234,14 +234,14 @@ def build_media():
                     f'<div class="prose"><h3>{e(it["title"])}</h3><p><em>{e(it["subtitle"])}</em></p><p>{e(it["analysis"]["overview"])}</p>{els}{link}<div>{tags(it.get("tags"))}</div></div>')
         out += "</div></section>"
         title, desc = "Systems science as visual art", "Images that make attractors and feedback visible, with an analysis of each."
-        page(f"/publications/{g['id']}/", title, head(f"Visual essay", title, "", crumbs(PUBS_CRUMB)) + out, desc, section="publications")
+        page(f"/articles/{g['id']}/", title, head(f"Visual essay", title, "", crumbs(PUBS_CRUMB)) + out, desc, section="articles")
         pub(g["id"], title, "Visual essay", desc, rec=g)
 
 
 def pub_rows(items):
     return '<ul class="rows">' + "".join(
         f'<li><span class="meta">{e(" · ".join(x for x in (p["kind"], p["detail"], p["year"]) if x))}</span>'
-        f'<a href="/publications/{p["slug"]}/"><strong>{e(p["title"])}</strong></a>'
+        f'<a href="/articles/{p["slug"]}/"><strong>{e(p["title"])}</strong></a>'
         f'{f"<span class=muted>{e(p["desc"])}</span>" if p["desc"] else ""}</li>' for p in items) + "</ul>"
 
 
@@ -254,8 +254,27 @@ def build_publications():
     for p in pubs_sorted():
         groups.setdefault(p["category"], []).append(p)
     body = "".join(f'<section><div class="wrap"><h2>{e(c)}s</h2>{pub_rows(ps)}</div></section>' for c, ps in groups.items())
-    page("/publications/", "Publications", head("ISRD", "Publications", "Articles, research reports and summaries, and course readings.") + body,
-         "ISRD publications: articles, research reports and summaries, and course readings.", section="publications")
+    page("/articles/", "Articles", head("ISRD", "Articles", "Articles, research reports and summaries, and course readings.") + body,
+         "ISRD articles: articles, research reports and summaries, and course readings.", section="articles")
+
+
+# ---- ISRD Press ---------------------------------------------------------------------------------------
+def build_press():
+    body = head("ISRD Press", "Stories and books, free to read",
+                "ISRD Press is the publishing house of ISRD. Its authors write with the ISRD Writing Studio, and every work is free to read.") + prose(
+        "<h2>Authors</h2>"
+        "<p>Every author has a page of their own. It holds their biography, the works they have published, and the work in progress that they would like readers to see. "
+        "An author can write under their own name or under a pen name.</p>"
+        "<h2>How each work was made</h2>"
+        "<p>Each work states how it was written, from written by the author with coaching, through shared writing, to drafted by AI and revised by the author. "
+        "The label comes from the author's own record in the Writing Studio.</p>"
+        "<h2>Read, and help authors improve their work</h2>"
+        "<p>Anyone can make a free reader account. Readers follow authors, read early parts of a work, and leave comments that help the author revise. "
+        "Finished works are open to everyone.</p>"
+        "<h2>Opening soon</h2>"
+        '<p>ISRD Press opens at press.isrd.com, and this page will link to it. To be told when it opens, write to '
+        f'<a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>. Authors begin in the <a href="/software/writer/">ISRD Writing Studio</a>.</p>')
+    page("/press/", "ISRD Press", body, "ISRD Press: stories and books written with the ISRD Writing Studio, free to read.", section="press")
 
 
 # ---- software -----------------------------------------------------------------------------------------
@@ -296,7 +315,7 @@ def game_cta():
 def build_home():
     body = (f'<div class="hero"><div class="wrap"><p class="eyebrow">ISRD</p><h1 class="name">{e(NAME)}</h1><p class="lede">{e(TAGLINE)}</p><p class="purpose">{e(PURPOSE)}</p><p class="purpose contact">{contact_line()}</p>{game_cta()}</div></div>'
             f'<section class="alt"><div class="wrap"><h2>{e(CATEGORY)}s</h2>{pub_rows(pubs_sorted()[:8])}'
-            f'<p style="margin-top:1.4em"><a href="/publications/">All {len(PUBS)} publications →</a></p></div></section>'
+            f'<p style="margin-top:1.4em"><a href="/articles/">All {len(PUBS)} articles and reports →</a></p></div></section>'
             f'<section><div class="wrap"><h2>Software</h2>{soft_cards()}</div></section>')
     page("/", NAME, body, f"ISRD: {NAME}. {TAGLINE}", full_title=f"ISRD: {NAME}", head_extra=HASH_REDIRECT)
 
@@ -346,7 +365,7 @@ def build_sim_pages():
 
 def build_404():
     body = (head("Not found", "That page has moved or does not exist", "Try one of these.") +
-            '<section><div class="wrap"><div class="cta"><a class="btn primary" href="/">Home</a><a class="btn ghost" href="/publications/">Publications</a>'
+            '<section><div class="wrap"><div class="cta"><a class="btn primary" href="/">Home</a><a class="btn ghost" href="/articles/">Articles</a>'
             '<a class="btn ghost" href="/software/">Software</a></div></div></section>')
     page("/__404__/", "Page not found", body, "Page not found", head_extra=REDIRECT)
     out = ROOT / "__404__" / "index.html"
@@ -398,8 +417,8 @@ def build_offline():
 
 
 if __name__ == "__main__":
-    shutil.rmtree(ROOT / "publications", ignore_errors=True)      # so a removed publication does not leave its page behind
-    for fn in (build_articles, build_reports, build_programs, build_readings, build_media, build_publications, build_software,
+    shutil.rmtree(ROOT / "articles", ignore_errors=True)      # so a removed publication does not leave its page behind
+    for fn in (build_articles, build_reports, build_programs, build_readings, build_media, build_publications, build_press, build_software,
                build_home, build_simulations, build_sim_pages, build_postviral, build_404, build_offline):
         fn()
     print(f"built {len(PUBS)} publications, {len(SOFTWARE)} software entries, {len(SIMS)} simulations")

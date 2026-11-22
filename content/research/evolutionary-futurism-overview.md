@@ -35,7 +35,7 @@ This is not optimism or pessimism. It is systems analysis.
 
 ## Methods
 
-This program applies the [Attractor Engineering Framework](/publications/reports/attractor-engineering-framework) to long-range civilizational analysis:
+This program applies the [Attractor Engineering Framework](/articles/reports/attractor-engineering-framework) to long-range civilizational analysis:
 
 - **Attractor engineering at civilizational scale** — What holds current trajectories in place, and where are the leverage points?
 - **Evolutionary modeling** — Applying selection, variation, and retention logic to cultural and institutional evolution

@@ -114,7 +114,7 @@ footer a { color: var(--muted); }
 .byline { margin: .4em 0 0; font-size: .92rem; }
 .crumbs { font-size: .9rem; margin-bottom: 1em; color: var(--muted); }
 .crumbs a { color: var(--muted); }
-.prose { max-width: 44rem; margin: 0 auto; padding: 8px 0 40px; font-size: 1.08rem; line-height: 1.75; overflow-wrap: anywhere; }
+.prose { max-width: 44rem; margin: 0; padding: 8px 0 40px; font-size: 1.08rem; line-height: 1.75; overflow-wrap: anywhere; }
 .two .prose { margin: 0; max-width: none; }
 .prose.flush { margin: 0; }
 .prose h2 { margin-top: 1.8em; } .prose h3 { margin-top: 1.5em; } .prose h4 { margin: 1.2em 0 .3em; }

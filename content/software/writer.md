@@ -13,6 +13,10 @@ The Writing Studio is a place to learn to write well, and to do big, complicated
 
 Notes, sources, maps, drafts and versions stay together in one project.
 
+## From first titles to readers
+
+A writer's route through the Studio has four steps. Learn the craft of long-form writing with the game, the tutorial and the writing tutor. Write your first few titles and share them on ISRD Press, a free student press, to hear from real readers. Grow your writing and your readership. Then publish your best work yourself or with a publisher. ISRD Press is the launch ramp: a place to finish your first titles, get reviews and improve. Its Success stories page lists books that began in the Studio and are now on sale.
+
 ## What you leave with
 
 A finished piece, the sources behind it, and a picture of how it fits together.

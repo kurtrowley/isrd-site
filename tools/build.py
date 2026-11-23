@@ -264,20 +264,23 @@ def flush_prose(inner):
 
 
 def build_press():
-    body = head("ISRD Press", "Stories and books, free to read",
-                "ISRD Press is the publishing house of ISRD. Its authors write with the ISRD Writing Studio, and every work is free to read.") + flush_prose(
+    body = head("ISRD Press", "A student press: free books by writers who are learning",
+                "ISRD Press shares the work of people who write with the ISRD Writing Studio, a support environment for learning expert long-form writing. Every work is free to read.") + flush_prose(
+        "<h2>A launch ramp for new writers</h2>"
+        "<p>Writers learn long-form writing in the Studio with the game, the tutorial and the writing tutor, write their first few titles, and share them here for reviews. As their writing grows and their readership builds, they publish their best books in the wider world.</p>"
+        "<h2>Read</h2>"
+        "<p>Browse stories and books by genre, check one out, and read it online. Some are complete, and some are shared in parts while the author is still writing.</p>"
+        "<h2>Help an author improve</h2>"
+        "<p>Readers who join a beta leave comments that help the author revise. Authors read every comment, and a short note about where you kept reading or slowed down is a real help.</p>"
         "<h2>Authors</h2>"
-        "<p>Every author has a page of their own. It holds their biography, the works they have published, and the work in progress that they would like readers to see. "
-        "An author can write under their own name or under a pen name.</p>"
+        "<p>Every author has a page with a biography, their works and what they are working on. Authors write under their own name or a pen name.</p>"
         "<h2>How each work was made</h2>"
-        "<p>Each work states how it was written, from written by the author with coaching, through shared writing, to drafted by AI and revised by the author. "
-        "The label comes from the author's own record in the Writing Studio.</p>"
-        "<h2>Read, and help authors improve their work</h2>"
-        "<p>Anyone can make a free reader account. Readers follow authors, read early parts of a work, and leave comments that help the author revise. "
-        "Finished works are open to everyone.</p>"
+        "<p>Each work states how it was written, from written by the author with coaching, through shared writing, to drafted by AI and revised by the author.</p>"
+        "<h2>Success stories</h2>"
+        "<p>Books that began in the Studio and are now with publishers or on sale as self-published titles are listed under Success stories, with links to where to buy. ISRD Press publishes a few commercial titles of its own there, as one publisher among many.</p>"
         "<h2>Opening soon</h2>"
         '<p>ISRD Press opens at press.isrd.com, and this page will link to it. To be told when it opens, write to '
-        f'<a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>. Authors begin in the <a href="/software/writer/">ISRD Writing Studio</a>.</p>')
+        f'<a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>. Writers begin in the <a href="/software/writer/">ISRD Writing Studio</a>.</p>')
     page("/press/", "ISRD Press", body, "ISRD Press: stories and books written with the ISRD Writing Studio, free to read.", section="press")
 
 

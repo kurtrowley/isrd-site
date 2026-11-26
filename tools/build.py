@@ -94,14 +94,14 @@ def page(path, title, body, desc="", mermaid=False, section="", full_title="", h
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
   <a class="brand" href="/">IS<span>R</span>D</a>
-  <nav aria-label="Main"><a href="/articles/"{cur("articles")}>Articles</a><a href="/press/"{cur("press")}>ISRD Press</a><a href="/simulations/"{cur("simulations")}>Simulations</a><details class="menu{" current" if section == "software" else ""}"><summary>Software</summary><div class="drop">{drop}</div></details><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+  <nav aria-label="Main"><a href="/articles/"{cur("articles")}>Articles</a><a href="/press/"{cur("press")}>ISRD Press</a><a href="/simulations/"{cur("simulations")}>Simulations</a><a href="https://writer.isrd.com/beta/" title="Work in progress, for members of the ISRD Writing Studio">Beta</a><details class="menu{" current" if section == "software" else ""}"><summary>Software</summary><div class="drop">{drop}</div></details><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
 </div></header>
 <main id="main">
 {body}
 </main>
 <footer><div class="wrap">
   <div><strong>ISRD</strong><br>{e(NAME)}</div>
-  <div><a href="/articles/">Articles</a> · <a href="/press/">ISRD Press</a> · <a href="/software/">Software</a> · <a href="/simulations/">Simulations</a>{f'<br><a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>' if CONTACT_EMAIL else ""}</div>
+  <div><a href="/articles/">Articles</a> · <a href="/press/">ISRD Press</a> · <a href="/software/">Software</a> · <a href="/simulations/">Simulations</a> · <a href="https://writer.isrd.com/beta/">Beta</a>{f'<br><a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>' if CONTACT_EMAIL else ""}</div>
   <div>© ISRD. All rights reserved.</div>
 </div></footer>
 {f'<script src="{MERMAID}"></script><script>mermaid.initialize({{startOnLoad:true,theme:matchMedia("(prefers-color-scheme: dark)").matches?"dark":"default"}});</script>' if mermaid else ""}

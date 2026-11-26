@@ -1,7 +1,7 @@
 # Designing Toward a Theory: An AI-Assisted Writing System as Design Experiment
 
 **Kurt Rowley**  
-Applied Systems Scientist | Interdisciplinary Systems R&D
+Applied Systems Scientist | Interdependent Systems R&D
 
 ---
 
@@ -173,6 +173,6 @@ The isomorphism between this experiment and ISRD's work in other domains is not 
 
 ---
 
-*Kurt Rowley is a systems scientist at Interdisciplinary Systems R&D (ISRD), applying complex systems science methodology across health, writing, and civilizational-scale domains. His published research includes work in instructional design cycles and design experiments. This case study is part of a continuing series of ISRD design-experiment write-ups.*
+*Kurt Rowley is a systems scientist at Interdependent Systems R&D (ISRD), applying complex systems science methodology across health, writing, and civilizational-scale domains. His published research includes work in instructional design cycles and design experiments. This case study is part of a continuing series of ISRD design-experiment write-ups.*
 
 *ISRD — [isrd.com](https://isrd.com)*

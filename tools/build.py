@@ -13,7 +13,7 @@ import markdown
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "kurt@isrd.com")
-NAME = "Interdisciplinary Systems Research and Development"
+NAME = "Interdependent Systems Research and Development"
 TAGLINE = "We develop tools to support systems thinking and systemic change."
 PURPOSE = ("ISRD is a research and development firm. We support the people who work on systemic change: writers and other creatives, "
            "researchers and scientists, educators, consultants and thought leaders, and anyone who wants to understand how systems change. "

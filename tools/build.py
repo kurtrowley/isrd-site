@@ -14,10 +14,10 @@ ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "kurt@isrd.com")
 NAME = "Interdependent Systems Research and Development"
-TAGLINE = "We develop tools to support systems thinking and systemic change."
-PURPOSE = ("ISRD is a research and development firm. We support the people who work on systemic change: writers and other creatives, "
-           "researchers and scientists, educators, consultants and thought leaders, and anyone who wants to understand how systems change. "
-           "We also provide end-user products consistent with our mission, including games.")
+TAGLINE = "Engaging and thought-provoking articles, simulations, and coming soon interactive simulation games that teach systems science."
+PURPOSE = ("ISRD is an applied systems science research and development firm. We conduct research designed to improve education, "
+           "training, and productivity tools for anyone who wants to understand how complex interdependent systems can be understood "
+           "and safely changed. ISRD specializes in evolutionary design experimentation.")
 CATEGORY = "Article"       # every publication has this category unless its record sets "category"
 MERMAID = "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"
 e = html.escape
@@ -77,7 +77,6 @@ HASH_REDIRECT = r"""<script>
 # ---- shared page frame -------------------------------------------------------------------------------
 def page(path, title, body, desc="", mermaid=False, section="", full_title="", head_extra=""):
     cur = lambda s: ' aria-current="page"' if s == section else ""
-    drop = "".join(f'<a href="{soft_href(s)}">{e(s["title"])}</a>' for s in SOFTWARE)
     doc = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -94,14 +93,14 @@ def page(path, title, body, desc="", mermaid=False, section="", full_title="", h
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
   <a class="brand" href="/">IS<span>R</span>D</a>
-  <nav aria-label="Main"><a href="/articles/"{cur("articles")}>Articles</a><a href="/press/"{cur("press")}>ISRD Press</a><a href="/simulations/"{cur("simulations")}>Simulations</a><a href="https://writer.isrd.com/beta/" title="Work in progress, for members of the ISRD Writing Studio">Beta</a><details class="menu{" current" if section == "software" else ""}"><summary>Software</summary><div class="drop">{drop}</div></details><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
+  <nav aria-label="Main"><a href="/articles/"{cur("articles")}>Articles</a><a href="/simulations/"{cur("simulations")}>Simulations</a><button class="icon-btn" id="themeBtn" type="button" aria-label="Switch color theme">☾</button></nav>
 </div></header>
 <main id="main">
 {body}
 </main>
 <footer><div class="wrap">
   <div><strong>ISRD</strong><br>{e(NAME)}</div>
-  <div><a href="/articles/">Articles</a> · <a href="/press/">ISRD Press</a> · <a href="/software/">Software</a> · <a href="/simulations/">Simulations</a> · <a href="https://writer.isrd.com/beta/">Beta</a>{f'<br><a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>' if CONTACT_EMAIL else ""}</div>
+  <div><a href="/articles/">Articles</a> · <a href="/simulations/">Simulations</a> · <a href="https://home.isrd.com/">Login for beta users</a>{f'<br><a href="mailto:{e(CONTACT_EMAIL)}">{e(CONTACT_EMAIL)}</a>' if CONTACT_EMAIL else ""}</div>
   <div>© ISRD. All rights reserved.</div>
 </div></footer>
 {f'<script src="{MERMAID}"></script><script>mermaid.initialize({{startOnLoad:true,theme:matchMedia("(prefers-color-scheme: dark)").matches?"dark":"default"}});</script>' if mermaid else ""}
@@ -320,10 +319,9 @@ def game_cta():
 
 # ---- home ---------------------------------------------------------------------------------------------
 def build_home():
-    body = (f'<div class="hero"><div class="wrap"><p class="eyebrow">ISRD</p><h1 class="name">{e(NAME)}</h1><p class="lede">{e(TAGLINE)}</p><p class="purpose">{e(PURPOSE)}</p><p class="purpose contact">{contact_line()}</p>{game_cta()}</div></div>'
+    body = (f'<div class="hero"><div class="wrap"><p class="eyebrow">ISRD</p><h1 class="name">{e(NAME)}</h1><p class="lede">{e(TAGLINE)}</p><p class="purpose">{e(PURPOSE)}</p></div></div>'
             f'<section class="alt"><div class="wrap"><h2>{e(CATEGORY)}s</h2>{pub_rows(pubs_sorted()[:8])}'
-            f'<p style="margin-top:1.4em"><a href="/articles/">All {len(PUBS)} articles and reports →</a></p></div></section>'
-            f'<section><div class="wrap"><h2>Software</h2>{soft_cards()}</div></section>')
+            f'<p style="margin-top:1.4em"><a href="/articles/">All {len(PUBS)} articles and reports →</a></p></div></section>')
     page("/", NAME, body, f"ISRD: {NAME}. {TAGLINE}", full_title=f"ISRD: {NAME}", head_extra=HASH_REDIRECT)
 
 

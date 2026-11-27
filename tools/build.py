@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "kurt@isrd.com")
 NAME = "Interdependent Systems Research and Development"
-TAGLINE = "Engaging and thought-provoking articles, simulations, and coming soon interactive simulation games that teach systems science."
+TAGLINE = "Engaging and thought-provoking articles, simulations, and coming soon interactive systems science games."
 PURPOSE = ("ISRD is an applied systems science research and development firm. We conduct research designed to improve education, "
            "training, and productivity tools for anyone who wants to understand how complex interdependent systems can be understood "
            "and safely changed. ISRD specializes in evolutionary design experimentation.")

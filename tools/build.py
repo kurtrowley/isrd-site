@@ -388,7 +388,7 @@ OFFLINE_JS = r"""<script>
   var from = null, st = document.getElementById("offline-status"), back = document.getElementById("offline-back");
   try {
     var u = new URL(new URLSearchParams(location.search).get("from") || "");
-    if (u.protocol === "https:" && /^(writer|games|mcp|home)\.isrd\.com$/.test(u.hostname)) from = u;   // only our own addresses
+    if (u.protocol === "https:" && /^(writer|games|press|mcp|home|sims|labs|tutor|systems|edu|explore|media)\.isrd\.com$/.test(u.hostname)) from = u;   // only our own addresses
   } catch (e) {}
   if (!from) { st.textContent = "Try the link you followed again in a few minutes."; return; }
   back.href = from.href; back.style.display = "";
